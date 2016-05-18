@@ -4263,16 +4263,6 @@ body.stop-scrolling {
     border-radius: 0 4px 4px 0; 
 }
 @charset "UTF-8";
-a {
-  color: #AB1600;
-  text-decoration: none;
-  /* ...and now for the proper property */
-  transition: .5s; }
-
-a:hover {
-  color: #D23F29;
-  text-decoration: none; }
-
 .pace {
   -webkit-pointer-events: none;
   pointer-events: none;
@@ -4285,7 +4275,7 @@ a:hover {
   display: none; }
 
 .pace .pace-progress {
-  background: #7D318F;
+  background: #F6FFBA;
   position: fixed;
   z-index: 2000;
   top: 0;
@@ -8279,23 +8269,23 @@ tbody.collapse.in {
       margin-right: 0; } }
 
 .navbar-default {
-  background-color: #7FC384;
-  border-color: #4ea554; }
+  background-color: #3EC1D3;
+  border-color: #248f9e; }
   .navbar-default .navbar-brand {
-    color: #E2E2E2; }
+    color: #F8F8F8; }
     .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-      color: #c9c9c9;
+      color: #dfdfdf;
       background-color: transparent; }
   .navbar-default .navbar-text {
     color: #EEEEEE; }
   .navbar-default .navbar-nav > li > a {
-    color: #E2E2E2; }
+    color: #F8F8F8; }
     .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-      color: #BFBFBF;
-      background-color: #5DA362; }
+      color: #F8F8F8;
+      background-color: #07707F; }
   .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #BCBCBC;
-    background-color: #4ea554; }
+    color: #F8F8F8;
+    background-color: #248f9e; }
   .navbar-default .navbar-nav > .disabled > a, .navbar-default .navbar-nav > .disabled > a:hover, .navbar-default .navbar-nav > .disabled > a:focus {
     color: #ccc;
     background-color: transparent; }
@@ -8307,30 +8297,30 @@ tbody.collapse.in {
       background-color: #888; }
   .navbar-default .navbar-collapse,
   .navbar-default .navbar-form {
-    border-color: #4ea554; }
+    border-color: #248f9e; }
   .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #4ea554;
-    color: #BCBCBC; }
+    background-color: #248f9e;
+    color: #F8F8F8; }
   @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-      color: #E2E2E2; }
+      color: #F8F8F8; }
       .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #BFBFBF;
-        background-color: #5DA362; }
+        color: #F8F8F8;
+        background-color: #07707F; }
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-      color: #BCBCBC;
-      background-color: #4ea554; }
+      color: #F8F8F8;
+      background-color: #248f9e; }
     .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
       color: #ccc;
       background-color: transparent; } }
   .navbar-default .navbar-link {
-    color: #E2E2E2; }
+    color: #F8F8F8; }
     .navbar-default .navbar-link:hover {
-      color: #BFBFBF; }
+      color: #F8F8F8; }
   .navbar-default .btn-link {
-    color: #E2E2E2; }
+    color: #F8F8F8; }
     .navbar-default .btn-link:hover, .navbar-default .btn-link:focus {
-      color: #BFBFBF; }
+      color: #F8F8F8; }
     .navbar-default .btn-link[disabled]:hover, .navbar-default .btn-link[disabled]:focus,
     fieldset[disabled] .navbar-default .btn-link:hover,
     fieldset[disabled] .navbar-default .btn-link:focus {
@@ -12164,6 +12154,16 @@ button.close {
 .fa-percent:before {
   content: ""; }
 
+a {
+  color: #337ab7;
+  text-decoration: none;
+  /* ...and now for the proper property */
+  transition: .5s; }
+
+a:hover {
+  color: #1E4E77;
+  text-decoration: none; }
+
 /*# sourceMappingURL=app.css.map */
 
 /* Sticky footer styles
@@ -12210,7 +12210,7 @@ body > .container {
 
 /* bagian backend footer */
 body > .container-fluid {
- padding: 100px 15px 0;
+ padding: 60px 15px 0;
 }
 .container .text-muted {
  margin: 20px 0;

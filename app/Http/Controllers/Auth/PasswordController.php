@@ -20,6 +20,10 @@ class PasswordController extends Controller
 
     use ResetsPasswords;
 
+    protected $resetView = 'konten.frontend.auth.passwords.reset';
+    protected $linkRequestView = 'konten.frontend.auth.passwords.email';
+
+ 
     /**
      * Create a new password controller instance.
      *

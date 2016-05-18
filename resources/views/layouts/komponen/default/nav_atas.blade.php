@@ -12,7 +12,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ env('NAMA_APP', 'TKASIR') }}
+                   <i class="fa fa-shopping-bag" aria-hidden="true"></i>  {{ env('NAMA_APP', 'TKASIR') }}
                 </a>
             </div>
 

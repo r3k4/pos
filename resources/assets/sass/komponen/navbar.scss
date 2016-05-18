@@ -7,14 +7,14 @@ $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2
 $navbar-collapse-max-height:       340px !default;
 
 $navbar-default-color:             #EEEEEE !default;
-$navbar-default-bg:                #7FC384 !default;
+$navbar-default-bg:                #3EC1D3 !default;
 $navbar-default-border:            darken($navbar-default-bg, 15.5%) !default;
 
 // Navbar links
-$navbar-default-link-color:                #E2E2E2 !default;
-$navbar-default-link-hover-color:          #BFBFBF !default;
-$navbar-default-link-hover-bg:             #5DA362 !default;
-$navbar-default-link-active-color:         #BCBCBC !default;
+$navbar-default-link-color:                #F8F8F8 !default;
+$navbar-default-link-hover-color:          #F8F8F8 !default;
+$navbar-default-link-hover-bg:             #07707F !default;
+$navbar-default-link-active-color:         #F8F8F8 !default;
 $navbar-default-link-active-bg:            darken($navbar-default-bg, 15.5%) !default;
 $navbar-default-link-disabled-color:       #ccc !default;
 $navbar-default-link-disabled-bg:          transparent !default;

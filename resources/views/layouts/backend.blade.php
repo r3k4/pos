@@ -12,12 +12,12 @@
       <script src="{{ elixir('js/app.js') }}"></script>
     </head>
 <body>
+
+
     @include('layouts.komponen.default.nav_atas')
     @include('layouts.komponen.default.modal')
 
-
-
-
+ 
     <div class="container">  
         <div class="row">
 
