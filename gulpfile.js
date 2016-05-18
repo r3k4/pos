@@ -1,16 +1,41 @@
 var elixir = require('laravel-elixir');
-
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Sass
- | file for our application, as well as publishing vendor resources.
- |
- */
-
+ 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass(['app.scss'], 'resources/assets/css/');
+
+
+    //merge css
+    mix.styles([
+    		 'animate.css/animate.css', 
+    		 'hover/hover.min.css',
+             'sweetalert/sweetalert.css',
+             'bootstrap-datetimepicker/bootstrap-datetimepicker.min.css',
+             'sidebar.css',
+    		 'app.css',
+             'sticky-footer.css',
+    	]);
+
+
+    //merge script js
+ 	mix.scripts(['jquery/jquery.min.js', 
+ 				 'pace/pace.min.js',
+ 				 'moment/moment.min.js',
+ 				 'moment/locales.js',
+ 				 'bootstrap/bootstrap.min.js',
+ 				 'wow/dist/wow.min.js',
+                 'bootstrap-datetimepicker/bootstrap-datetimepicker.min.js',
+ 				 'sweetalert.min.js',
+                 'custom.js'
+ 				 ], 
+ 				 'public/js/app.js');
+
+ 	//copy font ke build
+ 	mix.copy('node_modules/bootstrap-sass/assets/fonts', 'public/build/css/fonts');
+ 	mix.copy('node_modules/font-awesome/fonts', 'public/build/fonts');
+
+
+ 	//version
+    mix.version(['css/all.css', 'js/app.js']);
+
+
 });

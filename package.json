@@ -7,6 +7,10 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "laravel-elixir": "^5.0.0",
-    "bootstrap-sass": "^3.0.0"
+    "bootstrap-sass": "^3.0.0",
+    "font-awesome": "~4.5.0",
+    "animate.css": "~3.5.1",
+    "wow.js": "~1.1.2",
+    "hover.css": "~2.0.2"    
   }
 }
