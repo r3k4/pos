@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts\Mst;
 
-interface UserInterface 
+interface CabangRepoInterface 
 {
 
 	/**

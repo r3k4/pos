@@ -2,11 +2,10 @@
 
 namespace App\Repositories\Eloquent\Mst;
 
-use App\Models\Mst\User as Model;
-use App\Repositories\Contracts\Mst\UserRepoInterface;
+use App\Models\Mst\Pengeluaran as Model;
+use App\Repositories\Contracts\Mst\PengeluaranRepoInterface;
 
-
-class UserRepo implements  UserRepoInterface {
+class PengeluaranRepo implements PengeluaranRepoInterface {
 
 	protected $model;
 
@@ -41,12 +40,8 @@ class UserRepo implements  UserRepoInterface {
 	public function update($id, array $data)
 	{
         $update = $this->model->where('id', '=', $id)->update($data);
-        $u = $this->find($id);
+        $u = $this->model->find($id);
 
-        if(array_has($data, 'password')){
-        	$u->password = $u->password;
-        	$u->save();
-        }
         return $u;
 	}
 
@@ -54,8 +49,11 @@ class UserRepo implements  UserRepoInterface {
 	public function delete($id)
 	{
 		$q = $this->find($id);
-		$q->delete();
-		return 'data telah terhapus';
+		if(count($q)>0){
+			$q->delete();
+			return 'data telah terhapus';			
+		}
+		return 'data dengan ID '.$id.' tidak ditemukan';
 	}
 
 

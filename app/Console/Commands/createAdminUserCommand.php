@@ -46,7 +46,8 @@ class createAdminUserCommand extends Command
         if($nama != '' && $email != null  && $password != null){
             $data = ['nama'   => $nama,
                     'email' => $email,
-                    'password'  => $password
+                    'password'  => $password,
+                    'ref_user_level_id' => 1
                 ];
                 $u_obj->create($data);
                 $this->info('data user admin telah berhasil ditambahkan...');
