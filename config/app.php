@@ -159,6 +159,9 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
 
+        // repository
+        App\Providers\AppRepositoryServiceProvider::class,
+
 
     ],
 
