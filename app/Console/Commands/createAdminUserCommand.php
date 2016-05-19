@@ -39,9 +39,9 @@ class createAdminUserCommand extends Command
     {
         $u_obj = app('App\Repositories\Contracts\Mst\UserInterface');
 
-        $nama = $this->ask('nama : ');
-        $email = $this->ask('email :');
-        $password = $this->secret('password : ');
+        $nama = $this->ask('nama  ');
+        $email = $this->ask('email ');
+        $password = $this->secret('password  ');
 
         if($nama != '' && $email != null  && $password != null){
             $data = ['nama'   => $nama,

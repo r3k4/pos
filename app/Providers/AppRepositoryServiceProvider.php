@@ -23,6 +23,16 @@ class AppRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // bind data master
+        $this->dataMaster();
+
+        // bind data referensi
+        $this->dataReferensi();
+    }
+
+
+    private function dataMaster()
+    {
         // data master
         $this->app->bind('App\Repositories\Contracts\Mst\UserRepoInterface',
             'App\Repositories\Eloquent\Mst\UserRepo');
@@ -42,6 +52,14 @@ class AppRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\Mst\PengeluaranRepoInterface',
             'App\Repositories\Eloquent\Mst\PengeluaranRepo');
 
-        
+        $this->app->bind('App\Repositories\Contracts\Mst\PenjualanRepoInterface',
+            'App\Repositories\Eloquent\Mst\PenjualanRepo');        
+    }
+
+
+    private function dataReferensi()
+    {
+        $this->app->bind('App\Repositories\Contracts\Ref\UserLevelRepoInterface',
+            'App\Repositories\Eloquent\Ref\UserLevelRepo');              
     }
 }
