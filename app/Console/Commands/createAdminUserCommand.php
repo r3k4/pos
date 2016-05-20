@@ -37,7 +37,7 @@ class createAdminUserCommand extends Command
      */
     public function handle()
     {
-        $u_obj = app('App\Repositories\Contracts\Mst\UserInterface');
+        $u_obj = app('App\Repositories\Contracts\Mst\UserRepoInterface');
 
         $nama = $this->ask('nama  ');
         $email = $this->ask('email ');
