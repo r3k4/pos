@@ -2,12 +2,12 @@
 
 namespace App\Repositories\Eloquent\Ref;
 
-use App\Models\Ref\UserLevel as Model;
-use App\Repositories\Contracts\Ref\UserLevelRepoInterface;
+use App\Models\Ref\Produk as Model;
+use App\Repositories\Contracts\Ref\ProdukRepoInterface;
 use App\Repositories\Eloquent\defaultRepoTrait;
 use App\Repositories\Eloquent\dropdownableRepoTrait;
 
-class UserLevelRepo implements UserLevelRepoInterface {
+class ProdukRepo implements ProdukRepoInterface {
 
 	use defaultRepoTrait, dropdownableRepoTrait;
 

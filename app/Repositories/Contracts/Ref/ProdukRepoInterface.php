@@ -2,9 +2,8 @@
 
 namespace App\Repositories\Contracts\Ref;
 
-interface UserLevelRepoInterface 
+interface ProdukRepoInterface 
 {
  
-
-
+	
 }

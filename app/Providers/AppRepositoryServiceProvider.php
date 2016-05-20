@@ -57,9 +57,15 @@ class AppRepositoryServiceProvider extends ServiceProvider
     }
 
 
+
+
     private function dataReferensi()
     {
+        
         $this->app->bind('App\Repositories\Contracts\Ref\UserLevelRepoInterface',
-            'App\Repositories\Eloquent\Ref\UserLevelRepo');              
+            'App\Repositories\Eloquent\Ref\UserLevelRepo');      
+        
+        $this->app->bind('App\Repositories\Contracts\Ref\ProdukRepoInterface',
+            'App\Repositories\Eloquent\Ref\ProdukRepo');                       
     }
 }
