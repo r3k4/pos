@@ -161,6 +161,8 @@ return [
 
         // repository
         App\Providers\AppRepositoryServiceProvider::class,
+        Jared0430\Cart\CartServiceProvider::class,
+
 
 
     ],
@@ -214,6 +216,8 @@ return [
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Reader'    => \PHPExcelReader\SpreadsheetReader::class, 
         'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'Cart'      => Jared0430\Cart\Facades\Cart::class,
+
 
     ],
 

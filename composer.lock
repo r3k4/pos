@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "498d98d2c1b17947bf248c1eca640fc2",
-    "content-hash": "f359e77fcf06a8373aa1be3dd9e6a19a",
+    "hash": "397892ca8d5a054353b6442edefc6a19",
+    "content-hash": "35e4fd021070c367eb05effa63f57dd2",
     "packages": [
         {
             "name": "barryvdh/laravel-snappy",
@@ -299,6 +299,43 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
+        },
+        {
+            "name": "jared0430/cart",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Jared0430/laravel-cart.git",
+                "reference": "2637b7241f46d7452be2cbe0861b3fab7cce769d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Jared0430/laravel-cart/zipball/2637b7241f46d7452be2cbe0861b3fab7cce769d",
+                "reference": "2637b7241f46d7452be2cbe0861b3fab7cce769d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jared0430\\Cart\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jared",
+                    "email": "me@jaredp.co.uk"
+                }
+            ],
+            "description": "A simple session based cart for Laravel 5 intended for use with an existing Product model",
+            "time": "2016-01-24 09:53:22"
         },
         {
             "name": "jeremeamia/SuperClosure",

@@ -29,6 +29,7 @@ class AuthController extends Controller
      *
      * @var string
      */
+    private $base_view = 'konten.frontend.auth.';
     protected $redirectTo = '/';
     protected $loginView = 'konten.frontend.auth.login';
 
@@ -39,6 +40,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        view()->share('base_view', $this->base_view);
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 

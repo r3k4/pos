@@ -11,7 +11,8 @@
         "laravelcollective/html": "5.2.*",
         "barryvdh/laravel-snappy": "0.2.x",
         "pda/pheanstalk": "^3.1",
-        "laravel/framework": "5.2.*"
+        "laravel/framework": "5.2.*",
+        "jared0430/cart": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

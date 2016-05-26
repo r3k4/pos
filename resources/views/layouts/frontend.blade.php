@@ -8,7 +8,7 @@
     <title>{{ env('NAMA_APP', 'TKASIR') }}</title>
 
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Francois+One' rel='stylesheet' type='text/css'> 
+<link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
       <script src="{{ elixir('js/app.js') }}"></script>
     </head>
 <body>

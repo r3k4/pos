@@ -16,6 +16,7 @@ class CreateMstDetailProdukTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('sku');
+            $table->string('barcode');
             $table->integer('mst_produk_id');
             $table->integer('harga_beli');
             $table->integer('harga_jual');
