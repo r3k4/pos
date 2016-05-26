@@ -14,9 +14,15 @@ trait defaultRepoTrait {
 	public function all($perPage = null, array $filter = [])
 	{
 		if($perPage == null){
-			$q = $this->model->where($filter)->get();
+			$q = $this->model
+					  ->where($filter)
+					  ->orderBy('id', 'desc')
+					  ->get();
 		}else{
-			$q = $this->model->where($filter)->paginate($perPage);
+			$q = $this->model
+					  ->where($filter)
+					  ->orderBy('id', 'desc')
+					  ->paginate($perPage);
 		}
 		return $q;
 	}

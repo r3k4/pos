@@ -44,6 +44,25 @@ class CabangController extends Controller
 		$vars = compact('cabang');
 		return view($this->base_view.'popup.show', $vars);
 	}
+
+	public function edit($id)
+	{
+		$cabang = $this->cabang->find($id);
+		$vars = compact('cabang');
+		return view($this->base_view.'popup.edit', $vars);
+	}
+
+	public function update(createOrUpdateCabangrequest $request)
+	{
+		$u = $this->cabang->update($request->id, $request->except(['_token', 'id']));
+		return $u;
+	}
+
+
+	public function delete(Request $request)
+	{
+		return $this->cabang->delete($request->id);
+	}
     
     
     
