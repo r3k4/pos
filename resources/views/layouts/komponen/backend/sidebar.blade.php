@@ -21,15 +21,7 @@
             </a>
         </li>
 
-
-
-        <li @if(isset($backend_ref_produk)) class="active" @endif>
-            <a href="{!! route('backend_ref_produk.index') !!}">
-                <i class='fa fa-th-list'></i> Jenis Produk
-            </a>
-        </li>
-
-
+ 
 
  
     </ul>

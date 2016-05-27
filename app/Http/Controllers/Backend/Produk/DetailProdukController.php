@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Backend\Produk;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\DetailProduk\createOrUpdateDetailProdukRequest;
+use App\Repositories\Contracts\Mst\CabangRepoInterface;
 use App\Repositories\Contracts\Mst\DetailProdukRepoInterface;
+use App\Repositories\Contracts\Mst\ProdukRepoInterface;
 use Illuminate\Http\Request;
 
 class DetailProdukController extends Controller
@@ -15,9 +18,15 @@ class DetailProdukController extends Controller
     private $base_view_produk = 'konten.backend.produk.';
 
     protected $detail_produk;
+    protected $mst_produk;
+    protected $mst_cabang;
 
-    public function __construct(DetailProdukRepoInterface $detail_produk)
-    {
+    public function __construct(DetailProdukRepoInterface $detail_produk, 
+                                ProdukRepoInterface $mst_produk,
+                                CabangRepoInterface $mst_cabang
+                                ){
+        $this->mst_cabang = $mst_cabang;
+        $this->mst_produk = $mst_produk;
         $this->detail_produk = $detail_produk;
         view()->share('base_view', $this->base_view);
         view()->share('base_view_produk', $this->base_view_produk);
@@ -46,7 +55,10 @@ class DetailProdukController extends Controller
      */
     public function create()
     {
-        //
+        $mst_produk = $this->mst_produk->getAllDropdown('produk');
+        $mst_cabang = $this->mst_cabang->getAllDropdown('cabang');
+        $vars = compact('mst_produk', 'mst_cabang');
+        return view($this->base_view.'create.index', $vars);
     }
 
     /**
@@ -55,9 +67,9 @@ class DetailProdukController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(createOrUpdateDetailProdukRequest $request)
     {
-        //
+        return $this->detail_produk->create($request->except('_token'));
     }
 
     /**

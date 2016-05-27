@@ -13,6 +13,7 @@ class RefProdukController extends Controller
 
 
     private $base_view = 'konten.backend.ref_produk.';
+    private $base_view_produk = 'konten.backend.produk.';
 
     protected $ref_produk;
 
@@ -21,6 +22,10 @@ class RefProdukController extends Controller
         $this->ref_produk = $ref_produk;
         view()->share('backend_ref_produk', true);
         view()->share('base_view', $this->base_view);
+
+        view()->share('base_view_produk', $this->base_view_produk);
+        view()->share('backend_produk', true);
+
     }
 
 
