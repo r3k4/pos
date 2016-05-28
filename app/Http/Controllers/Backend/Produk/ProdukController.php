@@ -71,5 +71,13 @@ class ProdukController extends Controller
     }
 
 
+    public function show($id)
+    {
+        $produk = $this->produk->find($id);
+        $vars = compact('produk');
+        return view($this->base_view.'popup.show', $vars);
+    }
+
+
 
 }

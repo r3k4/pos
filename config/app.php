@@ -162,6 +162,7 @@ return [
         // repository
         App\Providers\AppRepositoryServiceProvider::class,
         Jared0430\Cart\CartServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
 
 
@@ -217,7 +218,8 @@ return [
         'Reader'    => \PHPExcelReader\SpreadsheetReader::class, 
         'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'Cart'      => Jared0430\Cart\Facades\Cart::class,
-
+        'DNS1D'     => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D'     => Milon\Barcode\Facades\DNS2DFacade::class,     
 
     ],
 

@@ -29,7 +29,7 @@ Route::group(['namespace'	=> 'Produk'], function(){
 		'uses'	=> 'ProdukController@update'
 	]);	
 
-	Route::post('produk/show/{id}',[
+	Route::get('produk/show/{id}',[
 		'as'	=> 'backend_produk.show',
 		'uses'	=> 'ProdukController@show'
 	]);

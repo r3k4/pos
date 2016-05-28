@@ -23,11 +23,22 @@ class AppRepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->customHelpers();
+
         // bind data master
         $this->dataMaster();
 
         // bind data referensi
         $this->dataReferensi();
+    }
+
+    private function customHelpers()
+    {
+        $this->app->bind('App\Repositories\Contracts\SetupVariableRepoInterface', 
+                'App\Repositories\Eloquent\SetupVariableRepo');
+
+        $this->app->bind('fungsi', 
+                'App\Helpers\Fungsi');        
     }
 
 
