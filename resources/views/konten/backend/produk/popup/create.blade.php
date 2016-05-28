@@ -15,11 +15,17 @@
 <div id="pesan"></div>
 
 	<div class="row">
-		<div class="col-md-6">			
+		<div class="col-md-6">		
 			<div class="form-group">
 				{!! Form::label('nama', 'Nama Produk : ') !!}
 				{!! Form::text('nama', '', ['class' => 'form-control', 'id'	=> 'nama', 'placeholder' => 'nama produk...']) !!}
 			</div>
+
+			<div class="form-group">
+				{!! Form::label('barcode', 'Barcode : ') !!}
+				{!! Form::text('barcode', '', ['class' => 'form-control', 'id'	=> 'barcode', 'placeholder' => 'barcode...']) !!}
+			</div>
+
 
 			<div class="form-group">
 				{!! Form::label('ref_produk_id', 'Jenis Produk : ') !!}
@@ -31,13 +37,43 @@
 								  ]
 							) !!}
 			</div>
+
+			<div class="form-group">
+				{!! Form::label('keterangan', 'keterangan Produk : ') !!}
+				{!! Form::textarea('keterangan', '', ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...', 'style' => 'height:70px']) !!}
+			</div>
+
+
 		</div>
 
 		<div class="col-md-6">
+
+
+{{--  'harga_beli', 'harga_jual', 
+                            'harga_reseller', 'stok_barang' --}}
+
 			<div class="form-group">
-				{!! Form::label('keterangan', 'keterangan Produk : ') !!}
-				{!! Form::text('keterangan', '', ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...']) !!}
+				{!! Form::label('harga_beli', 'Harga Beli : ') !!}
+				{!! Form::text('harga_beli', '', ['class' => 'form-control', 'id'	=> 'harga_beli', 'placeholder' => 'Harga Beli...']) !!}
 			</div>
+
+			<div class="form-group">
+				{!! Form::label('harga_jual', 'Harga Jual : ') !!}
+				{!! Form::text('harga_jual', '', ['class' => 'form-control', 'id'	=> 'harga_jual', 'placeholder' => 'Harga Jual...']) !!}
+			</div>
+
+			<div class="form-group">
+				{!! Form::label('harga_reseller', 'Harga Re-seller : ') !!}
+				{!! Form::text('harga_reseller', '', ['class' => 'form-control', 'id'	=> 'harga_reseller', 'placeholder' => 'Harga Re-seller...']) !!}
+			</div>
+
+
+			<div class="form-group">
+				{!! Form::label('stok_barang', 'Stok Barang : ') !!}
+				{!! Form::text('stok_barang', '', ['class' => 'form-control', 'id'	=> 'stok_barang', 'placeholder' => 'Stok Barang...']) !!}
+			</div>			
+
+
 
 			<div class="form-group">
 				{!! Form::label('mst_cabang_id', 'Cabang : ') !!}
@@ -50,11 +86,13 @@
 							) !!}
 			</div>
 		</div>
+
+		<div class="col-md-12">
+			<hr>
+			<button id='simpan' class='btn btn-info pull-right'><i class='fa fa-floppy-o'></i> SIMPAN</button>
+		</div>
 		
 	</div>
-
-
-	<button id='simpan' class='btn btn-info'><i class='fa fa-floppy-o'></i> SIMPAN</button>
 </div>
 	
 
@@ -69,6 +107,12 @@ $('#simpan').click(function(){
 
 
 form_data ={
+	barcode : $('#barcode').val(),
+	harga_beli : $('#harga_beli').val(),
+	harga_jual : $('#harga_jual').val(),
+	harga_reseller : $('#harga_reseller').val(),
+	stok_barang : $('#stok_barang').val(),
+
 	nama : $('#nama').val(),
 	ref_produk_id : $('#ref_produk_id').val(),
 	mst_cabang_id : $('#mst_cabang_id').val(),

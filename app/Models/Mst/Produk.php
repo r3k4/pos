@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Produk extends Model
 {
     protected $table = 'mst_produk';
-    protected $fillable = ['nama', 'ref_produk_id', 'keterangan', 'mst_cabang_id'];
+    protected $fillable = ['nama', 'ref_produk_id', 'keterangan', 'mst_cabang_id',
+                            'sku', 'barcode', 'harga_beli', 'harga_jual', 
+                            'harga_reseller', 'stok_barang'];
 
     protected $appends = ['fk__ref_produk', 'fk__mst_cabang'];
 

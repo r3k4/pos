@@ -16,6 +16,12 @@ class CreateMstProdukTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->integer('ref_produk_id');
+            $table->string('sku');
+            $table->string('barcode');
+            $table->integer('harga_beli');
+            $table->integer('harga_jual');
+            $table->integer('harga_reseller');
+            $table->integer('stok_barang');
             $table->string('keterangan');
             $table->integer('mst_cabang_id');
             $table->timestamps();

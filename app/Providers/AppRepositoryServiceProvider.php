@@ -40,8 +40,6 @@ class AppRepositoryServiceProvider extends ServiceProvider
         $this->app->bind('App\Repositories\Contracts\Mst\ProdukRepoInterface',
             'App\Repositories\Eloquent\Mst\ProdukRepo');
 
-        $this->app->bind('App\Repositories\Contracts\Mst\DetailProdukRepoInterface',
-            'App\Repositories\Eloquent\Mst\DetailProdukRepo');
 
         $this->app->bind('App\Repositories\Contracts\Mst\CabangRepoInterface',
             'App\Repositories\Eloquent\Mst\CabangRepo');

@@ -1,30 +1,10 @@
 <?php 
 
-namespace App\Repositories\Eloquent\Mst;
+namespace App\Helpers;
 
-use App\Models\Mst\DetailProduk as Model;
-use App\Repositories\Contracts\Mst\DetailProdukRepoInterface;
-use App\Repositories\Eloquent\defaultRepoTrait;
-
-class DetailProdukRepo implements DetailProdukRepoInterface {
-
-	// CRUD default
-	use defaultRepoTrait;
-
-	protected $model;
-
-	public function __construct(Model $model){
-		$this->model = $model;
-	}
+class PosHelper{
 
 
-	public function create(array $data)
-	{
-		$data = array_add($data, 'sku', $this->getNextSku($data['mst_cabang_id']));
-		return $this->model->create($data);
-	}
-
- 
     public function getNextSku($mst_cabang_id)
     {
         $cb_obj = app('App\Repositories\Contracts\Mst\CabangRepoInterface');
@@ -61,7 +41,5 @@ class DetailProdukRepo implements DetailProdukRepoInterface {
         }
         return null;
     }
-
-
 
 }
