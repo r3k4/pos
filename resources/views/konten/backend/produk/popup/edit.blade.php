@@ -107,6 +107,7 @@ $('#simpan').click(function(){
 
 
 form_data ={
+	id 			: {!! $produk->id !!},
 	barcode : $('#barcode').val(),
 	harga_beli : $('#harga_beli').val(),
 	harga_jual : $('#harga_jual').val(),
@@ -121,7 +122,7 @@ form_data ={
 }
 $('#simpan').attr('disabled', 'disabled');
 	$.ajax({
-		url : '{{ route("backend_produk.store") }}',
+		url : '{{ route("backend_produk.update") }}',
 		data : form_data,
 		type : 'post',
 		error:function(xhr, status, error){
