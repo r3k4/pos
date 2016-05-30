@@ -38,6 +38,19 @@
 							) !!}
 			</div>
 
+
+			<div class="form-group">
+				{!! Form::label('ref_satuan_produk_id', 'Satuan Barang : ') !!}
+				{!! Form::select('ref_satuan_produk_id', 
+								 $satuan_barang, 
+								 $produk->ref_satuan_produk_id, 
+								 ['id'	=> 'ref_satuan_produk_id', 
+								  'class' => 'form-control'
+								  ]
+							) !!}
+			</div>
+
+
 			<div class="form-group">
 				{!! Form::label('keterangan', 'keterangan Produk : ') !!}
 				{!! Form::textarea('keterangan', $produk->keterangan, ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...', 'style' => 'height:70px']) !!}
@@ -68,12 +81,7 @@
 			</div>
 
 
-			<div class="form-group">
-				{!! Form::label('stok_barang', 'Stok Barang : ') !!}
-				{!! Form::text('stok_barang', $produk->stok_barang, ['class' => 'form-control', 'id'	=> 'stok_barang', 'placeholder' => 'Stok Barang...']) !!}
-			</div>			
-
-
+ 
 
 			<div class="form-group">
 				{!! Form::label('mst_cabang_id', 'Cabang : ') !!}
@@ -112,8 +120,7 @@ form_data ={
 	harga_beli : $('#harga_beli').val(),
 	harga_jual : $('#harga_jual').val(),
 	harga_reseller : $('#harga_reseller').val(),
-	stok_barang : $('#stok_barang').val(),
-
+	ref_satuan_produk_id : $('#ref_satuan_produk_id').val(),
 	nama : $('#nama').val(),
 	ref_produk_id : $('#ref_produk_id').val(),
 	mst_cabang_id : $('#mst_cabang_id').val(),

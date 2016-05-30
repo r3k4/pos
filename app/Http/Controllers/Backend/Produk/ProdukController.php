@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Backend\Produk;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\HistoryStok\createStokRequest;
 use App\Http\Requests\Produk\createOrUpdateProdukRequest;
 use App\Repositories\Contracts\Mst\CabangRepoInterface;
+use App\Repositories\Contracts\Mst\HistoryStokRepoInterface;
 use App\Repositories\Contracts\Mst\ProdukRepoInterface;
 use App\Repositories\Contracts\Ref\ProdukRepoInterface as refProdukRepoInterface;
+use App\Repositories\Contracts\Ref\SatuanProdukRepoInterface;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -16,11 +19,17 @@ class ProdukController extends Controller
 	protected $produk;
 	protected $ref_produk;
     protected $mst_cabang;
+    protected $stok;
+    protected $satuan_barang;
 
     public function __construct(ProdukRepoInterface $produk, 
     							refProdukRepoInterface $ref_produk,
-                                CabangRepoInterface $mst_cabang
+                                CabangRepoInterface $mst_cabang,
+                                HistoryStokRepoInterface $stok,
+                                SatuanProdukRepoInterface $satuan_barang
 					    	){
+        $this->satuan_barang = $satuan_barang;
+        $this->stok       = $stok;
         $this->mst_cabang = $mst_cabang;
     	$this->ref_produk = $ref_produk;
     	$this->produk = $produk;
@@ -29,9 +38,16 @@ class ProdukController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        $produk = $this->produk->all(10);
+        $search = $request->get('search');
+        if($search){
+            $filter  = ['nama' => ['like' => $search]];
+        }else{
+            $filter = [];
+        }
+
+        $produk = $this->produk->all(10, $filter);
         $backend_produk_home = true;
         $vars = compact('produk', 'backend_produk_home');
     	return view($this->base_view.'index', $vars);
@@ -39,9 +55,10 @@ class ProdukController extends Controller
 
     public function create()
     {
+        $satuan_barang = $this->satuan_barang->getAllDropdown('satuan barang');
     	$ref_produk = $this->ref_produk->getAllDropdown('jenis produk');
         $mst_cabang = $this->mst_cabang->getAllDropdown('cabang');
-    	$vars = compact('ref_produk', 'mst_cabang');
+    	$vars = compact('ref_produk', 'mst_cabang', 'satuan_barang');
     	return view($this->base_view.'popup.create', $vars);
     }
 
@@ -53,10 +70,11 @@ class ProdukController extends Controller
 
     public function edit($id)
     {
+        $satuan_barang = $this->satuan_barang->getAllDropdown('satuan barang');
         $ref_produk = $this->ref_produk->getAllDropdown('jenis produk');
         $mst_cabang = $this->mst_cabang->getAllDropdown('cabang');
         $produk = $this->produk->find($id);
-        $vars = compact('produk', 'ref_produk', 'mst_cabang');
+        $vars = compact('produk', 'ref_produk', 'mst_cabang', 'satuan_barang');
         return view($this->base_view.'popup.edit', $vars);
     }
 
@@ -76,6 +94,37 @@ class ProdukController extends Controller
         $produk = $this->produk->find($id);
         $vars = compact('produk');
         return view($this->base_view.'popup.show', $vars);
+    }
+
+
+    public function stok_kosong()
+    {
+        $filter = ['stok_barang' => '0'];
+        $produk = $this->produk->all(10, $filter);
+        $produk_stok_kosong = true;
+        $vars = compact('produk', 'produk_stok_kosong');
+        return view($this->base_view.'stok_kosong.index', $vars);
+    }
+
+    public function kelola_stok($id)
+    {
+        $keterangan = ['tambah stok' => 'tambah stok', 
+                       'pengurangan stok' => 'pengurangan stok',
+                       'stok awal'  => 'stok awal'
+                       ];
+        $produk = $this->produk->find($id);
+        $vars = compact('produk', 'keterangan');
+        return view($this->base_view.'popup.kelola_stok', $vars);
+    }
+
+
+    public function update_stok_barang(createStokRequest $request)
+    {
+        $mst_produk_id = $request->mst_produk_id;
+        $jml_stok = $request->stok_barang;
+        $mst_user_id = \Auth::user()->id;
+        $keterangan = $request->keterangan;
+        return $this->stok->updateStok($mst_produk_id, $jml_stok, $mst_user_id, $keterangan);
     }
 
 

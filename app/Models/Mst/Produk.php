@@ -9,10 +9,20 @@ class Produk extends Model
     protected $table = 'mst_produk';
     protected $fillable = ['nama', 'ref_produk_id', 'keterangan', 'mst_cabang_id',
                             'sku', 'barcode', 'harga_beli', 'harga_jual', 
-                            'harga_reseller', 'stok_barang'];
+                            'harga_reseller', 'stok_barang', 'ref_satuan_produk_id'];
 
-    protected $appends = ['fk__ref_produk', 'fk__mst_cabang'];
+    protected $appends = ['fk__ref_produk', 'fk__mst_cabang', 'fk__ref_satuan_produk'];
 
+
+
+    public function getFkRefSatuanProdukAttribute()
+    {
+        $s_obj = app('App\Repositories\Contracts\Ref\SatuanProdukRepoInterface');
+        $s = $s_obj->find($this->attributes['ref_satuan_produk_id']);
+        if(count($s)>0){
+            return $s->nama;
+        }
+    }
 
 
     public function getFkMstCabangAttribute()

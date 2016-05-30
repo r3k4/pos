@@ -13,7 +13,10 @@
         "pda/pheanstalk": "^3.1",
         "laravel/framework": "5.2.*",
         "jared0430/cart": "^1.1",
-        "milon/barcode": "^5.2"
+        "milon/barcode": "^5.2",
+        "doctrine/dbal": "^2.5",
+        "rollbar/rollbar": "^0.18.0",
+        "jenssegers/rollbar": "^1.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

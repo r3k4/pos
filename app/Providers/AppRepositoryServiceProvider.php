@@ -75,6 +75,10 @@ class AppRepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Eloquent\Ref\UserLevelRepo');      
         
         $this->app->bind('App\Repositories\Contracts\Ref\ProdukRepoInterface',
-            'App\Repositories\Eloquent\Ref\ProdukRepo');                       
+            'App\Repositories\Eloquent\Ref\ProdukRepo');         
+
+        $this->app->bind('App\Repositories\Contracts\Ref\SatuanProdukRepoInterface',
+            'App\Repositories\Eloquent\Ref\SatuanProdukRepo');       
+
     }
 }

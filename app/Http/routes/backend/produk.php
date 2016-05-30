@@ -40,5 +40,26 @@ Route::group(['namespace'	=> 'Produk'], function(){
 		'uses'	=> 'ProdukController@delete'
 	]);
 
+	Route::get('produk/stok_kosong',[
+		'as'	=> 'backend_produk.stok_kosong.index',
+		'uses'	=> 'ProdukController@stok_kosong'
+	]);
+
+
+	// kelola stok barang
+	Route::get('produk/kelola_stok/{id}',[
+		'as'	=> 'backend_produk.kelola_stok',
+		'uses'	=> 'ProdukController@kelola_stok'
+	]);
+
+
+	Route::post('produk/update_stok_barang',[
+		'as'	=> 'backend_produk.update_stok_barang',
+		'uses'	=> 'ProdukController@update_stok_barang'
+	]);
+
+
+	
+
 
 });

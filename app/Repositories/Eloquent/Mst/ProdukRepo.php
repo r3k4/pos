@@ -23,7 +23,25 @@ class ProdukRepo implements ProdukRepoInterface {
 	public function create(array $data)
 	{
 		$data = array_add($data, 'sku', $this->getNextSku($data['mst_cabang_id']));
-		return $this->model->create($data);
+
+        $create_produk = $this->model->create($data);
+
+        // menyambungkan ke stok barang
+        if(isset($data['stok_barang'])){
+            if($data['stok_barang'] > 0){
+                $s_obj = app('App\Repositories\Contracts\Mst\HistoryStokRepoInterface');
+                $data_stok = ['mst_produk_id'   => $create_produk->id,
+                              'stok_masuk'      => $data['stok_barang'],
+                              'stok_sisa'       => $data['stok_barang'],
+                              'keterangan'      => 'stok awal',
+                              'mst_user_id'     => \Auth::user()->id
+                            ];
+                $s_obj->create($data_stok);
+            }
+        }
+
+
+		return $create_produk;
 	}
 
 

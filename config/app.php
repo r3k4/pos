@@ -163,6 +163,8 @@ return [
         App\Providers\AppRepositoryServiceProvider::class,
         Jared0430\Cart\CartServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
+        Jenssegers\Rollbar\RollbarServiceProvider::class,
+
 
 
 

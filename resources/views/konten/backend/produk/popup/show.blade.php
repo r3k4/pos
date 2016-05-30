@@ -28,6 +28,25 @@
 				</td>
 			</tr>
 
+
+			<tr>
+				<td>
+					Stok Barang
+				</td>
+				<td width="10px">:</td>
+				<td>
+					@if($produk->stok_barang == 0)
+						<span class='label label-danger'>
+							kosong
+						</span>
+					@else
+						<span class='label label-success'>
+							{!! $produk->stok_barang.' '.$produk->fk__ref_satuan_produk !!}							
+						</span>
+					@endif
+				</td>
+			</tr>
+
  		</table>
 	</div>
 	<div class="col-md-6">

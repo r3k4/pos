@@ -7,8 +7,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php $no = $ref_produk->firstItem(); ?>
-		@foreach($ref_produk as $list)
+		<?php $no = $ref_satuan_produk->firstItem(); ?>
+		@foreach($ref_satuan_produk as $list)
 		<tr>
 			<td class="text-center">{!! $no !!}</td>
 			<td>{!! $list->nama !!}</td>
@@ -21,4 +21,4 @@
 	</tbody>
 </table>
 
-{!! $ref_produk->appends(Request::all())->render() !!}
+{!! $ref_satuan_produk->appends(Request::all())->render() !!}
