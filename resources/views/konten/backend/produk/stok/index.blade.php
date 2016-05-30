@@ -3,7 +3,7 @@
 @section('konten')
  
 
-<a class="btn btn-primary pull-right" href="{!! route('backend_produk.index') !!}">
+<a class="btn btn-primary pull-right" href="{!! URL::previous() !!}">
 	<i class='fa fa-arrow-left'></i> back
 </a>
 

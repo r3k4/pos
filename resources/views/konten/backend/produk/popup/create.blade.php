@@ -15,7 +15,7 @@
 <div id="pesan"></div>
 
 	<div class="row">
-		<div class="col-md-6">		
+		<div class="col-md-4">		
 			<div class="form-group">
 				{!! Form::label('nama', 'Nama Produk : ') !!}
 				{!! Form::text('nama', '', ['class' => 'form-control', 'id'	=> 'nama', 'placeholder' => 'nama produk...']) !!}
@@ -38,31 +38,11 @@
 							) !!}
 			</div>
 
-			<div class="form-group">
-				{!! Form::label('ref_satuan_produk_id', 'Satuan Barang : ') !!}
-				{!! Form::select('ref_satuan_produk_id', 
-								 $satuan_barang, 
-								 '', 
-								 ['id'	=> 'ref_satuan_produk_id', 
-								  'class' => 'form-control'
-								  ]
-							) !!}
-			</div>
-
-
-			<div class="form-group">
-				{!! Form::label('keterangan', 'keterangan Produk : ') !!}
-				{!! Form::textarea('keterangan', '', ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...', 'style' => 'height:70px']) !!}
-			</div>
-
-
+ 
 		</div>
 
-		<div class="col-md-6">
-
-
-{{--  'harga_beli', 'harga_jual', 
-                            'harga_reseller', 'stok_barang' --}}
+		<div class="col-md-4">
+ 
 
 			<div class="form-group">
 				{!! Form::label('harga_beli', 'Harga Beli : ') !!}
@@ -87,6 +67,26 @@
 
 
 
+		</div>
+
+		<div class="col-md-4">
+			<div class="form-group">
+				{!! Form::label('ref_satuan_produk_id', 'Satuan Barang : ') !!}
+				{!! Form::select('ref_satuan_produk_id', 
+								 $satuan_barang, 
+								 '', 
+								 ['id'	=> 'ref_satuan_produk_id', 
+								  'class' => 'form-control'
+								  ]
+							) !!}
+			</div>
+
+
+			<div class="form-group">
+				{!! Form::label('keterangan', 'keterangan Produk : ') !!}
+				{!! Form::textarea('keterangan', '', ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...', 'style' => 'height:70px']) !!}
+			</div>	
+
 			<div class="form-group">
 				{!! Form::label('mst_cabang_id', 'Cabang : ') !!}
 				{!! Form::select('mst_cabang_id', 
@@ -97,7 +97,10 @@
 								  ]
 							) !!}
 			</div>
+					
 		</div>
+
+
 
 		<div class="col-md-12">
 			<hr>

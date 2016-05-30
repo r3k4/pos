@@ -4,10 +4,7 @@
  
 
 
-
-
-
-
+ 
 
 	<h2>
 		<i class="fa fa-shopping-cart"></i> Produk 

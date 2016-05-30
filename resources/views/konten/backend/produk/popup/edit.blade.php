@@ -15,7 +15,7 @@
 <div id="pesan"></div>
 
 	<div class="row">
-		<div class="col-md-6">		
+		<div class="col-md-4">		
 			<div class="form-group">
 				{!! Form::label('nama', 'Nama Produk : ') !!}
 				{!! Form::text('nama', $produk->nama, ['class' => 'form-control', 'id'	=> 'nama', 'placeholder' => 'nama produk...']) !!}
@@ -37,8 +37,32 @@
 								  ]
 							) !!}
 			</div>
+ 
 
+		</div>
 
+		<div class="col-md-4">
+
+ 
+
+			<div class="form-group">
+				{!! Form::label('harga_beli', 'Harga Beli : ') !!}
+				{!! Form::text('harga_beli', $produk->harga_beli, ['class' => 'form-control', 'id'	=> 'harga_beli', 'placeholder' => 'Harga Beli...']) !!}
+			</div>
+
+			<div class="form-group">
+				{!! Form::label('harga_jual', 'Harga Jual : ') !!}
+				{!! Form::text('harga_jual', $produk->harga_jual, ['class' => 'form-control', 'id'	=> 'harga_jual', 'placeholder' => 'Harga Jual...']) !!}
+			</div>
+
+			<div class="form-group">
+				{!! Form::label('harga_reseller', 'Harga Re-seller : ') !!}
+				{!! Form::text('harga_reseller', $produk->harga_reseller, ['class' => 'form-control', 'id'	=> 'harga_reseller', 'placeholder' => 'Harga Re-seller...']) !!}
+			</div>
+ 
+
+		</div>
+		<div class="col-md-4">
 			<div class="form-group">
 				{!! Form::label('ref_satuan_produk_id', 'Satuan Barang : ') !!}
 				{!! Form::select('ref_satuan_produk_id', 
@@ -55,34 +79,6 @@
 				{!! Form::label('keterangan', 'keterangan Produk : ') !!}
 				{!! Form::textarea('keterangan', $produk->keterangan, ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...', 'style' => 'height:70px']) !!}
 			</div>
-
-
-		</div>
-
-		<div class="col-md-6">
-
-
-{{--  'harga_beli', 'harga_jual', 
-                            'harga_reseller', 'stok_barang' --}}
-
-			<div class="form-group">
-				{!! Form::label('harga_beli', 'Harga Beli : ') !!}
-				{!! Form::text('harga_beli', $produk->harga_beli, ['class' => 'form-control', 'id'	=> 'harga_beli', 'placeholder' => 'Harga Beli...']) !!}
-			</div>
-
-			<div class="form-group">
-				{!! Form::label('harga_jual', 'Harga Jual : ') !!}
-				{!! Form::text('harga_jual', $produk->harga_jual, ['class' => 'form-control', 'id'	=> 'harga_jual', 'placeholder' => 'Harga Jual...']) !!}
-			</div>
-
-			<div class="form-group">
-				{!! Form::label('harga_reseller', 'Harga Re-seller : ') !!}
-				{!! Form::text('harga_reseller', $produk->harga_reseller, ['class' => 'form-control', 'id'	=> 'harga_reseller', 'placeholder' => 'Harga Re-seller...']) !!}
-			</div>
-
-
- 
-
 			<div class="form-group">
 				{!! Form::label('mst_cabang_id', 'Cabang : ') !!}
 				{!! Form::select('mst_cabang_id', 
