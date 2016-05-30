@@ -12,7 +12,7 @@
 		<tr>
 			<td>{!! $no !!}</td>
 			<td>{!! $list->nama !!}</td>
-			<td>
+			<td class="text-center">
 				@include($base_view.'action')
 			</td>
 		</tr>
