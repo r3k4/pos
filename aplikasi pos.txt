@@ -52,7 +52,7 @@ total =
 	- Rp 2.830.000 (bila menggunakan hosting 1 bulan)
 	- Rp 3.655.000 (bila menggunakan hosting 1 tahun)
  
-
+ - tambah 1 cabang lagi (cabang 1=potokopi, 2=laundry)
  - cabang satu tidak bisa akses data di cabang lain
  - karyawan hanya bisa lihat harga jual
  - struk yg dicetak [struk biasa]
