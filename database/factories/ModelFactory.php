@@ -11,11 +11,12 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Mst\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
+        'nama' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+        'ref_user_level_id'	=> 2
     ];
 });

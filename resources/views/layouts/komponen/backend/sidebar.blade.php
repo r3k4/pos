@@ -22,6 +22,13 @@
         </li>
 
  
+        <li @if(isset($backend_user)) class="active" @endif>
+            <a href="{!! route('backend_user.index') !!}">
+                <i class='fa fa-group'></i> Pengguna
+            </a>
+        </li>
+
+ 
 
  
     </ul>
