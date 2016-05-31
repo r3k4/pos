@@ -80,6 +80,11 @@ class ProdukController extends Controller
 
     public function update(createOrUpdateProdukRequest $request)
     {
+        $produk = $this->produk->find($request->id);
+        // check authorisasi saat update produk
+        $this->authorize('updateProduk', $produk);
+
+
         return $this->produk->update($request->id, $request->except(['_token', 'id']));
     }
 

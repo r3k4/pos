@@ -122,6 +122,7 @@ $('#simpan').click(function(){
 
 
 form_data ={
+	mst_user_id : '{!! Auth::user()->id !!}',
 	barcode : $('#barcode').val(),
 	harga_beli : $('#harga_beli').val(),
 	harga_jual : $('#harga_jual').val(),

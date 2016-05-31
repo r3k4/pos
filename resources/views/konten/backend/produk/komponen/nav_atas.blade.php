@@ -11,6 +11,7 @@
       </a>
   </li>
  
+ @if(Auth::user()->ref_user_level_id == 1)
 
   <li role="presentation" @if(isset($backend_ref_produk)) class="active" @endif>
       <a href="{!! route('backend_ref_produk.index') !!}">
@@ -23,7 +24,7 @@
           <i class='fa fa-th-list'></i> Jenis Satuan Produk
       </a>
   </li>
-
+@endif
 
   
 

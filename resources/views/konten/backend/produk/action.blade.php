@@ -1,9 +1,18 @@
 @include($base_view.'action.kelola_stok')
 ||
-@include($base_view.'action.edit')
+@can('updateProduk', $list)
+	@include($base_view.'action.edit')
+@else
+	<i class='fa fa-pencil-square text-danger'></i>
+@endcan
 ||
 @include($base_view.'action.show')
 ||
-@include($base_view.'action.delete')
+@can('destroyProduk', $list)
+	@include($base_view.'action.delete')
+@else
+	<i class='fa fa-times text-danger'></i>
+@endcan
+
 
 

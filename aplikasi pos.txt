@@ -25,7 +25,9 @@ Daftar Fitur / modul aplikasi Point of Sale (POS)
 
 - Modul Referensi [200]
  	* jenis produk
- 	* jenis laporan 
+ 	* jenis laporan
+
+
 
 [role admin]
  - modul manajemen cabang [400]

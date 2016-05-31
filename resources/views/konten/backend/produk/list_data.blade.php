@@ -2,7 +2,9 @@
 	<thead>
 		<tr style="font-size:20px;" class="alert-info">
 			<th class="text-center" width="50px">No.</th>
-			<th>Nama Produk</th>
+			<th>
+				  Nama Produk
+			</th>
 			<th width="180px">Jenis Produk</th>
 			<th width="150px">Cabang</th>
 			<th width="90px">Stok</th>

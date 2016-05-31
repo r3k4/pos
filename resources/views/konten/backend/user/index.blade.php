@@ -4,6 +4,7 @@
  
 
 <div class="col-md-12">
+	@include($base_view.'komponen.tombol_create')
 	<h2>
 		<i class="fa fa-group"></i> Pengguna 
 	</h2>

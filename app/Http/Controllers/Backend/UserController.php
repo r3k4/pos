@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\User\createUserRequest;
 use App\Http\Requests\User\updateUserRequest;
 use App\Repositories\Contracts\Mst\CabangRepoInterface;
 use App\Repositories\Contracts\Mst\UserRepoInterface;
@@ -42,7 +43,8 @@ class UserController extends Controller
 	public function create()
 	{
 		$level = $this->user_level->getAllDropdown('level');
-		$vars = compact('level');
+		$cabang = $this->cabang->getAllDropdown('cabang');
+		$vars = compact('level', 'cabang');
 		return view($this->base_view.'popup.create', $vars);
 	}
 
