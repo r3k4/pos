@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\User\updateUserRequest;
+use App\Repositories\Contracts\Mst\CabangRepoInterface;
 use App\Repositories\Contracts\Mst\UserRepoInterface;
 use App\Repositories\Contracts\Ref\UserLevelRepoInterface;
 use Illuminate\Http\Request;
@@ -16,10 +18,14 @@ class UserController extends Controller
     private $base_view = 'konten.backend.user.';
     protected $user;
     protected $user_level;
+    protected $cabang;
 
 	public function __construct(UserRepoInterface $user,
-								UserLevelRepoInterface $user_level
+								UserLevelRepoInterface $user_level,
+								CabangRepoInterface $cabang
 								){
+		$this->user_level = $user_level;
+		$this->cabang = $cabang;
 		$this->user = $user;
 		view()->share('backend_user', true);
 		view()->share('base_view', $this->base_view);
@@ -50,13 +56,15 @@ class UserController extends Controller
 	public function edit($id)
 	{
 		$user = $this->user->find($id);
-		$vars = compact('user');
+		$level = $this->user_level->getAllDropdown('level');
+		$cabang = $this->cabang->getAllDropdown('cabang');
+		$vars = compact('user', 'level', 'cabang');
 		return view($this->base_view.'popup.edit', $vars);
 	}
 
 	public function update($mst_user_id, updateUserRequest $request)
 	{
-		return $this->user->update($id, $request->except(['id', '_token']));
+		return $this->user->update($mst_user_id, $request->except(['id', '_token']));
 	}
 
 

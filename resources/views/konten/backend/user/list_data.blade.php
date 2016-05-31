@@ -21,8 +21,18 @@
 			<td class="text-center">
 				{!! $list->fk__ref_user_level !!}
 			</td>
-			<td>
-				{!! $list->fk__mst_cabang !!}
+			<td class="text-center">
+				@if($list->ref_user_level_id == 1)
+					-
+				@else
+					@if($list->fk__mst_cabang == '')
+						<span class='label label-danger'>kosong</span>
+					@else
+						<span class='label label-success'>
+							{!! $list->fk__mst_cabang !!}
+						</span> 
+					@endif
+				@endif
 			</td>
 			<td class="text-center">
 				@include($base_view.'action')
