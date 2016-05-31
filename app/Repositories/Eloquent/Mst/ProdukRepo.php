@@ -20,6 +20,49 @@ class ProdukRepo implements ProdukRepoInterface {
 	}
  
 
+
+    /**
+     * get all record and record with pagination
+     * 
+     * @param  integer $perPage 
+     * @return void         
+     */
+    public function all($perPage = null, array $filter = [])
+    {
+        if($perPage == null){
+            if(\Auth::user()->ref_user_level_id == 1){
+                // untuk admin
+                $q = $this->model
+                          ->where($filter)
+                          ->orderBy('id', 'desc')
+                          ->get();              
+            }else{
+                // untuk karyawan
+                $q = $this->model
+                          ->where($filter)
+                          ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
+                          ->orderBy('id', 'desc')
+                          ->get();
+            }
+        }else{
+            if(\Auth::user()->ref_user_level_id == 1){
+            // untuk admin
+            $q = $this->model
+                      ->where($filter)
+                      ->orderBy('id', 'desc')
+                      ->paginate($perPage);                         
+            }else{
+                $q = $this->model
+                          ->where($filter)
+                          ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
+                          ->orderBy('id', 'desc')
+                          ->paginate($perPage);             
+            }
+        }
+        return $q;
+    }
+
+
 	public function create(array $data)
 	{
 		$data = array_add($data, 'sku', $this->getNextSku($data['mst_cabang_id']));

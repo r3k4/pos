@@ -42,7 +42,7 @@ class ProdukController extends Controller
     {
         $search = $request->get('search');
         if($search){
-            $filter  = ['nama' => ['like' => $search]];
+            $filter  = [['nama', 'like', '%'.$search.'%']];
         }else{
             $filter = [];
         }

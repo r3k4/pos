@@ -6,7 +6,11 @@
 				  Nama Produk
 			</th>
 			<th width="180px">Jenis Produk</th>
-			<th width="150px">Cabang</th>
+
+			@if(\Auth::user()->ref_user_level_id == 1)
+				<th width="150px">Cabang</th>
+			@endif
+
 			<th width="90px">Stok</th>
 			<th width="120px" class="text-center">Action</th>
 		</tr>
@@ -22,7 +26,11 @@
 				</a>
 			</td>
 			<td>{!! $list->fk__ref_produk !!}</td>
-			<td>{!! $list->fk__mst_cabang !!}</td>
+
+			@if(\Auth::user()->ref_user_level_id == 1)
+				<td>{!! $list->fk__mst_cabang !!}</td>
+			@endif
+
 			<td>
 				@if($list->stok_barang == 0)
 					<span class='label label-danger'>

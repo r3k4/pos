@@ -15,6 +15,8 @@
         </li>
 
 
+@if(\Auth::user()->ref_user_level_id == 1)
+
         <li @if(isset($backend_cabang)) class="active" @endif>
             <a href="{!! route('backend_cabang.index') !!}">
                 <i class='fa fa-sitemap'></i> Cabang
@@ -27,7 +29,7 @@
                 <i class='fa fa-group'></i> Pengguna
             </a>
         </li>
-
+@endif
  
 
  

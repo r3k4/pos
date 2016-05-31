@@ -79,16 +79,23 @@
 				{!! Form::label('keterangan', 'keterangan Produk : ') !!}
 				{!! Form::textarea('keterangan', $produk->keterangan, ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...', 'style' => 'height:70px']) !!}
 			</div>
-			<div class="form-group">
-				{!! Form::label('mst_cabang_id', 'Cabang : ') !!}
-				{!! Form::select('mst_cabang_id', 
-								 $mst_cabang, 
-								 $produk->mst_cabang_id, 
-								 ['id'	=> 'mst_cabang_id', 
-								  'class' => 'form-control'
-								  ]
-							) !!}
-			</div>
+
+			@if(Auth::user()->ref_user_level_id == 1)
+						<div class="form-group">
+							{!! Form::label('mst_cabang_id', 'Cabang : ') !!}
+							{!! Form::select('mst_cabang_id', 
+											 $mst_cabang, 
+											 $produk->mst_cabang_id, 
+											 ['id'	=> 'mst_cabang_id', 
+											  'class' => 'form-control'
+											  ]
+										) !!}
+						</div>
+
+			@else 
+				{!! Form::hidden('mst_cabang_id', \Auth::user()->mst_cabang_id, ['id' => 'mst_cabang_id']) !!}
+			@endif
+
 		</div>
 
 		<div class="col-md-12">

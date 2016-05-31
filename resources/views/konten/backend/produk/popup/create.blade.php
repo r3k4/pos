@@ -87,6 +87,7 @@
 				{!! Form::textarea('keterangan', '', ['class' => 'form-control', 'id'	=> 'keterangan', 'placeholder' => 'keterangan produk...', 'style' => 'height:70px']) !!}
 			</div>	
 
+@if(Auth::user()->ref_user_level_id == 1)
 			<div class="form-group">
 				{!! Form::label('mst_cabang_id', 'Cabang : ') !!}
 				{!! Form::select('mst_cabang_id', 
@@ -97,6 +98,9 @@
 								  ]
 							) !!}
 			</div>
+@else 
+{!! Form::hidden('mst_cabang_id', \Auth::user()->mst_cabang_id, ['id' => 'mst_cabang_id']) !!}
+@endif
 					
 		</div>
 
