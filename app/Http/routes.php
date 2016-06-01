@@ -17,6 +17,7 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Backend'], function(){
 
 	require __DIR__.'/routes/backend/produk.php';
 	require __DIR__.'/routes/backend/stok_produk.php';
+	require __DIR__.'/routes/backend/pengeluaran.php';
 
 
 

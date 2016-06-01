@@ -15,6 +15,13 @@
         </li>
 
 
+        <li @if(isset($backend_pengeluaran)) class="active" @endif>
+            <a href="{!! route('backend_pengeluaran.index') !!}">
+                <i class='fa fa-tags'></i> Pengeluaran
+            </a>
+        </li>
+
+
 @if(\Auth::user()->ref_user_level_id == 1)
 
         <li @if(isset($backend_cabang)) class="active" @endif>
