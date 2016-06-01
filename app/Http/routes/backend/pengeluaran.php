@@ -1,6 +1,6 @@
 <?php 
 
-
+ 
 
 Route::resource('pengeluaran', 'PengeluaranController', [
 	'names'	=> [
@@ -12,3 +12,4 @@ Route::resource('pengeluaran', 'PengeluaranController', [
 			'update'	=> 'backend_pengeluaran.update',
 			'destroy'	=> 'backend_pengeluaran.destroy'
 	]]);
+

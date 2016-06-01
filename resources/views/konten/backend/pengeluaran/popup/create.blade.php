@@ -28,12 +28,37 @@
 					{!! Form::text('jumlah', 1, ['id' => 'jumlah', 'class' => 'form-control', 'placeholder' => 'jumlah...']) !!}
 				</div>		
 			</div>	
-			<div class="col-md-2">
+			<div class="col-md-4">
 				<div class="form-group">
 					{!! Form::label('subtotal_biaya', "subtotal : ") !!}
 					{!! Form::text('subtotal_biaya', '', [ 'readonly' => 1, 'id' => 'subtotal_biaya', 'class' => 'form-control' ]) !!}
 				</div>		
 			</div>
+			@if(\Auth::user()->ref_user_level_id == 1)
+				<div class="col-md-2">
+					<div class="form-group">
+						{!! Form::label('mst_cabang_id', "Cabang : ") !!}
+						{!! Form::select('mst_cabang_id', $cabang, '', ['id' => 'mst_cabang_id', 'class' => 'form-control']) !!}
+					</div>		
+				</div>
+			@else
+				{!! Form::hidden('mst_cabang_id',  \Auth::user()->mst_cabang_id, ['id' => 'mst_cabang_id']) !!}
+			@endif
+		</div>
+		<div class="col-md-12">
+
+
+			<div class="col-md-6">
+				<div class="form-group">
+				{!! Form::label('tgl_pengeluaran', 'Tanggal pengeluaran:') !!}
+				    <div class='input-group date' id='datetimepicker2'>
+				        <input id="tgl_pengeluaran" value="" readonly="0" type='text' class="form-control" />
+				        <span class="input-group-addon">
+				            <span class="fa fa-calendar"></span>
+				        </span>
+				    </div>
+				</div>				
+			</div>			
 		</div>
 	</div>
 
@@ -57,6 +82,24 @@
 
 
 <script type="text/javascript">
+
+	$(function () {
+	    $('#datetimepicker2').datetimepicker({
+	    	locale: 'id',
+	    	ignoreReadonly : true,
+	    	// viewMode: 'years',
+	    	format: 'YYYY-MM-DD',
+	        icons: {
+	            time: "fa fa-clock-o",
+	            next: "fa fa-arrow-right",
+	            previous: "fa fa-arrow-left",
+	            date: "fa fa-calendar",
+	            up: "fa fa-arrow-up",
+	            down: "fa fa-arrow-down"
+	        }		        	
+	    });
+	});
+
 
  $('#jumlah').keypress(function(e) {
         var a = [];
@@ -86,6 +129,7 @@
 $('#biaya').keyup(function(){
 	jml = $('#jumlah').val();
 	biaya = $('#biaya').val();
+	mst_cabang_id = $('#mst_cabang_id').val();
 	$('#subtotal_biaya').val(biaya * jml);
 });
 
@@ -103,6 +147,9 @@ $('#simpan').click(function(){
 
 
 form_data ={
+	mst_user_id : {!! Auth::user()->id !!},
+	tgl_pengeluaran : $('#tgl_pengeluaran').val(),
+	mst_cabang_id : $('#mst_cabang_id').val(),
 	nama : $('#nama').val(),
 	biaya : $('#biaya').val(),
 	jumlah : $('#jumlah').val(),

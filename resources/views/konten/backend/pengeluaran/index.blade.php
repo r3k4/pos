@@ -4,12 +4,16 @@
  
 
 
+
+
  	@include($base_view.'komponen.tombol_create')
 
-
 	<h2>
-		<i class="fa fa-tags"></i> Pengeluaran 
+		<i class="fa fa-tags"></i> Pengeluaran hari ini 
 	</h2>
+ 
+
+
 	<hr>
 
 

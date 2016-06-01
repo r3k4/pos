@@ -90,6 +90,8 @@ class ProdukController extends Controller
 
     public function delete(Request $request)
     {
+        // check authorisasi saat destroy produk
+        $this->authorize('destroyProduk', $produk);        
         return $this->produk->delete($request->id);
     }
 

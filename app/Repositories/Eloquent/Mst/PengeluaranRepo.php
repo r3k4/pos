@@ -16,7 +16,16 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 	public function __construct(Model $model){
 		$this->model = $model;
 	}
- 
+	
+
+	public function getJmlPengeluaranBulanan($bln)
+	{
+		$q = $this->model->whereMonth('tgl_pengeluaran', '=', $bln)->sum('subtotal_biaya');
+		if(count($q)<=0){
+			return 0;
+		}
+		return $q;
+	}
 
 
 }

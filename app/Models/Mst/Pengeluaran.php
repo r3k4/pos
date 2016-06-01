@@ -13,6 +13,18 @@ class Pengeluaran extends Model
     					   'tgl_pengeluaran', 'keterangan', 'mst_user_id', 
     					   'mst_cabang_id'
     					  ];
+    protected $appends = [
+        'fk__mst_user'
+    ];
+
+    public function getFkMstUserAttribute()
+    {
+        $u_obj = app('App\Repositories\Contracts\Mst\UserRepoInterface');
+        $u = $u_obj->find($this->attributes['mst_user_id']);
+        if(count($u)>0){
+            return $u->nama;
+        }
+    }
 
     public function mst_user()
     {

@@ -27,7 +27,7 @@ class createPengeluaranRequest extends Request
             'nama'  => 'required',
             'jumlah'    => 'required',
             'biaya' => 'required',
-            ''
+            'mst_cabang_id' => 'required',
         ];
     }
 }
