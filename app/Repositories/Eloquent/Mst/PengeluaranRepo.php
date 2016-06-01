@@ -18,7 +18,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 	}
 
 
-	public function getByBln($perPage = null, $bln)
+	public function getByBln($perPage = null, $bln, $thn)
 	{
 
 
@@ -30,12 +30,14 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
                 // untuk admin
                 $q = $this->model                          
                           ->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->whereYear('tgl_pengeluaran', '=', $thn)
                           ->orderBy('id', 'desc')
                           ->get();              
             }else{
                 // untuk karyawan
                 $q = $this->model                          
                           ->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->whereYear('tgl_pengeluaran', '=', $thn)
                           ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
                           ->orderBy('id', 'desc')
                           ->get();
@@ -45,6 +47,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
             // untuk admin
             $q = $this->model                      
                       ->whereMonth('tgl_pengeluaran', '=', $bln)
+                      ->whereYear('tgl_pengeluaran', '=', $thn)
                       ->orderBy('id', 'desc')
                       ->paginate($perPage);                         
             }else{
@@ -52,12 +55,14 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
                 		  ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
                           ->orderBy('id', 'desc')
                           ->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->whereYear('tgl_pengeluaran', '=', $thn)
                           ->paginate($perPage);             
             }
         }
         
       }else{
          $q = $this->model->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->whereYear('tgl_pengeluaran', '=', $thn)
                           ->orderBy('id', 'desc')
                           ->get();    
 

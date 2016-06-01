@@ -36,10 +36,18 @@ class PengeluaranController extends Controller
      */
     public function index(Request $request)
     {
+
+        $list_bln = ['' => '-pilih-'];
+        for($i=1;$i<=12;$i++){
+            $list_bln[$i] = fungsi()->bulan2($i);
+        }
+
+
         $filter_bln = $request->get('getByBln');
+        $thn = $request->get('thn');
         $filter_tgl = $request->get('getByTgl');
         if($filter_bln){
-              $pengeluaran = $this->pengeluaran->getByBln(10, $filter_bln);  
+              $pengeluaran = $this->pengeluaran->getByBln(10, $filter_bln, $thn);  
         }elseif($filter_tgl){
               $pengeluaran = $this->pengeluaran->getByTgl(10, $filter_tgl);  
         }else{
@@ -49,7 +57,7 @@ class PengeluaranController extends Controller
         }
         
         $pengeluaran_home = true;
-        $vars = compact('pengeluaran', 'pengeluaran_home');
+        $vars = compact('pengeluaran', 'pengeluaran_home', 'list_bln');
         return view($this->base_view.'index', $vars);
     }
 

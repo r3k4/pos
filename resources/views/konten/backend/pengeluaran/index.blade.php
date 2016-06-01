@@ -23,6 +23,7 @@
 
 
 	<hr>
+	@include($base_view.'komponen.filter_pengeluaran')
 
 
 	@include($base_view.'list_data')
