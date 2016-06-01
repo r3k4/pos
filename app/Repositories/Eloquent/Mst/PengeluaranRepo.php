@@ -68,22 +68,6 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 
       }
         return $q;
-
-
-
-		
-		// if($perPage == null){
-		// 	$q = $this->model
-		// 			  ->whereMonth('tgl_pengeluaran', '=', $bln)
-		// 			  ->orderBy('id', 'desc')
-		// 			  ->get();
-		// }else{
-		// 	$q = $this->model
-		// 			  ->whereMonth('tgl_pengeluaran', '=', $bln)
-		// 			  ->orderBy('id', 'desc')
-		// 			  ->paginate($perPage);
-		// }
-		// return $q;
 	}
 
 
@@ -132,22 +116,6 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 
       }
         return $q;
-
-
-
-
-		// if($perPage == null){
-		// 	$q = $this->model
-		// 			  ->where('tgl_pengeluaran', '=', $tgl)
-		// 			  ->orderBy('id', 'desc')
-		// 			  ->get();
-		// }else{
-		// 	$q = $this->model
-		// 			  ->where('tgl_pengeluaran', '=', $tgl)
-		// 			  ->orderBy('id', 'desc')
-		// 			  ->paginate($perPage);
-		// }
-		// return $q;	
 	}
 
 
