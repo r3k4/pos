@@ -20,35 +20,129 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 
 	public function getByBln($perPage = null, $bln)
 	{
-		if($perPage == null){
-			$q = $this->model
-					  ->whereMonth('tgl_pengeluaran', '=', $bln)
-					  ->orderBy('id', 'desc')
-					  ->get();
-		}else{
-			$q = $this->model
-					  ->whereMonth('tgl_pengeluaran', '=', $bln)
-					  ->orderBy('id', 'desc')
-					  ->paginate($perPage);
-		}
-		return $q;
+
+
+     // jika tanpa browser
+      if(\Auth::check()){
+        // logged in
+        if($perPage == null){
+            if(\Auth::user()->ref_user_level_id == 1){
+                // untuk admin
+                $q = $this->model                          
+                          ->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->orderBy('id', 'desc')
+                          ->get();              
+            }else{
+                // untuk karyawan
+                $q = $this->model                          
+                          ->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
+                          ->orderBy('id', 'desc')
+                          ->get();
+            }
+        }else{
+            if(\Auth::user()->ref_user_level_id == 1){
+            // untuk admin
+            $q = $this->model                      
+                      ->whereMonth('tgl_pengeluaran', '=', $bln)
+                      ->orderBy('id', 'desc')
+                      ->paginate($perPage);                         
+            }else{
+                $q = $this->model
+                		  ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
+                          ->orderBy('id', 'desc')
+                          ->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->paginate($perPage);             
+            }
+        }
+        
+      }else{
+         $q = $this->model->whereMonth('tgl_pengeluaran', '=', $bln)
+                          ->orderBy('id', 'desc')
+                          ->get();    
+
+      }
+        return $q;
+
+
+
+		
+		// if($perPage == null){
+		// 	$q = $this->model
+		// 			  ->whereMonth('tgl_pengeluaran', '=', $bln)
+		// 			  ->orderBy('id', 'desc')
+		// 			  ->get();
+		// }else{
+		// 	$q = $this->model
+		// 			  ->whereMonth('tgl_pengeluaran', '=', $bln)
+		// 			  ->orderBy('id', 'desc')
+		// 			  ->paginate($perPage);
+		// }
+		// return $q;
 	}
 
 
 	public function getByTgl($perPage = null, $tgl)
 	{
-		if($perPage == null){
-			$q = $this->model
-					  ->where('tgl_pengeluaran', '=', $tgl)
-					  ->orderBy('id', 'desc')
-					  ->get();
-		}else{
-			$q = $this->model
-					  ->where('tgl_pengeluaran', '=', $tgl)
-					  ->orderBy('id', 'desc')
-					  ->paginate($perPage);
-		}
-		return $q;	
+
+
+      // jika tanpa browser
+      if(\Auth::check()){
+        // logged in
+        if($perPage == null){
+            if(\Auth::user()->ref_user_level_id == 1){
+                // untuk admin
+                $q = $this->model                          
+                          ->where('tgl_pengeluaran', '=', $tgl)
+                          ->orderBy('id', 'desc')
+                          ->get();              
+            }else{
+                // untuk karyawan
+                $q = $this->model                          
+                          ->where('tgl_pengeluaran', '=', $tgl)
+                          ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
+                          ->orderBy('id', 'desc')
+                          ->get();
+            }
+        }else{
+            if(\Auth::user()->ref_user_level_id == 1){
+            // untuk admin
+            $q = $this->model                      
+                      ->where('tgl_pengeluaran', '=', $tgl)
+                      ->orderBy('id', 'desc')
+                      ->paginate($perPage);                         
+            }else{
+                $q = $this->model
+                		  ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
+                          ->orderBy('id', 'desc')
+                          ->where('tgl_pengeluaran', '=', $tgl)
+                          ->paginate($perPage);             
+            }
+        }
+        
+      }else{
+         $q = $this->model->where('tgl_pengeluaran', '=', $tgl)
+                          ->orderBy('id', 'desc')
+                          ->get();    
+
+      }
+        return $q;
+
+
+
+
+		// if($perPage == null){
+		// 	$q = $this->model
+		// 			  ->where('tgl_pengeluaran', '=', $tgl)
+		// 			  ->orderBy('id', 'desc')
+		// 			  ->get();
+		// }else{
+		// 	$q = $this->model
+		// 			  ->where('tgl_pengeluaran', '=', $tgl)
+		// 			  ->orderBy('id', 'desc')
+		// 			  ->paginate($perPage);
+		// }
+		// return $q;	
 	}
 
 
