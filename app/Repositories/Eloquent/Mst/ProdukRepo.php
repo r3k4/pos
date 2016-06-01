@@ -29,6 +29,9 @@ class ProdukRepo implements ProdukRepoInterface {
      */
     public function all($perPage = null, array $filter = [])
     {
+      // jika tanpa browser
+      if(\Auth::check()){
+        // logged in
         if($perPage == null){
             if(\Auth::user()->ref_user_level_id == 1){
                 // untuk admin
@@ -59,6 +62,14 @@ class ProdukRepo implements ProdukRepoInterface {
                           ->paginate($perPage);             
             }
         }
+        
+      }else{
+         $q = $this->model
+                        ->where($filter)
+                        ->orderBy('id', 'desc')
+                        ->get();    
+
+      }
         return $q;
     }
 
