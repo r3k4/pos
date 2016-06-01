@@ -34,11 +34,20 @@ class PengeluaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // get pengeluaran hari ini
-        $filter = [['tgl_pengeluaran', '=', date('Y-m-d')]];
-        $pengeluaran = $this->pengeluaran->all(10, $filter);
+        $filter_bln = $request->get('getByBln');
+        $filter_tgl = $request->get('getByTgl');
+        if($filter_bln){
+              $pengeluaran = $this->pengeluaran->getByBln(10, $filter_bln);  
+        }elseif($filter_tgl){
+              $pengeluaran = $this->pengeluaran->getByTgl(10, $filter_tgl);  
+        }else{
+            // get pengeluaran hari ini
+            $filter = [['tgl_pengeluaran', '=', date('Y-m-d')]];  
+            $pengeluaran = $this->pengeluaran->all(10, $filter);          
+        }
+        
         $pengeluaran_home = true;
         $vars = compact('pengeluaran', 'pengeluaran_home');
         return view($this->base_view.'index', $vars);

@@ -9,7 +9,15 @@
  	@include($base_view.'komponen.tombol_create')
 
 	<h2>
-		<i class="fa fa-tags"></i> Pengeluaran hari ini 
+		<i class="fa fa-tags"></i> Pengeluaran  
+
+		@if(Request::get('getByBln')) 
+			Bulan {!! fungsi()->bulan2(Request::get('getByBln')) !!}
+		@elseif(Request::get('getByTgl'))
+			Tanggal {!! fungsi()->date_to_tgl(Request::get('getByTgl'))  !!}
+		@else 
+			Hari Ini
+		@endif
 	</h2>
  
 
