@@ -60,3 +60,20 @@ total =
  - struk yg dicetak [struk biasa]
  	http://4.bp.blogspot.com/-9fwW4h_kCxM/VnZMrRAJ3UI/AAAAAAAAAB8/eMA_7B_j4bI/s1600/struk%2Bbelanja.jpg
  - 
+
+
+
+
+
+ [role karyawan]
+  - tampilkan data transaksi saja (user itu sendiri), bukan rekapan data
+  	- data transaksi (tanpa jumlah total seluruh transaksi)
+  	- bisa cetak nota (data yg sudah diinputkan)
+  	- alur hapus data | langsung hapus record  
+  - tidak bisa menambahkan produk
+
+
+
+ [role administrator]
+  - kelola menu produk
+  - pengeluaran
