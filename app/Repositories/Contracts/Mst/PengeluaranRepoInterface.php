@@ -10,4 +10,7 @@ interface PengeluaranRepoInterface
 	public function getByBln($perPage = null, $bln, $thn);
 
 	public function getByTgl($perPage = null, $tgl);
+
+	public function getJmlPengeluaranHarian($tgl);
+
 }

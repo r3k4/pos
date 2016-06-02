@@ -130,4 +130,15 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 	}
 
 
+  public function getJmlPengeluaranHarian($tgl)
+  {
+    $q = $this->model->where('tgl_pengeluaran', '=', $tgl)->sum('subtotal_biaya');
+    if(count($q)<=0){
+      return 0;
+    }
+    return $q;
+  }
+
+
+
 }

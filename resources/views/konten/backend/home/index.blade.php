@@ -4,16 +4,30 @@
  
 
 
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+<div class="col-md-12">
+    <h1>
+    	<i class="fa fa-home"></i> Dashboard
+    </h1>
+    <hr>
 
-                <div class="panel-body">
-                    You are logged in!
-                    <a href="#">link example!</a>
-                </div>
-            </div>
-        </div>
+
+    <div class="text-success col-md-3 well text-center">
+    	<h2>100</h2>
+    	<hr>
+    	<h3>
+    		Jumlah Produk
+    	</h3>
+    </div>
+
+    <div class="text-danger col-md-3 well text-center col-md-offset-1">
+    	<h2>10 Produk</h2>
+    	<hr>
+    	<h3>
+    		Stok Kosong
+    	</h3>
+    </div>
+
+</div>
 
 
  
