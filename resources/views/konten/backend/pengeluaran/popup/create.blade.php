@@ -52,7 +52,7 @@
 				<div class="form-group">
 				{!! Form::label('tgl_pengeluaran', 'Tanggal pengeluaran:') !!}
 				    <div class='input-group date' id='datetimepicker2'>
-				        <input id="tgl_pengeluaran" value="" readonly="0" type='text' class="form-control" />
+				        <input id="tgl_pengeluaran" value="{!! date('Y-m-d') !!}" readonly="0" type='text' class="form-control" />
 				        <span class="input-group-addon">
 				            <span class="fa fa-calendar"></span>
 				        </span>

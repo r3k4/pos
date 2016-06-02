@@ -13,6 +13,7 @@ elixir(function(mix) {
              'sidebar.css',
     		 'app.css',
              'sticky-footer.css',
+             'custom.css',
     	]);
 
 
