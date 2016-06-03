@@ -19,11 +19,7 @@ class setupVariableSeeder extends Seeder
         	$data = ['variable' => 'nama_aplikasi', 'value' => 'TKASIR'];
         	SetupVariable::create($data);
         }
-
-
-        
-
-
+ 
 
     }
 }

@@ -87,13 +87,13 @@
 
     <div class="info-box-content">
       <span class="info-box-text">Jumlah Stok</span>
-      <span class="info-box-number">  000  </span>
+      <span class="info-box-number">  {!! $jml_all_stok_produk !!}  </span>
 
       <div class="progress">
         <div class="progress-bar" style="width: 100%"></div>
       </div>
           <span class="progress-description">
-            jml keseluruhan stok produk
+            jml semua stok produk
           </span>
     </div>
     <!-- /.info-box-content -->

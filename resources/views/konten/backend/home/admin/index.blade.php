@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-md-12">  
-          @include($base_view.'info')
+          @include($base_view.'admin.info')
 
         </div>  
         <div class="col-md-12">
@@ -27,7 +27,7 @@
 
     <div class="row">
         <div class="col-md-8">
-          @include($base_view.'form_transaksi')
+          @include($base_view.'admin.form_transaksi')
         </div>            
     </div>
 

@@ -15,13 +15,13 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Backend'], function(){
 		'as'	=> 'backend_home.index'
 	]);
 
-	require __DIR__.'/routes/backend/produk.php';
-	require __DIR__.'/routes/backend/stok_produk.php';
-	require __DIR__.'/routes/backend/pengeluaran.php';
 
 
 
 	Route::group(['middleware' => 'admin'], function(){
+		require __DIR__.'/routes/backend/stok_produk.php';
+		require __DIR__.'/routes/backend/produk.php';
+		require __DIR__.'/routes/backend/pengeluaran.php';
 		require __DIR__.'/routes/backend/cabang.php'; 
 		require __DIR__.'/routes/backend/user.php'; 
 
