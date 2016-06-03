@@ -93,5 +93,11 @@ trait defaultRepoTrait {
 	}
 
 
+	public function findBy(array $filter)
+	{
+		return $this->model->where($filter)->first();
+	}
+
+
 
 }

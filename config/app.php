@@ -161,8 +161,8 @@ return [
 
         // repository
         App\Providers\AppRepositoryServiceProvider::class,
-        Jared0430\Cart\CartServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
+        \Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         // Jenssegers\Rollbar\RollbarServiceProvider::class,
 
 
@@ -219,9 +219,10 @@ return [
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Reader'    => \PHPExcelReader\SpreadsheetReader::class, 
         'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
-        'Cart'      => Jared0430\Cart\Facades\Cart::class,
         'DNS1D'     => Milon\Barcode\Facades\DNS1DFacade::class,
-        'DNS2D'     => Milon\Barcode\Facades\DNS2DFacade::class,     
+        'DNS2D'     => Milon\Barcode\Facades\DNS2DFacade::class,   
+        'Cart'      => \Gloudemans\Shoppingcart\Facades\Cart::class,
+  
 
     ],
 

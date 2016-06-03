@@ -8,6 +8,9 @@
         </li>
 
 
+
+@if(\Auth::user()->ref_user_level_id == 1)
+
         <li @if(isset($backend_produk)) class="active" @endif>
         	<a href="{!! route('backend_produk.index') !!}">
         		<i class='fa fa-shopping-cart'></i> Produk
@@ -20,10 +23,7 @@
                 <i class='fa fa-tags'></i> Pengeluaran
             </a>
         </li>
-
-
-@if(\Auth::user()->ref_user_level_id == 1)
-
+ 
         <li @if(isset($backend_cabang)) class="active" @endif>
             <a href="{!! route('backend_cabang.index') !!}">
                 <i class='fa fa-sitemap'></i> Cabang

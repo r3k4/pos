@@ -30,14 +30,14 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // \Cart::destroy();
+
+
         if(\Auth::user()->ref_user_level_id == 1){
             return $this->level_admin();
         }
         return $this->level_karyawan();
 	}
-
-
-
 
     /**
      * halaman untuk level admin
@@ -83,6 +83,7 @@ class HomeController extends Controller
         $vars = compact('jml_produk', 'jml_produk_stok_kosong', 'jml_pengeluaran_hr_ini');
         return view($this->base_view.'karyawan.index', $vars);
     }
+
 
     
 }
