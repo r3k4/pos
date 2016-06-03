@@ -1,23 +1,15 @@
 <?php
 
-
-
-
 require __DIR__.'/routes/frontend/auth.php'; 
-
-
 
 Route::group(['middleware' => 'auth', 'namespace' => 'Backend'], function(){
 
-	
 	Route::get('/', [
 		'uses'	=> 'HomeController@index',
 		'as'	=> 'backend_home.index'
 	]);
 
-
-
-
+ 
 	Route::group(['middleware' => 'admin'], function(){
 		require __DIR__.'/routes/backend/stok_produk.php';
 		require __DIR__.'/routes/backend/produk.php';

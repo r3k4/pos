@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Produk extends Model
 {
     protected $table = 'ref_produk';
-    protected $fillable = ['nama'];
+    protected $fillable = ['nama', 'kode_warna'];
 }

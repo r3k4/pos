@@ -12,6 +12,11 @@
 			{!! Form::label('nama', 'Jenis Produk : ') !!}
 			{!! Form::text('nama', $ref_produk->nama, ['id' => 'nama', 'class' => 'form-control', 'placeholder' => 'jenis produk...']) !!}
 		</div>
+		<div class="form-group">
+			{!! Form::label('kode_warna', 'Pilih Warna : ') !!}
+			{!! Form::color('kode_warna', $ref_produk->kode_warna, ['id' => 'kode_warna', 'class' => 'form-control']) !!}
+		</div>
+
 		<hr>
 		<div class="form-group">
 			<button id='simpan' class='btn btn-info'><i class='fa fa-floppy-o'></i> SIMPAN</button>
@@ -28,10 +33,11 @@
 <script type="text/javascript">
 $('#simpan').click(function(){
 	$('#pesan').removeClass('alert alert-danger animated shake').html('');
-nama = $('#nama').val();
+
 
 form_data ={
-	nama : nama,
+	nama : $('#nama').val(),
+	kode_warna : $('#kode_warna').val(),
  	_token : '{!! csrf_token() !!}'
 }
 $('#simpan').attr('disabled', 'disabled');
