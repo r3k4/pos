@@ -17,11 +17,7 @@
 	</button>
 </div>
 
-<div class="col-md-6">
-	<div id="result">
-		{{-- hasil --}}
-	</div>
-</div>
+ 
 
 <div class="col-md-6">
 	<div id="list_pembelian">		 
@@ -31,5 +27,5 @@
 
 
 
-@include($base_view.'karyawan.script')
+@include($base_view.'karyawan.script_form_transaksi')
 

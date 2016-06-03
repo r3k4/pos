@@ -22,70 +22,28 @@
 					{!! fungsi()->rupiah($list->subtotal) !!}				
 				</td>
 				<td class="text-center">
-					<i style='cursor:pointer;' class='fa fa-times' id='delItem{!! $list->rowid !!}'></i>
+					@include($base_view.'karyawan.action')
 				</td>
 			</tr>
 
 
-	<script type="text/javascript">
-	$('#delItem{{ $list->rowid }}').click(function(){
 
-
-		swal({
-			title : 'are you sure ?',
-			type  : 'warning',
-			closeOnCancel: true,
-			showCancelButton: true,
-			closeOnConfirm: false,
-			showLoaderOnConfirm : true
-			
-		}, function(isConfirm){
-			if(isConfirm){
-				$.ajax({
-					url : '{{ route("backend_home.remove_item") }}',
-					data : {rowid : '{{ $list->rowid }}', _token : '{!! csrf_token() !!}' },
-					type : 'post',
-					error: function(err){
-						swal('error', 'terjadi kesalahan pada sisi server!', 'error');
-					},
-					success:function(ok){
-						swal({
-						title : "success!", 
-						text : "data telah terhapus!", 
-						type : "success"
-						}, function(){
-							$('#list_pembelian').html(ok);
-							// window.location.reload();
-						})
-					}
-				})		
-			}
-		});
-
-
-
-
-
-	});
-	</script>
 
 
 
 
 
 		@endforeach
-		<tr class="well">
-			<th colspan="3">
-				Jumlah total
-			</th>
-			<th>
-				{!! fungsi()->rupiah(Cart::total()) !!}
-			</th>
-			<th><br></th>
-		</tr>
-
 		</tbody>
 	</table>
+
+
+<div class="col-md-12">
+	<h3 style="text-decoration:underline" class="text-right">
+		Total : {!! fungsi()->rupiah(Cart::total()) !!}
+	</h3>
+</div>
+
 
 @else
 	<div class="alert alert-info">

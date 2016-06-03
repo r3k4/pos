@@ -48,14 +48,15 @@ class TransaksiController extends Controller
             return response(['error' => ['data tdk ditemukan']], 422);
         }
         $vars = compact('produk');
-        return view($this->base_view.'karyawan.result', $vars);
+        return $produk;
+        // return view($this->base_view.'karyawan.result', $vars);
     }
 
 
     public function add_to_cart(Request $request)
     {
         // insert ke dlm keranjang belanja
-        \Cart::add($request->id, $request->nama, $request->jml, $request->harga_jual);
+        $insert_cart = \Cart::add($request->id, $request->nama, $request->jml, $request->harga);
         return view($this->base_view.'karyawan.list_pembelian');
     }
 
