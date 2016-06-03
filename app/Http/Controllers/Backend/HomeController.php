@@ -27,11 +27,17 @@ class HomeController extends Controller
 
     public function index()
     {
-        if(\Auth::user()->ref_user_level_id == 2){
-            return $this->level_karyawan();
+        if(\Auth::user()->ref_user_level_id == 1){
+            return $this->level_admin();
         }
-        return view($this->base_view.'index');
-    }
+        return $this->level_karyawan();
+	}
+
+
+	public function level_admin()
+	{
+		return view($this->base_view.'index');
+	}
 
 
 
