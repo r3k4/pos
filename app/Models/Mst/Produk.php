@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Produk extends Model
 {
+
     protected $table = 'mst_produk';
     protected $fillable = [
         'nama', 'ref_produk_id', 'keterangan', 'mst_cabang_id',
@@ -14,15 +15,16 @@ class Produk extends Model
         'harga_reseller', 'stok_barang', 'ref_satuan_produk_id',
         'mst_user_id'
     ];
+    protected $appends = ['fk__ref_produk', 'fk__mst_cabang', 'fk__ref_satuan_produk'];
+
+
+
 
 
     public function mst_user()
     {
         return $this->belongsTo(User::class, 'mst_user_id');
     }
-
-    protected $appends = ['fk__ref_produk', 'fk__mst_cabang', 'fk__ref_satuan_produk'];
-
 
 
     public function getFkRefSatuanProdukAttribute()
