@@ -11,6 +11,10 @@
     "font-awesome": "~4.5.0",
     "animate.css": "~3.5.1",
     "wow.js": "~1.1.2",
-    "hover.css": "~2.0.2"    
+    "hover.css": "~2.0.2"
+  },
+  "dependencies": {
+    "vue": "^1.0.24",
+    "vue-resource": "^0.7.2"
   }
 }

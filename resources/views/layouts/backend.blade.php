@@ -9,6 +9,7 @@
 
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
       <script src="{{ elixir('js/app.js') }}"></script>
+      
     </head>
 <body>
 
@@ -17,7 +18,7 @@
     @include('layouts.komponen.default.modal')
 
  
-    <div class="container">  
+    <div class="container" >  
         <div class="row">
 
             <div class="col-md-2">
@@ -25,6 +26,9 @@
             </div>
 
             <div class="col-md-10 animated fadeIn">
+            
+            <component is="@{{ currentView }}"></component>
+
               @yield('konten')
             </div> 
 
@@ -35,9 +39,7 @@
     
         @include('layouts.komponen.default.footer')
 
-    
- 
-  <script type="text/javascript">
+      <script type="text/javascript">
   new WOW().init();
   </script>     
 </body>

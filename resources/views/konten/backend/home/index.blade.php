@@ -2,30 +2,38 @@
 
 @section('konten')
  
+ 
+           
+ 
 
-
-<div class="col-md-12">
+<div class="col-md-12" >
+<component is="@{{ currentView }}"></component>
+ 
     <h1>
-    	<i class="fa fa-home"></i> Dashboard
+        <i class="fa fa-home"></i> Dashboard
     </h1>
     <hr>
 
+    <div class="row">
+        <div class="col-md-12">  
+          @include($base_view.'info')
 
-    <div class="text-success col-md-3 well text-center">
-    	<h2>100</h2>
-    	<hr>
-    	<h3>
-    		Jumlah Produk
-    	</h3>
+        </div>  
+        <div class="col-md-12">
+            <hr> 
+        </div>          
+    </div> 
+
+
+    <div class="row">
+        <div class="col-md-8">
+          @include($base_view.'form_transaksi')
+        </div>            
     </div>
 
-    <div class="text-danger col-md-3 well text-center col-md-offset-1">
-    	<h2>10 Produk</h2>
-    	<hr>
-    	<h3>
-    		Stok Kosong
-    	</h3>
-    </div>
+
+        
+
 
 </div>
 

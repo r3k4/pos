@@ -24,7 +24,10 @@ class HomeController extends Controller
         view()->share('base_view', $this->base_view);
     }
     
-
+    /**
+     * halaman awal yg ada pada homepage
+     * @return view
+     */
     public function index()
     {
         if(\Auth::user()->ref_user_level_id == 1){
@@ -34,13 +37,33 @@ class HomeController extends Controller
 	}
 
 
-	public function level_admin()
+
+
+    /**
+     * halaman untuk level admin
+     * @return view
+     */
+	private function level_admin()
 	{
-		return view($this->base_view.'index');
+        // jml produk berdasarkan cabang karyawan
+        $filter = [['mst_cabang_id', '=', \Auth::user()->mst_cabang_id]];
+        $jml_produk = $this->produk->count($filter);
+
+        // produk stok kosong
+        $jml_produk_stok_kosong = $this->produk->count(['stok_barang' => 0]);
+
+        // jml nominal pengeluaran hr ini
+        $jml_pengeluaran_hr_ini = $this->pengeluaran->getJmlPengeluaranHarian(date('Y-m-d'));
+
+        $vars = compact('jml_produk', 'jml_produk_stok_kosong', 'jml_pengeluaran_hr_ini');
+        return view($this->base_view.'index', $vars);
 	}
 
 
-
+    /**
+     * halaman untuk level karyawan
+     * @return [type] [description]
+     */
     private function level_karyawan()
     {
         // jml produk berdasarkan cabang karyawan
