@@ -13,8 +13,7 @@
     <hr>
     <div class="row">
         <div class="col-md-12">
-{{--         	{!! Cart::content() !!} 
- --}}          @include($base_view.'karyawan.form_transaksi')
+	         @include($base_view.'karyawan.form_transaksi')
         </div>
     </div>
 

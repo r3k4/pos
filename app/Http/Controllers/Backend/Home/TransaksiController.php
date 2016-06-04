@@ -52,7 +52,10 @@ class TransaksiController extends Controller
         // return view($this->base_view.'karyawan.result', $vars);
     }
 
-
+    /**
+     * menambahkan item pada cart
+     * @param Request $request  
+     */
     public function add_to_cart(Request $request)
     {
         // insert ke dlm keranjang belanja
@@ -60,11 +63,34 @@ class TransaksiController extends Controller
         return view($this->base_view.'karyawan.list_pembelian');
     }
 
-
+    /**
+     * menghapus item di dalam cart berdasarkan rowId
+     * @param  Request $request  
+     * @return  view
+     */
     public function remove_item(Request $request)
     {
     	\Cart::remove($request->rowid);
-    	return view($this->base_view.'karyawan.list_pembelian'); 
+    	return $this->show_list_pembelian();
+    }
+
+    /**
+     * mengosongkan isi cart
+     * @return [type] [description]
+     */
+    public function kosongkan_cart()
+    {
+        \Cart::destroy();
+        return $this->show_list_pembelian();
+    }
+
+    /**
+     * menampilkan view list pembelian
+     * @return view
+     */
+    private function show_list_pembelian()
+    {
+       return view($this->base_view.'karyawan.list_pembelian');  
     }
 
 

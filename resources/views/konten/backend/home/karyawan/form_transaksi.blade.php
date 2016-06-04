@@ -19,7 +19,7 @@
 
  
 
-<div class="col-md-6">
+<div class="col-md-12">
 	<div id="list_pembelian">		 
 		@include($base_view.'karyawan.list_pembelian')
 	</div>

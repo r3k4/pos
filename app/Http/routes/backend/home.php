@@ -23,6 +23,10 @@ Route::group(['namespace' => 'Home'], function(){
 		'as'	=> 'backend_home.remove_item'
 	]);
 
+	Route::post('home/kosongkan_cart', [
+		'uses'	=> 'TransaksiController@kosongkan_cart',
+		'as'	=> 'backend_home.kosongkan_cart'
+	]);
 
 });
 
