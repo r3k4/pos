@@ -13,6 +13,7 @@ class Transaksi extends Model
     	'mst_user_id',
     	'mst_cabang_id',
     	'no_transaksi',
+        'subtotal_pembayaran'
     ];
 
     protected $appends = [

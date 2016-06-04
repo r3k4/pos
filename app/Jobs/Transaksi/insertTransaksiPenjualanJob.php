@@ -76,7 +76,8 @@ class insertTransaksiPenjualanJob extends Job
         $data_transaksi = [
             'mst_user_id' => \Auth::user()->id, 
             'mst_cabang_id' => $this->mst_cabang_id,
-            'no_transaksi'  => 'dasdasdsad'
+            'no_transaksi'  => '0',
+            'subtotal_pembayaran'   => \Cart::total(),
         ];
         $insert_transaksi = $transaksi->create($data_transaksi);
         return $insert_transaksi;      

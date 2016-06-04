@@ -79,8 +79,30 @@ class TransaksiController extends Controller
      */
     public function add_to_cart(Request $request)
     {
+    	// check stok barang 
+    	$produk = $this->produk->find($request->id);
+    	$stok = $produk->stok_barang;
+
+    	// check jml stok yg ada di konten cart
+    	$filter = ['id' => $request->id];
+    	$check_cart_konten = \Cart::search($filter);
+    	if($check_cart_konten != false){
+    		// jika sudah ada, maka lanjut check
+    		$get_cart_konten = \Cart::get($check_cart_konten[0]);
+    		$stok_br = $stok - $get_cart_konten->qty;
+    		if($stok_br == 0){
+    			return response(['error' => ['stok item '.$produk->nama.' telah habis']], 422);
+    		}
+    	}
+
         // insert ke dlm keranjang belanja
-        $insert_cart = \Cart::add($request->id, $request->nama, $request->jml, $request->harga);
+        $insert_cart = \Cart::add($request->id, 
+        						  $request->nama, 
+        						  $request->jml, 
+        						  $request->harga, 
+        						  [
+        						  	'sku' => $request->sku
+        						  ]);
         return view($this->base_view.'karyawan.list_pembelian');
     }
 

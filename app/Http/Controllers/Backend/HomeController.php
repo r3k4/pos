@@ -30,9 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // \Cart::destroy();
-
-
         if(\Auth::user()->ref_user_level_id == 1){
             return $this->level_admin();
         }

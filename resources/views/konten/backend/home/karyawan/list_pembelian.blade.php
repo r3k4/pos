@@ -2,9 +2,9 @@
 
 
 	@if(Cart::count() != 0 )
-		<div class="col-md-6">
+		<div class="col-md-8">
 
-			<button style="margin-left: 1em;" id="proses_pesanan" class="btn btn-primary pull-right">
+			<button style="margin-left: 1em;" id="proses_pesanan" class="btn btn-success pull-right">
 				 Proses Pesanan <i class="fa fa-arrow-right"></i>
 			</button>
 
@@ -21,16 +21,21 @@
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr class="alert-info">
+							<th class="text-center" width="50px">No.</th>
+							<th>SKU</th>
 							<th>Nama</th>
 							<th>Jml</th>
 							<th>harga</th>
 							<th>subtotal</th>
-							<th>Action</th>
+							<th width="80px">Action</th>
 						</tr>
 					</thead>
 					<tbody>
+					@php($no=1)
 					@foreach(Cart::content() as $list)
 						<tr>
+							<td class="text-center">{!! $no++ !!}</td>
+							<td>{!! $list->options->sku !!}</td>
 							<td>{!! $list->name !!}</td>
 							<td>{!! $list->qty !!}</td>
 							<td>

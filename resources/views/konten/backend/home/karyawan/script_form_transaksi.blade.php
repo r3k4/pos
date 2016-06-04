@@ -34,9 +34,17 @@ $('#kode_barang').keypress(function(e) {
 							// stok barang masih ada
 
 							// start ajax
+							form_data_cart = {
+									id : ok.id, 
+									nama : ok.nama, 
+									jml : 1, 
+									harga : ok.harga_jual, 
+									sku : ok.sku,
+									_token : '{!! csrf_token() !!}' 
+							}
 							$.ajax({
 								url : '{!! route("backend_home.add_to_cart") !!}',
-								data : {id : ok.id, nama : ok.nama, jml : 1, harga : ok.harga_jual, _token : '{!! csrf_token() !!}' },
+								data : form_data_cart,
 								type : 'post',
 								error:function(xhr, status, error){
 									$('#myModal').modal('show');
