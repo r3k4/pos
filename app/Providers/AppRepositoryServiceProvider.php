@@ -62,7 +62,12 @@ class AppRepositoryServiceProvider extends ServiceProvider
             'App\Repositories\Eloquent\Mst\PengeluaranRepo');
 
         $this->app->bind('App\Repositories\Contracts\Mst\PenjualanRepoInterface',
-            'App\Repositories\Eloquent\Mst\PenjualanRepo');        
+            'App\Repositories\Eloquent\Mst\PenjualanRepo');     
+
+        $this->app->bind('App\Repositories\Contracts\Mst\TransaksiRepoInterface',
+            'App\Repositories\Eloquent\Mst\TransaksiRepo');     
+
+               
     }
 
 

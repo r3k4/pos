@@ -27,6 +27,13 @@ Route::group(['namespace' => 'Home'], function(){
 		'uses'	=> 'TransaksiController@kosongkan_cart',
 		'as'	=> 'backend_home.kosongkan_cart'
 	]);
+	
+	Route::post('home/insert_penjualan', [
+		'uses'	=> 'TransaksiController@insert_penjualan',
+		'as'	=> 'backend_home.insert_penjualan'
+	]);
+
+
 
 });
 

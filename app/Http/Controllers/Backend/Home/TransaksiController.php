@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Backend\Home;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Jobs\Transaksi\insertTransaksiPenjualanJob;
+use App\Repositories\Contracts\Mst\PenjualanRepoInterface;
 use App\Repositories\Contracts\Mst\ProdukRepoInterface;
+use App\Repositories\Contracts\Mst\TransaksiRepoInterface;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -21,8 +24,26 @@ class TransaksiController extends Controller
 	 */
 	protected $produk;
 
-	public function __construct(ProdukRepoInterface $produk)
-	{
+    /**
+     * load repo penjualan
+     * @var App\Repositories\Contracts\Mst\PenjualanRepoInterface
+     */
+    protected $penjualan;
+
+    /**
+     * load repo transaksi
+     * @var App\Repositories\Contracts\Mst\TransaksiRepoInterface
+     */
+    protected $transaksi;
+
+
+
+	public function __construct(ProdukRepoInterface $produk,
+                                PenjualanRepoInterface $penjualan,
+                                TransaksiRepoInterface $transaksi
+                            ){
+        $this->transaksi = $transaksi;
+        $this->penjualan = $penjualan;
 		$this->produk = $produk;
 		view()->share('base_view', $this->base_view);
 	}
@@ -84,6 +105,22 @@ class TransaksiController extends Controller
         return $this->show_list_pembelian();
     }
 
+
+
+    /**
+     * insert data penjualan ke dalam database
+     * @param  Request $request 
+     * @return [type]           
+     */
+    public function insert_penjualan(Request $request)
+    {
+        $mst_cabang_id = $request->mst_cabang_id;
+        $this->dispatch(new insertTransaksiPenjualanJob($mst_cabang_id));     
+        return $this->show_list_pembelian();   
+    }
+
+
+
     /**
      * menampilkan view list pembelian
      * @return view
@@ -92,7 +129,6 @@ class TransaksiController extends Controller
     {
        return view($this->base_view.'karyawan.list_pembelian');  
     }
-
 
 
 }

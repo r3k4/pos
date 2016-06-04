@@ -2,12 +2,12 @@
 
 namespace App\Repositories\Eloquent\Mst;
 
-use App\Models\Mst\Penjualan as Model;
-use App\Repositories\Contracts\Mst\PenjualanRepoInterface;
+use App\Models\Mst\Transaksi as Model;
+use App\Repositories\Contracts\Mst\TransaksiRepoInterface;
 use App\Repositories\Eloquent\defaultRepoTrait;
 
-class PenjualanRepo implements PenjualanRepoInterface {
-	
+class TransaksiRepo implements TransaksiRepoInterface {
+
 	// CRUD default
 	use defaultRepoTrait;
 
@@ -17,7 +17,9 @@ class PenjualanRepo implements PenjualanRepoInterface {
 	public function __construct(Model $model){
 		$this->model = $model;
 	}
- 
+
+
+
 
 
 

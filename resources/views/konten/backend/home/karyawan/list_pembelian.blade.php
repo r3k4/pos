@@ -3,9 +3,21 @@
 
 	@if(Cart::count() != 0 )
 		<div class="col-md-6">
+
+			<button style="margin-left: 1em;" id="proses_pesanan" class="btn btn-primary pull-right">
+				 Proses Pesanan <i class="fa fa-arrow-right"></i>
+			</button>
+
 			<button id="kosongkan_cart" class="btn btn-primary pull-right">
 				<i class="fa fa-refresh"></i> Kosongkan
 			</button>
+			<div class="col-md-12">
+			<hr>
+				
+			</div>
+
+
+
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr class="alert-info">
@@ -46,6 +58,50 @@
  		
 		<script type="text/javascript">
 		
+		$('#proses_pesanan').click(function(){
+			swal({   
+				title: "Are you sure?",   
+				type: "warning",   
+				showCancelButton: true,   
+				confirmButtonColor: "#55DDBA",   
+				closeOnConfirm: false }, function(){   
+		
+				$('#pesan').removeClass('alert alert-danger animated shake').html('');
+
+			form_data ={
+				mst_cabang_id : {!! Auth::user()->mst_cabang_id !!},
+			 	_token : '{!! csrf_token() !!}'
+			}
+		$('#proses_pesanan').attr('disabled', 'disabled');
+			$.ajax({
+				url : '{{ route("backend_home.insert_penjualan") }}',
+				data : form_data,
+				type : 'post',
+				error:function(xhr, status, error){
+					$('#proses_pesanan').removeAttr('disabled');
+				 	$('#pesan').addClass('alert alert-danger animated shake').html('<b>Error : </b><br>');
+			        datajson = JSON.parse(xhr.responseText);
+			        $.each(datajson, function( index, value ) {
+			       		$('#pesan').append(index + ": " + value+"<br>")
+			          });
+				},
+				success:function(ok){
+					swal('data telah diproses');
+					 $('#list_pembelian').html(ok);
+					 //window.location.reload();
+				}
+			});
+
+			});
+		
+		});
+
+
+
+
+
+
+
 		$('#kosongkan_cart').click(function(){
 			swal({   
 				title: "Are you sure?",   
