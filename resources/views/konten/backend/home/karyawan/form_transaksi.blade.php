@@ -12,7 +12,7 @@
 </div>
 
 <div class="col-md-2">
-	<button style="font-size:20px;height:40px; width: 100%" class="btn btn-info">
+	<button id="tombol_cari_produk" style="font-size:20px;height:40px; width: 100%" class="btn btn-info">
 		<i class="fa fa-search"></i>
 	</button>
 </div>

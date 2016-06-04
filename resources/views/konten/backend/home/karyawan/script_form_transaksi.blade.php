@@ -1,6 +1,14 @@
 
 
 <script type="text/javascript">
+
+$('#tombol_cari_produk').click(function(){
+	$('#myModal').modal('show');
+	
+});
+
+
+
 $('#kode_barang').keypress(function(e) {
     if(e.which == 13) {
 
