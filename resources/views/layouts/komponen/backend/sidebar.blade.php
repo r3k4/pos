@@ -48,5 +48,12 @@
  
 
  
+         <li @if(isset($backend_profile)) class="active" @endif>
+            <a href="{!! route('backend_profile.index') !!}">
+                <i class='fa fa-wrench'></i> Profile
+            </a>
+        </li>
+
+
     </ul>
 </nav>

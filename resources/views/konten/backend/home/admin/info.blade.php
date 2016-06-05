@@ -104,7 +104,7 @@
 
 
 <div class="col-md-4">
-  <div class="info-box bg-light-blue">
+  <div class="info-box bg-yellow">
     <span class="info-box-icon"><i class="fa fa-money"></i></span>
 
     <div class="info-box-content">
@@ -115,7 +115,7 @@
         <div class="progress-bar" style="width: 100%"></div>
       </div>
           <span class="progress-description">
-            Item hr ini
+            Item yg terjual hr ini
           </span>
     </div>
     <!-- /.info-box-content -->

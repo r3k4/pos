@@ -25,7 +25,11 @@
 					{!! '['.$list->sku.'] '.$list->nama !!}
 				</a>
 			</td>
-			<td>{!! $list->fk__ref_produk !!}</td>
+			<td>
+				<span style='border-bottom: 3px solid {!! $list->fk__ref_produk_warna !!}'>
+					{!! $list->fk__ref_produk !!}					
+				</span>
+			</td>
 
 			@if(\Auth::user()->ref_user_level_id == 1)
 				<td>{!! $list->fk__mst_cabang !!}</td>

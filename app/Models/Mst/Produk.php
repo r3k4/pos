@@ -15,15 +15,24 @@ class Produk extends Model
         'harga_reseller', 'stok_barang', 'ref_satuan_produk_id',
         'mst_user_id'
     ];
-    protected $appends = ['fk__ref_produk', 'fk__mst_cabang', 'fk__ref_satuan_produk'];
-
-
-
-
+    protected $appends = [
+            'fk__ref_produk', 'fk__mst_cabang', 'fk__ref_satuan_produk', 
+            'fk__ref_produk_warna'
+        ];
+ 
 
     public function mst_user()
     {
         return $this->belongsTo(User::class, 'mst_user_id');
+    }
+
+    public function getFkRefProdukWarnaAttribute()
+    {
+        $rp_obj = app('App\Repositories\Contracts\Ref\ProdukRepoInterface');
+        $rp = $rp_obj->find($this->attributes['ref_produk_id']);
+        if(count($rp)>0){
+            return $rp->kode_warna;
+        }  
     }
 
 

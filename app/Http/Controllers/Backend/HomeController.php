@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Repositories\Contracts\Mst\PengeluaranRepoInterface;
+use App\Repositories\Contracts\Mst\PenjualanRepoInterface;
 use App\Repositories\Contracts\Mst\ProdukRepoInterface;
 use App\Repositories\Contracts\Mst\TransaksiRepoInterface;
 use Illuminate\Http\Request;
@@ -16,11 +17,14 @@ class HomeController extends Controller
     protected $produk;
     protected $pengeluaran;
     protected $transaksi;
+    protected $penjualan;
 
     public function __construct(ProdukRepoInterface $produk,
                                 PengeluaranRepoInterface $pengeluaran,
-                                TransaksiRepoInterface $transaksi
+                                TransaksiRepoInterface $transaksi,
+                                PenjualanRepoInterface $penjualan
                                 ){
+        $this->penjualan = $penjualan;
         $this->transaksi = $transaksi;
         $this->pengeluaran = $pengeluaran;
         $this->produk = $produk;
@@ -55,6 +59,10 @@ class HomeController extends Controller
         // jml semua stok produk
         $jml_all_stok_produk = $this->produk->getTotalJmlStok();
 
+        // jml item terjual hr ini
+        $jml_item_terjual_today = $this->penjualan->countJmlItemTerjual(date('Y-m-d'));
+
+        // jml transaksi hr ini
         $jml_transaksi_today = $this->transaksi->count([['created_at', 'like', date('Y-m-d').'%']]);
 
         // jml nominal pengeluaran hr ini
@@ -62,7 +70,7 @@ class HomeController extends Controller
 
         $vars = compact('jml_produk', 'jml_produk_stok_kosong', 
                         'jml_pengeluaran_hr_ini', 'jml_all_stok_produk',
-                        'jml_transaksi_today'
+                        'jml_transaksi_today', 'jml_item_terjual_today'
                     );
         return view($this->base_view.'admin.index', $vars);
 	}

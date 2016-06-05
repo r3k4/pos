@@ -19,6 +19,10 @@ class PenjualanRepo implements PenjualanRepoInterface {
 	}
  
 
-
+ 	public function countJmlItemTerjual($tgl)
+ 	{
+ 		$q = $this->model->whereDate('created_at', '=', $tgl)->sum('qty');
+ 		return $q;
+ 	}
 
 }
