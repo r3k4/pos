@@ -4,6 +4,7 @@
 
 $('#tombol_cari_produk').click(function(){
 	$('#myModal').modal('show');
+	$('.modal-body').load('{!! route("backend_home.search_produk") !!}');
 	
 });
 

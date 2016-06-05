@@ -8,9 +8,13 @@ class insertTransaksiPenjualanJob extends Job
 {
 
     public $mst_cabang_id;
+    public $bayar; 
+    public $kembalian;
 
-    public function __construct($mst_cabang_id)
+    public function __construct($mst_cabang_id, $bayar, $kembalian)
     {
+        $this->bayar = $bayar;
+        $this->kembalian = $kembalian;
         $this->mst_cabang_id = $mst_cabang_id;
     }
 
@@ -28,24 +32,24 @@ class insertTransaksiPenjualanJob extends Job
         // insert data ke dalam detail pembelian
         foreach(\Cart::content() as $list){
             $data_penjualan = [
-                'mst_produk_id' => $list->id,
-                'harga_produk'  => $list->price,
-                'uang_diterima' => $list->price,
-                'uang_kembalian'    => '',
-                'subtotal_uang_diterima' => $list->subtotal,
-                'mst_user_id'   => \Auth::user()->id,
-                'keterangan'    => '',
-                'mst_cabang_id' => $this->mst_cabang_id,
-                'mst_transaksi_id' => $insert_transaksi->id
+                'mst_produk_id'             => $list->id,
+                'harga_produk'              => $list->price,
+                'uang_diterima'             => $list->price, //harga satuan produk
+                'qty'                       => $list->qty,
+                'subtotal_uang_diterima'    => $list->subtotal, //harga satuan * jml pembelian
+                'mst_user_id'               => \Auth::user()->id,
+                'mst_cabang_id'             => $this->mst_cabang_id,
+                'mst_transaksi_id'          => $insert_transaksi->id
             ];
             $insert_penjualan = $pj->create($data_penjualan);
-
             $this->update_stok($insert_transaksi->no_transaksi, $list->id, $list->qty);
-
         }
 
         // hapus data item transaksi
         \Cart::destroy();
+
+
+         return $insert_transaksi->id;
     }
 
     private function update_stok($no_transaksi, $mst_produk_id, $jml_pembelian)
@@ -78,6 +82,8 @@ class insertTransaksiPenjualanJob extends Job
             'mst_cabang_id' => $this->mst_cabang_id,
             'no_transaksi'  => '0',
             'subtotal_pembayaran'   => \Cart::total(),
+            'bayar'                 => $this->bayar,
+            'nominal_kembalian'     => $this->kembalian
         ];
         $insert_transaksi = $transaksi->create($data_transaksi);
         return $insert_transaksi;      

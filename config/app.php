@@ -163,6 +163,7 @@ return [
         App\Providers\AppRepositoryServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         \Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         // Jenssegers\Rollbar\RollbarServiceProvider::class,
 
 
@@ -222,6 +223,8 @@ return [
         'DNS1D'     => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D'     => Milon\Barcode\Facades\DNS2DFacade::class,   
         'Cart'      => \Gloudemans\Shoppingcart\Facades\Cart::class,
+        'PDF'       => Barryvdh\DomPDF\Facade::class,
+
   
 
     ],

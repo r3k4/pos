@@ -3,6 +3,7 @@
 namespace App\Models\Mst;
 
 use App\Models\Mst\Cabang;
+use App\Models\Mst\Penjualan;
 use App\Models\Mst\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,13 +14,29 @@ class Transaksi extends Model
     	'mst_user_id',
     	'mst_cabang_id',
     	'no_transaksi',
-        'subtotal_pembayaran'
+        'subtotal_pembayaran',
+        'nominal_kembalian',
+        'bayar'
     ];
 
     protected $appends = [
     	'fk__mst_user', 
-    	'fk__mst_cabang'
+    	'fk__mst_cabang',
+        'fk__total_item'
     ];
+
+
+    public function getFkTotalItemAttribute()
+    {
+
+        $pj_obj = app('App\Repositories\Contracts\Mst\PenjualanRepoInterface');
+        $jml = 0;
+        $q = $pj_obj->all(null, [['mst_transaksi_id', '=', $this->attributes['id']]]);
+        foreach($q as $list){
+            $jml = $jml+$list->qty;
+        }
+        return $jml;
+    }
 
     public function getFkMstUserAttribute()
     {
@@ -63,6 +80,11 @@ class Transaksi extends Model
     public function mst_cabang()
     {
     	return $this->belongsTo(Cabang::class, 'mst_cabang_id');
+    }
+
+    public function mst_penjualan()
+    {
+        return $this->hasMany(Penjualan::class, 'mst_transaksi_id');
     }
 
 

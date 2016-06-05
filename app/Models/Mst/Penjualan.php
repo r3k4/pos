@@ -16,13 +16,26 @@ class Penjualan extends Model
 		'mst_produk_id',
 		'harga_produk',
 		'uang_diterima',
-		'uang_kembalian',
 		'subtotal_uang_diterima',
 		'mst_user_id',
 		'keterangan',
 		'mst_cabang_id',
-        'mst_transaksi_id'
+        'mst_transaksi_id',
+        'qty',
     ];
+
+    protected $appends = [
+        'fk__mst_produk'
+    ];
+
+    public function getFkMstProdukAttribute()
+    {
+        $p_obj = app('App\Repositories\Contracts\Mst\ProdukRepoInterface');
+        $p = $p_obj->find($this->attributes['mst_produk_id']);
+        if(count($p)>0){
+            return $p->nama;
+        }
+    }
 
     public function mst_transaksi()
     {

@@ -32,6 +32,32 @@ Route::group(['namespace' => 'Home'], function(){
 		'uses'	=> 'TransaksiController@insert_penjualan',
 		'as'	=> 'backend_home.insert_penjualan'
 	]);
+	
+	Route::get('home/show_list_pembelian', [
+		'uses'	=> 'TransaksiController@show_list_pembelian',
+		'as'	=> 'backend_home.show_list_pembelian'
+	]);
+
+
+
+	Route::get('home/search_produk', [
+		'uses'	=> 'TransaksiController@search_produk',
+		'as'	=> 'backend_home.search_produk'
+	]);
+
+	Route::post('home/submit_search_produk', [
+		'uses'	=> 'TransaksiController@submit_search_produk',
+		'as'	=> 'backend_home.submit_search_produk'
+	]);
+
+	Route::get('home/cetak_struk_pembelian/{id}', [
+		'uses'	=> 'TransaksiController@cetak_struk_pembelian',
+		'as'	=> 'backend_home.cetak_struk_pembelian'
+	]);
+	Route::get('home/show_single_transaksi/{id}', [
+		'uses'	=> 'TransaksiController@show_single_transaksi',
+		'as'	=> 'backend_home.show_single_transaksi'
+	]);
 
 
 
