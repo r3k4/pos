@@ -8,19 +8,15 @@
 	 <i class='fa fa-times'></i> close
 </button>
 
-  	 <h4 style="margin:2px;">
-	 	{!! $transaksi->fk__mst_cabang !!}
-	 </h4>
-	 <b>
-	 	{!! $cabang->alamat !!}
-	 </b>
-	 <br>
-	 <b>
-	 	Telp. {!! $cabang->no_tlp !!}
-	 </b>
+  	 <h2>
+	 	<i class='fa fa-eye'></i> Detail Transaksi
+	 </h2>
+ 
 	 <hr>
 
-	No Transaksi : {!! $transaksi->no_transaksi !!}
+	 <h4 class="text-left">
+	No Transaksi : {!! $transaksi->no_transaksi !!}	 	
+	 </h4>
 
 
 <table class="table">

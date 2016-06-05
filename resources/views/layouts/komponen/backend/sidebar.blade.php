@@ -7,6 +7,14 @@
         	</a>
         </li>
 
+@if(\Auth::user()->ref_user_level_id == 2)
+
+        <li @if(isset($backend_transaksi_saya)) class="active" @endif>
+            <a href="{!! route('backend_transaksi_saya.index') !!}">
+                <i class='fa fa-th-list'></i> Transaksi Saya
+            </a>
+        </li>
+@endif
 
 
 @if(\Auth::user()->ref_user_level_id == 1)

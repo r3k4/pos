@@ -7,6 +7,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Backend'], function(){
 
 	require __DIR__.'/routes/backend/home.php';
 
+	require __DIR__.'/routes/backend/transaksi_saya.php';
+
  
 	Route::group(['middleware' => 'admin'], function(){
 		require __DIR__.'/routes/backend/stok_produk.php';
