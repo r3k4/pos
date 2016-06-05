@@ -1,10 +1,10 @@
 
 
-<button style="margin-left:1em;" id="cetak" class="btn btn-primary pull-right">
+<button style="margin-left:1em;" id="cetak" class="btn btn-info pull-right">
 	 <i class='fa fa-print'></i> cetak struk
 </button>
 
-<button id="tutup" class="btn btn-primary pull-right">
+<button id="tutup" class="btn btn-info pull-right">
 	 <i class='fa fa-times'></i> close
 </button>
 
@@ -20,7 +20,7 @@
 
 
 <table class="table">
-	<tr>
+	<tr class="alert-success">
 		<th style="text-align:center" width="30px">
 			No.
 		</th>
