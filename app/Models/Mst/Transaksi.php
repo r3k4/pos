@@ -14,7 +14,7 @@ class Transaksi extends Model
     	'mst_user_id',
     	'mst_cabang_id',
     	'no_transaksi',
-        'subtotal_pembayaran',
+        'subtotal_pembayaran', // nominal yg harus dibayar
         'nominal_kembalian',
         'bayar'
     ];

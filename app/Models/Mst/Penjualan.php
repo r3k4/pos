@@ -15,10 +15,10 @@ class Penjualan extends Model
     protected $fillable = [
 		'mst_produk_id',
 		'harga_produk',
-		'uang_diterima',
-		'subtotal_uang_diterima',
+        'harga_beli_produk', //harga beli(kulakan)
+		'uang_diterima', //uang diterima dr harga satuan produk
+		'subtotal_uang_diterima', //total uang diterima * qty
 		'mst_user_id',
-		'keterangan',
 		'mst_cabang_id',
         'mst_transaksi_id',
         'qty',
@@ -27,6 +27,15 @@ class Penjualan extends Model
     protected $appends = [
         'fk__mst_produk'
     ];
+
+    public function setHargaBeliProdukAttribute($value)
+    {
+        // get one record
+        $q_produk = $this->mst_produk;
+        if(count($q_produk)>0){
+            $this->attributes['harga_beli_produk'] = $q_produk->harga_beli;                        
+        }
+    }
 
     public function getFkMstProdukAttribute()
     {

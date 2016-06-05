@@ -66,7 +66,7 @@
 
     <div class="info-box-content">
       <span class="info-box-text">Transaksi</span>
-      <span class="info-box-number">  000  </span>
+      <span class="info-box-number">  {!! $jml_transaksi_today !!}  </span>
 
       <div class="progress">
         <div class="progress-bar" style="width: 100%"></div>
@@ -94,6 +94,28 @@
       </div>
           <span class="progress-description">
             jml semua stok produk
+          </span>
+    </div>
+    <!-- /.info-box-content -->
+  </div>
+  <!-- /.info-box -->               
+</div>
+
+
+
+<div class="col-md-4">
+  <div class="info-box bg-light-blue">
+    <span class="info-box-icon"><i class="fa fa-money"></i></span>
+
+    <div class="info-box-content">
+      <span class="info-box-text">Item Terjual</span>
+      <span class="info-box-number">  {!! $jml_item_terjual_today !!}  </span>
+
+      <div class="progress">
+        <div class="progress-bar" style="width: 100%"></div>
+      </div>
+          <span class="progress-description">
+            Item hr ini
           </span>
     </div>
     <!-- /.info-box-content -->

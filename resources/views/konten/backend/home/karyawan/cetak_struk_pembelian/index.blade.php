@@ -116,14 +116,13 @@ Periksa barang sebelum dibeli.
 <br>
 barang yg sudah dibeli tdk dapat dikembalikan atau ditukar.
 
-
+<script type="text/javascript">
+	this.print();
+	this.close();
+</script>
 
 </body>
 </html>
 
 
 
-<script type="text/javascript">
-	this.print();
-	window.close();
-</script>

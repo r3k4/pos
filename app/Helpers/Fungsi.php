@@ -20,26 +20,7 @@ class Fungsi{
     }
 
 
-    public function convertUrl($url, $driver = "")
-    {
-        $url_obj = app('urlConverter');
-        $driver = strtolower($driver);
-        if($driver == 'google' || $driver == 'goo.gl' || $driver == 'googl'){
-            $result = $url_obj->google($url);
-        }elseif($driver == 'adfly'){
-            $result = $url_obj->adfly($url);
-        }elseif($driver == 'bitly'){            
-            $result = $url_obj->bitly($url);
-        }elseif($driver == 'shortest'){
-            $result = $url_obj->shortest($url);
-        }else{
-            $result = $url;
-        }
 
-        return $result;
-    }
-
- 
 
 
     public function bulan2($rrr)

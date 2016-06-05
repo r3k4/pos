@@ -39,7 +39,8 @@ class insertTransaksiPenjualanJob extends Job
                 'subtotal_uang_diterima'    => $list->subtotal, //harga satuan * jml pembelian
                 'mst_user_id'               => \Auth::user()->id,
                 'mst_cabang_id'             => $this->mst_cabang_id,
-                'mst_transaksi_id'          => $insert_transaksi->id
+                'mst_transaksi_id'          => $insert_transaksi->id,
+                'harga_beli_produk'         => '0',
             ];
             $insert_penjualan = $pj->create($data_penjualan);
             $this->update_stok($insert_transaksi->no_transaksi, $list->id, $list->qty);
