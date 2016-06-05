@@ -29,13 +29,34 @@ class TransaksiSayaController extends Controller
     }
 
 
-    public function index()
+    /**
+     * filter berdasarkan tanggal
+     * @param  string $tgl 
+     * @return array      
+     */
+    private function filter_tgl($tgl)
     {
     	$filter = [
     		'mst_cabang_id'	=> \Auth::user()->mst_cabang_id,
     		'mst_user_id'	=> \Auth::user()->id,
-    		['created_at', 'like', date('Y-m-d').'%']
+    		['created_at', 'like', $tgl.'%']
     	];
+    	return $filter;
+    }
+
+
+    /**
+     * memunculkan menu  - transaksi saya (level karyawan)
+     * @return view
+     */
+    public function index(Request $request)
+    {
+    	$filter_tgl = $request->get('filterTgl');
+    	if($filter_tgl){
+    		$filter = $this->filter_tgl($filter_tgl);
+    	}else{
+    		$filter = $this->filter_tgl(date('Y-m-d'));
+    	}
     	$transaksi = $this->transaksi->all(10, $filter);
     	$vars = compact('transaksi');
     	return view($this->base_view.'index', $vars);
