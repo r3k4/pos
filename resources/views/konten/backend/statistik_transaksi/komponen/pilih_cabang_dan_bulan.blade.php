@@ -55,6 +55,7 @@ if(Request::has('thn')){
 		if(mst_cabang_id == '' || bln == '' || thn == ''){
 			return false;
 		}
+		$('#loading_filter').fadeIn();
 
 		window.location.href = '{!! route("backend_statistik_transaksi.index") !!}/?mst_cabang_id='
 			+mst_cabang_id+'&&bln='+bln+'&&thn='+thn;
