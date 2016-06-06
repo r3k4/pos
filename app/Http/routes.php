@@ -17,6 +17,9 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Backend'], function(){
 	});
  
 	Route::group(['middleware' => 'admin'], function(){
+
+		require __DIR__.'/routes/backend/statistik_transaksi.php';
+
 		require __DIR__.'/routes/backend/stok_produk.php';
 		require __DIR__.'/routes/backend/produk.php';
 		require __DIR__.'/routes/backend/pengeluaran.php';

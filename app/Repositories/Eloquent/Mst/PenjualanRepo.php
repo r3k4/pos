@@ -25,4 +25,21 @@ class PenjualanRepo implements PenjualanRepoInterface {
  		return $q;
  	}
 
+
+	public function getNominalHargaJualBulanan($mst_cabang_id = null, $bln, $thn)
+	{
+		if($mst_cabang_id == null){
+			$q = $this->model->whereMonth('created_at', '=', $bln)
+							 ->whereYear('created_at', '=', $thn)
+							 ->sum('harga_beli_produk');
+		}else{
+			$q = $this->model->whereMonth('created_at', '=', $bln)
+							 ->where('mst_cabang_id', '=', $mst_cabang_id)
+							 ->whereYear('created_at', '=', $thn)
+							 ->sum('harga_beli_produk');			
+		}		
+		return $q;
+	}
+
+
 }
