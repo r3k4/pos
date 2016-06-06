@@ -26,6 +26,13 @@
         </li>
 
 
+        <li @if(isset($backend_transaksi_karyawan)) class="active" @endif>
+            <a href="{!! route('backend_transaksi_karyawan.index') !!}">
+                <i class='fa fa-th-list'></i> Transaksi
+            </a>
+        </li>
+
+
         <li @if(isset($backend_pengeluaran)) class="active" @endif>
             <a href="{!! route('backend_pengeluaran.index') !!}">
                 <i class='fa fa-tags'></i> Pengeluaran
