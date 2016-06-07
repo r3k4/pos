@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth', 'namespace' => 'Backend'], function(){
 		require __DIR__.'/routes/backend/pengeluaran.php';
 		require __DIR__.'/routes/backend/cabang.php'; 
 		require __DIR__.'/routes/backend/user.php'; 
+		require __DIR__.'/routes/backend/konfigurasi.php'; 
+		require __DIR__.'/routes/backend/log.php'; 
 
 		// data referensi
 		require __DIR__.'/routes/backend/ref_produk.php'; 

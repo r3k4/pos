@@ -20,6 +20,14 @@ class setupVariableSeeder extends Seeder
         	SetupVariable::create($data);
         }
  
+        // config backup
+        $sv = SetupVariable::where('variable', '=', 'backup_db')->first();
+        if(count($sv)<=0){
+            $data = ['variable' => 'backup_db', 'value' => '1']; // 1/0
+            SetupVariable::create($data);
+        }
+ 
+
 
     }
 }

@@ -60,6 +60,21 @@
                 <i class='fa fa-group'></i> Pengguna
             </a>
         </li>
+
+         <li @if(isset($backend_konfigurasi)) class="active" @endif>
+            <a href="{!! route('backend_konfigurasi.index') !!}">
+                <i class='fa fa-cogs'></i> Konfigurasi
+            </a>
+        </li>
+
+
+         <li @if(isset($backend_log)) class="active" @endif>
+            <a href="{!! route('backend_log.index') !!}">
+                <i class='fa fa-cubes'></i> Sys Log
+            </a>
+        </li>
+
+
 @endif
  
 
