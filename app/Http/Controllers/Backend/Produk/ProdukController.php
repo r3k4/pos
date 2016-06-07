@@ -143,12 +143,9 @@ class ProdukController extends Controller
         if(!$jml){
            return view($this->base_view.'popup.cetak_barcode', $vars);
         }   
-        // return view($this->base_view.'cetak_barcode.index', $vars);
         $data = ['produk' => $produk, 'jml' => $jml];
         $pdf = \PDF::loadView($this->base_view.'cetak_barcode.index', $data);
         return $pdf->stream('barcode.pdf');
-
-        // return view($this->base_view.'cetak_barcode.index', $vars);
     }
 
 
