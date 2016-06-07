@@ -1,3 +1,5 @@
+@include($base_view.'action.cetak_barcode')
+||
 @include($base_view.'action.kelola_stok')
 ||
 @can('updateProduk', $list)

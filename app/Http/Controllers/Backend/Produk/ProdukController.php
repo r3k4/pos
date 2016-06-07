@@ -135,5 +135,22 @@ class ProdukController extends Controller
     }
 
 
+    public function cetak_barcode($mst_produk_id, Request $request)
+    {
+        $jml = $request->get('jml');
+        $produk = $this->produk->find($mst_produk_id);
+        $vars = compact('produk', 'jml');
+        if(!$jml){
+           return view($this->base_view.'popup.cetak_barcode', $vars);
+        }   
+        // return view($this->base_view.'cetak_barcode.index', $vars);
+        $data = ['produk' => $produk, 'jml' => $jml];
+        $pdf = \PDF::loadView($this->base_view.'cetak_barcode.index', $data);
+        return $pdf->stream('barcode.pdf');
+
+        // return view($this->base_view.'cetak_barcode.index', $vars);
+    }
+
+
 
 }

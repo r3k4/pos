@@ -5,14 +5,15 @@
 
 
  
-
+<?php
+ ?>
 	<h2>
 		<i class="fa fa-shopping-cart"></i> Produk 
 	</h2>
 	<hr>
-@include($base_view.'komponen.tombol_create')
+		@include($base_view.'komponen.tombol_create')
 
-@include($base_view.'komponen.nav_atas')
+		@include($base_view.'komponen.nav_atas')
 
 
 	<hr>

@@ -59,7 +59,13 @@ Route::group(['namespace'	=> 'Produk'], function(){
 	]);
 
 
-	
+	Route::get('produk/cetak_barcode/{mst_produk_id}',[
+		'as'	=> 'backend_produk.cetak_barcode',
+		'uses'	=> 'ProdukController@cetak_barcode'
+	]);
+
+
+		
 
 
 });

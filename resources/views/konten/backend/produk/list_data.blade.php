@@ -12,7 +12,7 @@
 			@endif
 
 			<th width="90px">Stok</th>
-			<th width="120px" class="text-center">Action</th>
+			<th width="180px" class="text-center">Action</th>
 		</tr>
 	</thead>
 	<tbody>
