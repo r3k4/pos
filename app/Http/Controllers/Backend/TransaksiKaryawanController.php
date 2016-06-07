@@ -24,6 +24,7 @@ class TransaksiKaryawanController extends Controller
 
     public function index(Request $request)
     {
+        \Carbon\Carbon::setLocale('id');
     	$cabangId = $request->get('cabangId');
     	if($cabangId){
     		$filter = ['mst_cabang_id' => $cabangId];

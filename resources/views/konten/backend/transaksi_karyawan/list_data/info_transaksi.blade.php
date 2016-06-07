@@ -1,6 +1,12 @@
 <span style='font-size:10px;'>
 	<i class='fa fa-calendar'></i>
-	{!! fungsi()->date_to_tgl(date('Y-m-d', strtotime($list->created_at))) !!}
+	@if($list->created_at->diffInDays() < 7)
+		<span data-toggle='tooltip' title="{!! fungsi()->date_to_tgl(date('Y-m-d', strtotime($list->created_at))) !!}">
+			{!! $list->created_at->diffForHumans() !!}
+		</span>
+	@else		
+		{!! fungsi()->date_to_tgl(date('Y-m-d', strtotime($list->created_at))) !!}
+	@endif
 		||
 	 <i class='fa fa-clock-o'></i> {!! date('H:i', strtotime($list->created_at)) !!} WIB	
 	 	||
