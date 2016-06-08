@@ -21,12 +21,21 @@ class ProfileController extends Controller
 		view()->share('base_view', $this->base_view);
 	}
 
-
+	/**
+	 * menampilkan halaman profile untuk masing2 user
+	 * @return view
+	 */
     public function index()
     {
     	return view($this->base_view.'index');
     }
 
+    /**
+     * update profile masing2, termasuk update password
+     * @param  integer               $id      
+     * @param  App\Http\Requests\Profile\updateProfileRequest $request 
+     * @return void                        
+     */
     public function update_profile($id, updateProfileRequest $request)
     {
     	if($request->has('password_lama')){

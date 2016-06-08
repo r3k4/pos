@@ -17,14 +17,20 @@ class LogController extends Controller
     	view()->share('base_view', $this->base_view);
     }
 
-
+    /**
+     * menampilkan halaman utama menu sys log
+     * @return view
+     */
     public function index()
     {
     	$file = \File::get(storage_path('logs/laravel.log'));
     	return view($this->base_view.'index', compact('file'));
     }
 
-
+    /**
+     * menghapus seluruh informasi log yg ada pada file laravel.log
+     * @return string
+     */
     public function clear_log()
     {
     	$myfile = fopen(storage_path('logs/laravel.log'), "w")  or die("Unable to open file!");

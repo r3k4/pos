@@ -28,7 +28,11 @@ class StatistikTransaksiController extends Controller
     	view()->share('backend_statistik_transaksi', true);
     }
 
-
+    /**
+     * menampilkan halaman statistik transaksi beserta filter by tahun+bulan
+     * @param  Request $request 
+     * @return view           
+     */
     public function index(Request $request)
     {	
     	$cabang = $this->cabang->getAllDropdown('cabang');

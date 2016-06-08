@@ -21,7 +21,11 @@ class TransaksiKaryawanController extends Controller
     	view()->share('base_view', $this->base_view);
     }
 
-
+    /**
+     * menampilkan halaman utama menu transaksi|transaksi karyawan
+     * @param  Request $request  
+     * @return view         
+     */
     public function index(Request $request)
     {
         \Carbon\Carbon::setLocale('id');
@@ -36,7 +40,11 @@ class TransaksiKaryawanController extends Controller
     	return view($this->base_view.'index', $vars);
     }
 
-
+    /**
+     * menampilkan filter saat akan export ke file excel
+     * @param  CabangRepoInterface $c_obj 
+     * @return view                     
+     */
     public function filter_export(CabangRepoInterface $c_obj)
     {
     	$cabang = $c_obj->getAllDropdown('cabang');
@@ -44,6 +52,11 @@ class TransaksiKaryawanController extends Controller
     	return view($this->base_view.'popup.filter_export', $vars);
     }
 
+    /**
+     * melakukan export ke bentuk file excel
+     * @param  Request $request 
+     * @return file excel           
+     */
     public function do_export(Request $request)
     {
     	$mst_cabang_id = $request->get('mst_cabang_id');

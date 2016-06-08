@@ -50,24 +50,12 @@ class HomeController extends Controller
      */
 	private function level_admin()
 	{
-        // ambil jml produk di semua cabang
         $jml_produk = $this->produk->count();
-
-        // produk stok kosong
         $jml_produk_stok_kosong = $this->produk->count(['stok_barang' => 0]);
-
-        // jml semua stok produk
         $jml_all_stok_produk = $this->produk->getTotalJmlStok();
-
-        // jml item terjual hr ini
         $jml_item_terjual_today = $this->penjualan->countJmlItemTerjual(date('Y-m-d'));
-
-        // jml transaksi hr ini
         $jml_transaksi_today = $this->transaksi->count([['created_at', 'like', date('Y-m-d').'%']]);
-
-        // jml nominal pengeluaran hr ini
         $jml_pengeluaran_hr_ini = $this->pengeluaran->getJmlPengeluaranHarian(date('Y-m-d'));
-
         $vars = compact('jml_produk', 'jml_produk_stok_kosong', 
                         'jml_pengeluaran_hr_ini', 'jml_all_stok_produk',
                         'jml_transaksi_today', 'jml_item_terjual_today'
@@ -82,16 +70,10 @@ class HomeController extends Controller
      */
     private function level_karyawan()
     {
-        // jml produk berdasarkan cabang karyawan
         $filter = [['mst_cabang_id', '=', \Auth::user()->mst_cabang_id]];
         $jml_produk = $this->produk->count($filter);
-
-        // produk stok kosong
         $jml_produk_stok_kosong = $this->produk->count(['stok_barang' => 0]);
-
-        // jml nominal pengeluaran hr ini
         $jml_pengeluaran_hr_ini = $this->pengeluaran->getJmlPengeluaranHarian(date('Y-m-d'));
-
         $vars = compact('jml_produk', 'jml_produk_stok_kosong', 'jml_pengeluaran_hr_ini');
         return view($this->base_view.'karyawan.index', $vars);
     }

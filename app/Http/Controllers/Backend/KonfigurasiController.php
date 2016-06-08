@@ -19,6 +19,10 @@ class KonfigurasiController extends Controller
     	view()->share('backend_konfigurasi', true);
     }
 
+    /**
+     * menampilkan halaman utama konfigurasi
+     * @return view
+     */
     public function index()
     {
     	$sv = $this->sv;
@@ -26,6 +30,12 @@ class KonfigurasiController extends Controller
     	return view($this->base_view.'index', $vars);
     }
 
+
+    /**
+     * update variable konfigurasi utama
+     * @param  Request $request  
+     * @return string            
+     */
     public function update(Request $request)
     {
         $this->validate($request, [
