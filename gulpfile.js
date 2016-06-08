@@ -37,9 +37,10 @@ elixir(function(mix) {
  	mix.copy('node_modules/bootstrap-sass/assets/fonts', 'public/build/css/fonts');
  	mix.copy('node_modules/font-awesome/fonts', 'public/build/fonts');
 
-
+     // mix.browserify('vue-main.js');
+     
  	//version
-    mix.version(['css/all.css', 'js/app.js', 'js/main.js']);
+    mix.version(['css/all.css', 'js/app.js']);
 
 
 });

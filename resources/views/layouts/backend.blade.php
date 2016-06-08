@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{ env('NAMA_APP', 'TKASIR') }}</title>
+    <title>{{ setup_variable('nama_aplikasi') }}</title>
 
     <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
       <script src="{{ elixir('js/app.js') }}"></script>
@@ -18,7 +18,7 @@
     @include('layouts.komponen.default.modal')
 
  
-    <div class="container" >  
+    <div class="container" id="app" >  
         <div class="row">
 
             <div class="col-md-2">
@@ -26,9 +26,6 @@
             </div>
 
             <div class="col-md-10 animated fadeIn">
-            
-            <component is="@{{ currentView }}"></component>
-
               @yield('konten')
             </div> 
 
@@ -41,6 +38,7 @@
 
       <script type="text/javascript">
   new WOW().init();
-  </script>     
+  </script>  
+   <script src="{{ elixir('js/vue-main.js') }}"></script>   
 </body>
 </html>

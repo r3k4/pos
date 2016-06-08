@@ -11,7 +11,7 @@ if (! function_exists('setup_variable')) {
      */
     function setup_variable($variable, $empty_info = true)
     {
-        $app = app('App\Repositories\Contracts\SetupVariableInterface');
+        $app = app('App\Repositories\Contracts\SetupVariableRepoInterface');
         $obj = $app->getByVariable($variable);
         if(count($obj)>0){
             return $obj->value;         

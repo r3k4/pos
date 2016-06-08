@@ -6,8 +6,8 @@
 
     <div class="row">
         <div class="col-md-8">
-            <h1 style="font-family: 'Varela Round', sans-serif; font-size: 60px;">
-                <i class='fa fa-shopping-cart'></i> Sistem Penjualan
+            <h1 style="font-family: 'Varela Round', sans-serif; font-size: 40px;">
+                <i class='fa fa-shopping-cart'></i> {!! setup_variable('nama_aplikasi') !!}
             </h1>
             <hr>
             <p style="font-family: 'Varela Round', sans-serif; font-size: 20px;">

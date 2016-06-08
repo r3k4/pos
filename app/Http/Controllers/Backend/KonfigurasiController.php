@@ -22,6 +22,26 @@ class KonfigurasiController extends Controller
     public function index()
     {
     	$sv = $this->sv;
-    	return view($this->base_view.'index', compact('sv'));
+        $vars = compact('sv');
+    	return view($this->base_view.'index', $vars);
     }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'nama_aplikasi' => 'required',
+            'backup_db' => 'required',
+            'jam_backup'    => 'required|date_format:H:i',
+        ]);
+
+        $this->sv->updateByVariable('nama_aplikasi', $request->nama_aplikasi);
+        $this->sv->updateByVariable('backup_db', $request->backup_db);
+        $this->sv->updateByVariable('jam_backup', $request->jam_backup);
+
+        return 'ok';
+
+    }
+
+
+ 
 }

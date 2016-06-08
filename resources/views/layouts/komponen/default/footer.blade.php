@@ -1,5 +1,5 @@
   <footer class="footer">
     <div class="container">
-      <p class="text-muted">Aplikasi Sistem Informasi Penjualan.</p>
+      <p class="text-muted">{!! setup_variable('nama_aplikasi') !!}.</p>
     </div>
   </footer>
