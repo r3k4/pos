@@ -39,6 +39,5 @@
       <script type="text/javascript">
   new WOW().init();
   </script>  
-   <script src="{{ elixir('js/vue-main.js') }}"></script>   
 </body>
 </html>

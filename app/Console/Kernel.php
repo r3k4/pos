@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         // Commands\Inspire::class,
         Commands\createAdminUserCommand::class,
+        Commands\backupDbToDropbox::class,        
     ];
 
     /**
@@ -27,5 +28,13 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        // jika backup db aktif
+        if(setup_variable('backup_db') == 1){
+            $schedule->command('backup_db:dropbox')
+                      ->dailyAt(setup_variable('jam_backup'));    
+        }
     }
+
+    
 }
