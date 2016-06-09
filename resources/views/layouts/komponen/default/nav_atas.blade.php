@@ -17,27 +17,24 @@
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-
- 
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        {{-- <li><a href="{{ url('/login') }}">Login</a></li> --}}
                     @else
-                        <li class="dropdown @if(isset($backend_profile_home)) active @endif"     >
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                {{ Auth::user()->nama }} <span class="caret"></span>
-                            </a>
+                    <ul class="nav navbar-nav navbar-right">
+                        @include('layouts.komponen.backend.tombol_pilih_cabang')                        
+                            <li class="dropdown @if(isset($backend_profile_home)) active @endif"     >
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->nama }} <span class="caret"></span>
+                                </a>
 
-                            <ul class="dropdown-menu" role="menu">
-                                <li role="separator" class="divider"></li>                            
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            </ul>
-                        </li>
-                    @endif
-                </ul>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="separator" class="divider"></li>                            
+                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    @endif                
             </div>
         </div>
     </nav>
