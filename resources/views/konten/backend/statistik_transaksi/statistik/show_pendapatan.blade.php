@@ -1,9 +1,10 @@
-<h2 class="text-left">
-	<i class='fa fa-money'></i> Pendapatan Bulan {!! fungsi()->bulan2(Request::get('bln')) !!}
+
+<h2 class="text-left text-success">
+	<i class='fa fa-caret-down'></i> Pendapatan Bulan {!! fungsi()->bulan2(Request::get('bln')) !!}
 </h2>
 
-<div class="col-md-8">
-	<table class="table" style="font-size:20px">
+
+	<table class="table" style="font-size:15px">
 		<tr class="text-warning">
 			<td width="300px">
 				Omzet
@@ -36,7 +37,7 @@
 
 
 	</table>	
-</div>
+
  
 
  

@@ -120,9 +120,20 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 
 
 
-	public function getJmlPengeluaranBulanan($bln)
+	public function getJmlPengeluaranBulanan($mst_cabang_id = null, $bln, $thn)
 	{
-		$q = $this->model->whereMonth('tgl_pengeluaran', '=', $bln)->sum('subtotal_biaya');
+    if($mst_cabang_id == null){
+      $q = $this->model
+                ->whereMonth('tgl_pengeluaran', '=', $bln)
+                ->whereYear('tgl_pengeluaran', '=', $thn)
+                ->sum('subtotal_biaya');
+    }else{
+      $q = $this->model
+                ->whereMonth('tgl_pengeluaran', '=', $bln)
+                ->where('mst_cabang_id', '=', $mst_cabang_id)
+                ->whereYear('tgl_pengeluaran', '=', $thn)
+                ->sum('subtotal_biaya');
+    }
 		if(count($q)<=0){
 			return 0;
 		}

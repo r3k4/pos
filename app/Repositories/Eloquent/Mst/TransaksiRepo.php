@@ -112,25 +112,19 @@ class TransaksiRepo implements TransaksiRepoInterface {
 	{
 		$data = [];
 		for($i=1;$i<=date('d');$i++){
-			$data[$i] = '';
-		}
+			$tgl = date('Y-m-d', strtotime($thn.'-'.$bln.'-'.$i));
 
-		if($mst_cabang_id == null){
-			$q = $this->model->whereMonth('created_at', '=', $bln)
-							 ->whereYear('created_at', '=', $thn)
-							 ->get();
-		}else{
-			$q = $this->model->whereMonth('created_at', '=', $bln)
-							 ->where('mst_cabang_id', '=', $mst_cabang_id)
-							 ->whereYear('created_at', '=', $thn)
-							 ->get();			
+				if($mst_cabang_id == null){
+					$jml_nominal = $this->model
+										->where('created_at', 'like', $tgl.'%')
+										->sum('subtotal_pembayaran');
+				}else{
+					$jml_nominal = $this->model->where('mst_cabang_id', '=', $mst_cabang_id)
+										->where('created_at', 'like', $tgl.'%')
+									 	->sum('subtotal_pembayaran');			
+				}
+				$data[$i] = $jml_nominal;
 		}
-
-		foreach($q as $list){
-			$tgl =  date('d', strtotime($list->created_at));
-			$data[ltrim($tgl, '0')] = $data[ltrim($tgl, '0')]+1;
-		}
-
 		$data = collect($data);
 
 		return $data;

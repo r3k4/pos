@@ -1,15 +1,26 @@
- <script src="/plugins/Chart.js/dist/Chart.min.js"></script>
-
 <div class="col-md-12">
-<hr>
-    
+    <hr>
 </div>
 
-@include($base_view.'statistik.show_statistik')
+<div class="row">
+    <div class="col-md-12">
+       @include($base_view.'statistik.show_statistik')
+    </div>
+</div> 
 
-<hr>
-@include($base_view.'statistik.show_statistik_omzet')
 
-<hr>
 
-@include($base_view.'statistik.show_pendapatan')
+
+
+<div class="row">
+        <hr>
+        <div class="col-md-6">
+            @include($base_view.'statistik.show_pendapatan')
+        </div>
+        <div class="col-md-6">
+            @include($base_view.'statistik.show_pengeluaran')
+        </div>
+
+
+</div> 
+
