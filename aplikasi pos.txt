@@ -78,3 +78,10 @@ total =
  [role administrator]
   - kelola menu produk
   - pengeluaran
+
+
+
+ + tambahan 
+ 	- admin bisa memilih cabang berdasarkan session
+ 	- tambahan tampilan statistik omzet per hari - level admin, menu statistik
+ 	- tambah info omzet, dari hitungan pengeluaran per bulan
