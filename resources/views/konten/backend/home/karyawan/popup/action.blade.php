@@ -3,20 +3,7 @@
 <script type="text/javascript">
 $('#tambah_cart{{ $list->id }}').click(function(){
 
-
-	swal({
-		title : 'are you sure ?',
-		type  : 'warning',
-		closeOnCancel: true,
-		showCancelButton: true,
-		closeOnConfirm: false,
-		showLoaderOnConfirm : true
-		
-	}, function(isConfirm){
-		if(isConfirm){
-
-
-			form_data_add_cart = {
+ 			form_data_add_cart = {
 				id : {!! $list->id !!}, 
 				nama : '{!! $list->nama !!}', 
 				jml : 1, 
@@ -42,14 +29,10 @@ $('#tambah_cart{{ $list->id }}').click(function(){
 				success : function(hasil_pembelian_cart){
 					 $('#list_pembelian').html(hasil_pembelian_cart);
 					 $('#kode_barang').val('').focus();		
-					 swal('data telah ditambahkan');								
+					 // swal('data telah ditambahkan');								
 				}
 			});
 			// end of ajax request
-
-		}
-	});
-
 
 
 

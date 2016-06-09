@@ -71,6 +71,7 @@ total =
   	- bisa cetak nota (data yg sudah diinputkan)
   	- alur hapus data | langsung hapus record  
   - tidak bisa menambahkan produk
+  - tambah perpesanan dgn admin
 
 
 
