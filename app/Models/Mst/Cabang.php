@@ -4,12 +4,18 @@ namespace App\Models\Mst;
 
 use App\Models\Mst\DetailProduk;
 use App\Models\Mst\Produk;
+use App\Models\Mst\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Cabang extends Model
 {
     protected $table = 'mst_cabang';
     protected $fillable = ['nama', 'kode_cabang', 'no_tlp', 'alamat', 'keterangan'];
+
+    public function mst_user()
+    {
+        return $this->hasMany(User::class, 'mst_cabang_id');
+    }
 
     public function mst_produk()
     {
