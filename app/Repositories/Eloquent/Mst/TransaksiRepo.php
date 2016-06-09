@@ -108,4 +108,32 @@ class TransaksiRepo implements TransaksiRepoInterface {
 	}
 
 
+	public function getNominalTransaksiHarian($mst_cabang_id = null, $bln, $thn)
+	{
+		$data = [];
+		for($i=1;$i<=date('d');$i++){
+			$data[$i] = '';
+		}
+
+		if($mst_cabang_id == null){
+			$q = $this->model->whereMonth('created_at', '=', $bln)
+							 ->whereYear('created_at', '=', $thn)
+							 ->get();
+		}else{
+			$q = $this->model->whereMonth('created_at', '=', $bln)
+							 ->where('mst_cabang_id', '=', $mst_cabang_id)
+							 ->whereYear('created_at', '=', $thn)
+							 ->get();			
+		}
+
+		foreach($q as $list){
+			$tgl =  date('d', strtotime($list->created_at));
+			$data[ltrim($tgl, '0')] = $data[ltrim($tgl, '0')]+1;
+		}
+
+		$data = collect($data);
+
+		return $data;
+	}
+
 }

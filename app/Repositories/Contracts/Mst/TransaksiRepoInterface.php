@@ -23,12 +23,22 @@ interface TransaksiRepoInterface
 	public function getNominalTransaksiBulanan($mst_cabang_id = null, $bln, $thn);
 
 	/**
-	 * get data transaksi bulanan
+	 * get list data transaksi bulanan
 	 * @param  int $mst_cabang_id 
 	 * @param  int $bln           
 	 * @param  int $thn           
 	 * @return Illuminate\Support\Collection
 	 */
 	public function getTransaksiBulanan($mst_cabang_id = null, $bln, $thn);
+
+
+	/**
+	 * get list data transaksi harian, dalam satu bulan
+	 * @param  int $mst_cabang_id 
+	 * @param  int $bln           
+	 * @param  int $thn           
+	 * @return Illuminate\Support\Collection       
+	 */
+	public function getNominalTransaksiHarian($mst_cabang_id = null, $bln, $thn);
 
 }
