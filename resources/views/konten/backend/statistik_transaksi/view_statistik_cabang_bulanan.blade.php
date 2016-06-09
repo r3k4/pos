@@ -5,8 +5,10 @@
     
 </div>
 
-
 @include($base_view.'statistik.show_statistik')
+
+<hr>
+@include($base_view.'statistik.show_statistik_omzet')
 
 <hr>
 
