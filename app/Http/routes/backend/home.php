@@ -5,6 +5,12 @@ Route::get('/', [
 	'as'	=> 'backend_home.index'
 ]);
 
+Route::get('pilih_cabang/{mst_cabang_id}', [
+	'uses'	=> 'HomeController@pilih_cabang',
+	'as'	=> 'backend_home.pilih_cabang'
+]);
+
+
 
 Route::group(['namespace' => 'Home'], function(){
 

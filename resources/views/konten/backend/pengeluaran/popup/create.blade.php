@@ -35,7 +35,7 @@
 				</div>		
 			</div>
 			@if(\Auth::user()->ref_user_level_id == 1)
-				<div class="col-md-2">
+				<div class="col-md-4">
 					<div class="form-group">
 						{!! Form::label('mst_cabang_id', "Cabang : ") !!}
 						{!! Form::select('mst_cabang_id', $cabang, '', ['id' => 'mst_cabang_id', 'class' => 'form-control']) !!}

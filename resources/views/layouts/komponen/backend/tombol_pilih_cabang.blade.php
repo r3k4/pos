@@ -7,14 +7,14 @@
 
     <ul class="dropdown-menu" role="menu">
    		<li @if(!Session::has('mst_cabang_id')) class="active" @endif>
-   			<a href="{{ url('/logout') }}">
+   			<a href="{{ route('backend_home.pilih_cabang', 0) }}">
    				<i class='fa fa-sitemap'></i> Semua Cabang
    			</a>
    		</li>
         <li role="separator" class="divider"></li>    
         @foreach( $cabang_repo->all() as $list_cabang_repo)
-       	 <li>
-       	 	<a href="{{ url('/logout') }}">
+       	 <li @if($list_cabang_repo->id == Session::get('mst_cabang_id')) class="active" @endif >
+       	 	<a href="{{ route('backend_home.pilih_cabang', $list_cabang_repo->id) }}">
        	 		<i class="fa fa-th-list"></i> {!! $list_cabang_repo->nama !!}
        	 	</a>
        	 </li>

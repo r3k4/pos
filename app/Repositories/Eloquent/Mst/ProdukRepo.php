@@ -97,9 +97,15 @@ class ProdukRepo implements ProdukRepoInterface {
 	}
  
 
-    public function getTotalJmlStok()
+    public function getTotalJmlStok($mst_cabang_id = null)
     {
-      $jml = $this->model->sum('stok_barang');
+      if($mst_cabang_id == null){
+        $jml = $this->model->sum('stok_barang');        
+      }else{
+        $jml = $this->model
+                    ->where('mst_cabang_id', '=', $mst_cabang_id)
+                    ->sum('stok_barang');
+      }
       return $jml;
     }
 

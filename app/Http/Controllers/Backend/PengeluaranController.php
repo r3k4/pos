@@ -46,13 +46,18 @@ class PengeluaranController extends Controller
         $filter_bln = $request->get('getByBln');
         $thn = $request->get('thn');
         $filter_tgl = $request->get('getByTgl');
+        $mst_cabang_id = \Session::get('mst_cabang_id');
         if($filter_bln){
-              $pengeluaran = $this->pengeluaran->getByBln(10, $filter_bln, $thn);  
-        }elseif($filter_tgl){
-              $pengeluaran = $this->pengeluaran->getByTgl(10, $filter_tgl);  
+              $pengeluaran = $this->pengeluaran->getByBln(10, $filter_bln, $thn, $mst_cabang_id);  
+        }elseif($filter_tgl){            
+              $pengeluaran = $this->pengeluaran->getByTgl(10, $filter_tgl, $mst_cabang_id);  
         }else{
             // get pengeluaran hari ini
             $filter = [['tgl_pengeluaran', '=', date('Y-m-d')]];  
+
+            if(\Session::has('mst_cabang_id')){
+                $filter = array_add($filter, 'mst_cabang_id', \Session::get('mst_cabang_id'));
+            }
             $pengeluaran = $this->pengeluaran->all(10, $filter);          
         }
         

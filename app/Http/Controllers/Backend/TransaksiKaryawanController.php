@@ -35,6 +35,11 @@ class TransaksiKaryawanController extends Controller
     	}else{
     		$filter = [];
     	}
+
+        if(\Session::has('mst_cabang_id')){
+            $filter = array_add($filter, 'mst_cabang_id', \Session::get('mst_cabang_id'));
+        }
+
     	$transaksi = $this->transaksi->all(10, $filter);
     	$vars = compact('transaksi');
     	return view($this->base_view.'index', $vars);

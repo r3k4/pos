@@ -47,6 +47,10 @@ class ProdukController extends Controller
             $filter = [];
         }
 
+        if(\Session::has('mst_cabang_id')){
+            $filter = array_add($filter, 'mst_cabang_id', \Session::get('mst_cabang_id'));
+        }
+
         $produk = $this->produk->all(10, $filter);
         $backend_produk_home = true;
         $vars = compact('produk', 'backend_produk_home');
@@ -107,6 +111,11 @@ class ProdukController extends Controller
     public function stok_kosong()
     {
         $filter = ['stok_barang' => '0'];
+
+        if(\Session::has('mst_cabang_id')){
+            $filter = array_add($filter, 'mst_cabang_id', \Session::get('mst_cabang_id'));
+        }
+        
         $produk = $this->produk->all(10, $filter);
         $produk_stok_kosong = true;
         $vars = compact('produk', 'produk_stok_kosong');

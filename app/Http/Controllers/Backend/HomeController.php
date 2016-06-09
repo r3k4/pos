@@ -44,6 +44,18 @@ class HomeController extends Controller
         return $this->level_karyawan();
 	}
 
+
+    public function pilih_cabang($mst_cabang_id)
+    {
+        if($mst_cabang_id == 0){
+            \Session::forget('mst_cabang_id');
+        }else{
+            \Session::put('mst_cabang_id', $mst_cabang_id);
+        }
+        return redirect()->back();
+    }
+
+
     /**
      * halaman untuk level admin
      * @return view
@@ -51,11 +63,32 @@ class HomeController extends Controller
 	private function level_admin()
 	{
         $jml_produk = $this->produk->count();
-        $jml_produk_stok_kosong = $this->produk->count(['stok_barang' => 0]);
-        $jml_all_stok_produk = $this->produk->getTotalJmlStok();
-        $jml_item_terjual_today = $this->penjualan->countJmlItemTerjual(date('Y-m-d'));
-        $jml_transaksi_today = $this->transaksi->count([['created_at', 'like', date('Y-m-d').'%']]);
-        $jml_pengeluaran_hr_ini = $this->pengeluaran->getJmlPengeluaranHarian(date('Y-m-d'));
+        $tgl_skrg = date('Y-m-d');
+
+        if(\Session::has('mst_cabang_id')){
+            $filter_stok_kosong = [
+                'stok_barang' => 0, 'mst_cabang_id' => \Session::get('mst_cabang_id')
+            ];
+            $mst_cabang_id = \Session::get('mst_cabang_id');
+            $filter_transaksi = [
+                ['mst_cabang_id', '=', $mst_cabang_id],
+                ['created_at', 'like', date('Y-m-d').'%']
+            ];
+
+
+        }else{
+            $filter_transaksi = [
+                ['created_at', 'like', date('Y-m-d').'%']
+            ];            
+            $filter_stok_kosong = ['stok_barang' => 0];
+            $mst_cabang_id = null;
+        }
+
+        $jml_produk_stok_kosong = $this->produk->count($filter_stok_kosong);
+        $jml_all_stok_produk = $this->produk->getTotalJmlStok($mst_cabang_id);
+        $jml_item_terjual_today = $this->penjualan->countJmlItemTerjual($tgl_skrg, $mst_cabang_id);
+        $jml_transaksi_today = $this->transaksi->count($filter_transaksi);
+        $jml_pengeluaran_hr_ini = $this->pengeluaran->getJmlPengeluaranHarian($tgl_skrg, $mst_cabang_id);
         $vars = compact('jml_produk', 'jml_produk_stok_kosong', 
                         'jml_pengeluaran_hr_ini', 'jml_all_stok_produk',
                         'jml_transaksi_today', 'jml_item_terjual_today'

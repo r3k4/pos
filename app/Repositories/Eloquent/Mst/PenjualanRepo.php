@@ -19,9 +19,15 @@ class PenjualanRepo implements PenjualanRepoInterface {
 	}
  
 
- 	public function countJmlItemTerjual($tgl)
+ 	public function countJmlItemTerjual($tgl, $mst_cabang_id = null)
  	{
- 		$q = $this->model->whereDate('created_at', '=', $tgl)->sum('qty');
+ 		if($mst_cabang_id == null){
+	 		$q = $this->model->whereDate('created_at', '=', $tgl)->sum('qty'); 			
+ 		}else{
+	 		$q = $this->model->whereDate('created_at', '=', $tgl)
+	 						 ->where('mst_cabang_id', '=', $mst_cabang_id)
+	 						 ->sum('qty'); 			
+ 		}
  		return $q;
  	}
 

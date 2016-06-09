@@ -18,7 +18,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 	}
 
 
-	public function getByBln($perPage = null, $bln, $thn)
+	public function getByBln($perPage = null, $bln, $thn, $mst_cabang_id = null)
 	{
 
 
@@ -31,6 +31,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
                 $q = $this->model                          
                           ->whereMonth('tgl_pengeluaran', '=', $bln)
                           ->whereYear('tgl_pengeluaran', '=', $thn)
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->orderBy('id', 'desc')
                           ->get();              
             }else{
@@ -39,6 +40,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
                           ->whereMonth('tgl_pengeluaran', '=', $bln)
                           ->whereYear('tgl_pengeluaran', '=', $thn)
                           ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->orderBy('id', 'desc')
                           ->get();
             }
@@ -48,6 +50,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
             $q = $this->model                      
                       ->whereMonth('tgl_pengeluaran', '=', $bln)
                       ->whereYear('tgl_pengeluaran', '=', $thn)
+                      ->where('mst_cabang_id', '=', $mst_cabang_id)
                       ->orderBy('id', 'desc')
                       ->paginate($perPage);                         
             }else{
@@ -56,6 +59,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
                           ->orderBy('id', 'desc')
                           ->whereMonth('tgl_pengeluaran', '=', $bln)
                           ->whereYear('tgl_pengeluaran', '=', $thn)
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->paginate($perPage);             
             }
         }
@@ -63,6 +67,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
       }else{
          $q = $this->model->whereMonth('tgl_pengeluaran', '=', $bln)
                           ->whereYear('tgl_pengeluaran', '=', $thn)
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->orderBy('id', 'desc')
                           ->get();    
 
@@ -71,7 +76,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 	}
 
 
-	public function getByTgl($perPage = null, $tgl)
+	public function getByTgl($perPage = null, $tgl, $mst_cabang_id = null)
 	{
 
 
@@ -84,6 +89,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
                 $q = $this->model                          
                           ->where('tgl_pengeluaran', '=', $tgl)
                           ->orderBy('id', 'desc')
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->get();              
             }else{
                 // untuk karyawan
@@ -91,6 +97,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
                           ->where('tgl_pengeluaran', '=', $tgl)
                           ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
                           ->orderBy('id', 'desc')
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->get();
             }
         }else{
@@ -99,12 +106,14 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
             $q = $this->model                      
                       ->where('tgl_pengeluaran', '=', $tgl)
                       ->orderBy('id', 'desc')
+                      ->where('mst_cabang_id', '=', $mst_cabang_id)
                       ->paginate($perPage);                         
             }else{
                 $q = $this->model
                 		  ->where('mst_cabang_id', '=', \Auth::user()->mst_cabang_id)
                           ->orderBy('id', 'desc')
                           ->where('tgl_pengeluaran', '=', $tgl)
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->paginate($perPage);             
             }
         }
@@ -112,6 +121,7 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
       }else{
          $q = $this->model->where('tgl_pengeluaran', '=', $tgl)
                           ->orderBy('id', 'desc')
+                          ->where('mst_cabang_id', '=', $mst_cabang_id)
                           ->get();    
 
       }
@@ -141,9 +151,15 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 	}
 
 
-  public function getJmlPengeluaranHarian($tgl)
+  public function getJmlPengeluaranHarian($tgl, $mst_cabang_id = null)
   {
-    $q = $this->model->where('tgl_pengeluaran', '=', $tgl)->sum('subtotal_biaya');
+    if($mst_cabang_id == null){
+      $q = $this->model->where('tgl_pengeluaran', '=', $tgl)->sum('subtotal_biaya');      
+    }else{
+      $q = $this->model->where('tgl_pengeluaran', '=', $tgl)
+                       ->where('mst_cabang_id', '=', $mst_cabang_id)
+                       ->sum('subtotal_biaya');      
+    }
     if(count($q)<=0){
       return 0;
     }

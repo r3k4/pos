@@ -35,7 +35,11 @@ class UserController extends Controller
 	
 	public function index()
 	{
-		$user = $this->user->all(10);
+		$filter = [];
+	    if(\Session::has('mst_cabang_id')){
+	        $filter = array_add($filter, 'mst_cabang_id', \Session::get('mst_cabang_id'));
+	    }
+		$user = $this->user->all(10, $filter);
 		$vars = compact('user'); 
 		return view($this->base_view.'index', $vars);
 	}
