@@ -11,6 +11,7 @@ use App\Repositories\Contracts\Mst\CabangRepoInterface;
 use App\Repositories\Contracts\Mst\PenjualanRepoInterface;
 use App\Repositories\Contracts\Mst\ProdukRepoInterface;
 use App\Repositories\Contracts\Mst\TransaksiRepoInterface;
+use App\Services\Transaksi\addToCart;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -95,17 +96,18 @@ class TransaksiController extends Controller
      * menambahkan item pada cart
      * @param Request $request  
      */
-    public function add_to_cart(Request $request)
+    public function add_to_cart(addToCart $addToCart)
     {
-        $job = new AddToCartJob($request->id,
-                                $request->nama,
-                                $request->jml,
-                                $request->harga,
-                                $request->sku, 
-                                $this->base_view
-            );
+        return $addToCart->handle($this->base_view);
+        // $job = new AddToCartJob($request->id,
+        //                         $request->nama,
+        //                         $request->jml,
+        //                         $request->harga,
+        //                         $request->sku, 
+        //                         $this->base_view
+        //     );
 
-        return $this->dispatch($job);
+        // return $this->dispatch($job);
     }
 
     /**
@@ -138,10 +140,10 @@ class TransaksiController extends Controller
      */
     public function insert_penjualan(Request $request)
     {
-        $mst_cabang_id = $request->mst_cabang_id;
-        $bayar = $request->bayar;
-        $kembalian = $request->kembalian;
-        $job = new insertTransaksiPenjualanJob($mst_cabang_id, $bayar, $kembalian);
+        $job = new insertTransaksiPenjualanJob(
+                $request->mst_cabang_id, $request->bayar, 
+                $request->kembalian, $request->diskon
+            );
         $insert_transaksi = $this->dispatch($job);     
         return $insert_transaksi;   
     }

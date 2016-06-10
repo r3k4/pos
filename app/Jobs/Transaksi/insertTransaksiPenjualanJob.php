@@ -10,9 +10,11 @@ class insertTransaksiPenjualanJob extends Job
     public $mst_cabang_id;
     public $bayar; 
     public $kembalian;
+    public $diskon;
 
-    public function __construct($mst_cabang_id, $bayar, $kembalian)
+    public function __construct($mst_cabang_id, $bayar, $kembalian, $diskon)
     {
+        $this->diskon = $diskon;
         $this->bayar = $bayar;
         $this->kembalian = $kembalian;
         $this->mst_cabang_id = $mst_cabang_id;
@@ -76,15 +78,19 @@ class insertTransaksiPenjualanJob extends Job
 
     private function insert_transaksi()
     {
+        $subtotal_pembayaran = \Cart::total() - $this->diskon;
+        
         $transaksi = app('App\Repositories\Contracts\Mst\TransaksiRepoInterface');
         // insert data ke dlm tabel transaksi
         $data_transaksi = [
             'mst_user_id' => \Auth::user()->id, 
             'mst_cabang_id' => $this->mst_cabang_id,
             'no_transaksi'  => '0',
-            'subtotal_pembayaran'   => \Cart::total(),
+            'subtotal_pembayaran'   => $subtotal_pembayaran,
             'bayar'                 => $this->bayar,
-            'nominal_kembalian'     => $this->kembalian
+            'nominal_kembalian'     => $this->kembalian,
+            'diskon'                => $this->diskon,
+            'total_tanpa_potongan'  => \Cart::total(),
         ];
         $insert_transaksi = $transaksi->create($data_transaksi);
         return $insert_transaksi;      

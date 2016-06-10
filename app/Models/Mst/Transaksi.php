@@ -14,9 +14,11 @@ class Transaksi extends Model
     	'mst_user_id',
     	'mst_cabang_id',
     	'no_transaksi',
-        'subtotal_pembayaran', // nominal yg harus dibayar
+        'subtotal_pembayaran', // nominal yg harus dibayar dan sudah dikurangi potongan
         'nominal_kembalian',
-        'bayar'
+        'bayar', //nominal yg dibayarkan (bln dikurangi jika ada kembalian)
+        'diskon', //potongan harga
+        'total_tanpa_potongan' //nominal tanpa potongan
     ];
 
     protected $appends = [

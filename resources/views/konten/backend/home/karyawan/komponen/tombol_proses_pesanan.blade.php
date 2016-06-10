@@ -15,6 +15,7 @@
 
 				bayar = $.trim($('#bayar').val());
 				var bayar = $('#bayar').unmask();
+				var diskon = $('#diskon').unmask();
 				if(bayar == ''){
 					swal.showInputError("nominal pembayaran tdk boleh kosong!");	
 					return false;
@@ -24,7 +25,7 @@
 				harus_dibayar_format_price =  "{!! fungsi()->rupiah(Cart::total()) !!}";
 
 
-				if(bayar < harus_dibayar){
+				if(bayar < harus_dibayar && diskon == 0){
 					swal.showInputError("proses gagal! total harga : "+harus_dibayar_format_price );
 					return false;
 				}
@@ -38,6 +39,7 @@
 			form_data ={
 				kembalian : kembalian,
 				bayar : bayar,
+				diskon : diskon,
 				mst_cabang_id : {!! Auth::user()->mst_cabang_id !!},
 			 	_token : '{!! csrf_token() !!}'
 			}

@@ -64,7 +64,11 @@
 			Total---{!! $transaksi->fk__total_item !!} item(s).
 		</td>
 		<td>
+			@if($transaksi->diskon > 0)
+			{!! number_format($transaksi->total_tanpa_potongan) !!}
+			@else
 			{!! number_format($transaksi->subtotal_pembayaran) !!}
+			@endif
 		</td>
 	</tr>
 	<tr>
@@ -75,6 +79,17 @@
 			{!! number_format($transaksi->bayar) !!}
 		</td>
 	</tr>
+
+	@if($transaksi->diskon > 0)
+	<tr>
+		<td>
+			Diskon/Potongan
+		</td>
+		<td>
+			{!! number_format($transaksi->diskon) !!}
+		</td>
+	</tr>	
+	@else	
 	<tr>
 		<td>
 			Kembali
@@ -83,6 +98,7 @@
 			{!! number_format($transaksi->nominal_kembalian) !!}
 		</td>
 	</tr>
+	@endif
 
 </table>
  
