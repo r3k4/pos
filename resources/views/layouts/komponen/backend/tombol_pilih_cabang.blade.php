@@ -2,7 +2,11 @@
   @inject('cabang_repo', 'App\Repositories\Contracts\Mst\CabangRepoInterface')
   <li class="dropdown" >
       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-          Pilih Cabang <span class="caret"></span>
+          Cabang
+          @if(Session::has('mst_cabang_id'))
+          - {!! $cabang_repo->find(Session::get('mst_cabang_id'))->nama !!}
+          @endif
+           <span class="caret"></span>
       </a>
 
 
