@@ -5,8 +5,8 @@ $repo = 'git@bitbucket.org:reka2/tkasir.git';
 $release_dir = $root_dir.'releases';
 $storage_dir = $root_dir.'storage';
 $app_dir     = $root_dir.'default';
-$release     = 'release_' . date('Ymd_His');
-$server      = 'web@man3kediri.sch.id';
+$release     = 'release_' . date('Y-m-d_His');
+$server      = 'root@man3kediri.sch.id';
 ?>
 @servers(['web' => $server])
 
@@ -29,6 +29,22 @@ $server      = 'web@man3kediri.sch.id';
     cp {{ $root_dir }}/.env {{ $release_dir }}/{{ $release }};
 @endtask
 
+@task('refresh_permision')
+     chmod -R 777 {{ $storage_dir }};
+     chmod -R 777 {{ $app_dir }}/bootstrap/cache;
+@endtask
+
+@task('migrate')
+      cd {{ $app_dir }};
+      composer dump-autoload
+      php artisan migrate -y
+@endtask
+
+@task('seed')
+      cd {{ $app_dir }};
+      composer dump-autoload
+      php artisan db:seed -y
+@endtask
 
 
 @task('run_composer')
@@ -53,5 +69,4 @@ $server      = 'web@man3kediri.sch.id';
     ln -nfs {{ $release_dir }}/{{ $release }} {{ $app_dir }};
     chgrp -h www-data {{ $app_dir }};
     chgrp -h www-data {{ $storage_dir }};
-    chmod -R 777 {{ $storage_dir }};
 @endtask
