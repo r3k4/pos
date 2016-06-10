@@ -79,6 +79,13 @@ class UserController extends Controller
 		return $this->user->delete($request->id);
 	}
 
+	public function reset_password(Request $request)
+	{
+		$data = ['password' => bcrypt($request->email)];
+		$update = $this->user->update($request->id, $data);
+		return 'ok';		
+	}
+
 
 
 

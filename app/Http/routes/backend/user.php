@@ -33,4 +33,10 @@ Route::post('user/delete', [
 ]);
 
 
+Route::post('user/reset_password', [
+	'as'	=> 'backend_user.reset_password',
+	'uses'	=> 'UserController@reset_password'
+]);
+
+
 

@@ -132,6 +132,10 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 
 	public function getJmlPengeluaranBulanan($mst_cabang_id = null, $bln, $thn)
 	{
+    if($mst_cabang_id == 'all'){
+      $mst_cabang_id = null;
+    }
+    
     if($mst_cabang_id == null){
       $q = $this->model
                 ->whereMonth('tgl_pengeluaran', '=', $bln)

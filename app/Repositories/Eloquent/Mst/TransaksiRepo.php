@@ -27,6 +27,10 @@ class TransaksiRepo implements TransaksiRepoInterface {
 			$data[$i] = '';
 		}
 
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}
+
 		if($mst_cabang_id == null){
 			$q = $this->model->whereMonth('created_at', '=', $bln)
 							 ->whereYear('created_at', '=', $thn)
@@ -79,6 +83,11 @@ class TransaksiRepo implements TransaksiRepoInterface {
 
 	public function getNominalTransaksiBulanan($mst_cabang_id = null, $bln, $thn)
 	{
+
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}		
+
 		if($mst_cabang_id == null){
 			$q = $this->model->whereMonth('created_at', '=', $bln)
 							 ->whereYear('created_at', '=', $thn)
@@ -110,6 +119,10 @@ class TransaksiRepo implements TransaksiRepoInterface {
 
 	public function getNominalTransaksiHarian($mst_cabang_id = null, $bln, $thn)
 	{
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}
+		
 		$data = [];
 		for($i=1;$i<=date('d');$i++){
 			$tgl = date('Y-m-d', strtotime($thn.'-'.$bln.'-'.$i));

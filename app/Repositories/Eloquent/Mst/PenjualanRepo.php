@@ -34,6 +34,10 @@ class PenjualanRepo implements PenjualanRepoInterface {
 
 	public function getNominalHargaJualBulanan($mst_cabang_id = null, $bln, $thn)
 	{
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}
+		
 		if($mst_cabang_id == null){
 			$q = $this->model->whereMonth('created_at', '=', $bln)
 							 ->whereYear('created_at', '=', $thn)

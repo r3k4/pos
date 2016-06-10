@@ -40,6 +40,7 @@ class StatistikTransaksiController extends Controller
     public function index(Request $request)
     {	
     	$cabang = $this->cabang->getAllDropdown('cabang');
+        $cabang = array_add($cabang, 'all', 'semua cabang');
     	$r_c = $request->get('mst_cabang_id');
     	$r_b = $request->get('bln');
     	$r_t = $request->get('thn');

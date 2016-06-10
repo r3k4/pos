@@ -6,7 +6,7 @@
 
 	<table class="table" style="font-size:15px">
 		<tr class="text-warning">
-			<td width="300px">
+			<td width="230px">
 				Omzet
 			</td>
 			<td width="10px">:</td>

@@ -62,10 +62,11 @@ class HomeController extends Controller
      */
 	private function level_admin()
 	{
-        $jml_produk = $this->produk->count();
+        
         $tgl_skrg = date('Y-m-d');
 
         if(\Session::has('mst_cabang_id')){
+            $filter_jml_produk = ['mst_cabang_id' => \Session::get('mst_cabang_id')];
             $filter_stok_kosong = [
                 'stok_barang' => 0, 'mst_cabang_id' => \Session::get('mst_cabang_id')
             ];
@@ -77,13 +78,14 @@ class HomeController extends Controller
 
 
         }else{
+            $filter_jml_produk = [];
             $filter_transaksi = [
                 ['created_at', 'like', date('Y-m-d').'%']
             ];            
             $filter_stok_kosong = ['stok_barang' => 0];
             $mst_cabang_id = null;
         }
-
+        $jml_produk = $this->produk->count($filter_jml_produk);
         $jml_produk_stok_kosong = $this->produk->count($filter_stok_kosong);
         $jml_all_stok_produk = $this->produk->getTotalJmlStok($mst_cabang_id);
         $jml_item_terjual_today = $this->penjualan->countJmlItemTerjual($tgl_skrg, $mst_cabang_id);
