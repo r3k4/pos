@@ -80,8 +80,7 @@ class Produk extends Model
         if(count($cb)>0){
 
             // ambil record terakhir dari tabel di model ini
-            $last_record = $this->model
-                                ->where('mst_cabang_id', '=', $mst_cabang_id)
+            $last_record = $this->where('mst_cabang_id', '=', $mst_cabang_id)
                                 ->orderBy('id', 'DESC')
                                 ->first();
             // jika ada record

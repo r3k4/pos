@@ -28,6 +28,7 @@
 				@include($base_view.'action')
 			</td>
 		</tr>
+		@php($no++)
 	@endforeach
 
 	</tbody>

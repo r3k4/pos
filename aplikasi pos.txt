@@ -81,7 +81,10 @@ total =
 
 
 
- + tambahan 
+ + tambahan 1.
  	- admin bisa memilih cabang berdasarkan session
  	- tambahan tampilan statistik omzet per hari - level admin, menu statistik
  	- tambah info omzet, dari hitungan pengeluaran per bulan
+
+ + tambahan 2.
+  - diskon saat transaksi
