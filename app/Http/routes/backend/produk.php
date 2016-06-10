@@ -65,6 +65,17 @@ Route::group(['namespace'	=> 'Produk'], function(){
 	]);
 
 
+
+	Route::get('produk/import',[
+		'as'	=> 'backend_produk.import',
+		'uses'	=> 'ProdukController@import'
+	]);
+
+	Route::post('produk/do_import',[
+		'as'	=> 'backend_produk.do_import',
+		'uses'	=> 'ProdukController@do_import'
+	]);
+
 		
 
 

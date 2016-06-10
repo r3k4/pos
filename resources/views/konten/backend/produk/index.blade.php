@@ -12,6 +12,7 @@
 	</h2>
 	<hr>
 		@include($base_view.'komponen.tombol_create')
+		@include($base_view.'komponen.tombol_export')
 
 		@include($base_view.'komponen.nav_atas')
 
@@ -20,6 +21,9 @@
 
 	@include($base_view.'komponen.form_search')
 
+	@if(Session::has('pesan'))
+			{!! Session::get('pesan') !!}
+	@endif
 
 	@include($base_view.'list_data')
 

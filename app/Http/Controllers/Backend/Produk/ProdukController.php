@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\HistoryStok\createStokRequest;
 use App\Http\Requests\Produk\createOrUpdateProdukRequest;
+use App\Jobs\Produk\importProdukJob;
 use App\Repositories\Contracts\Mst\CabangRepoInterface;
 use App\Repositories\Contracts\Mst\HistoryStokRepoInterface;
 use App\Repositories\Contracts\Mst\ProdukRepoInterface;
@@ -94,8 +95,7 @@ class ProdukController extends Controller
 
     public function delete(Request $request)
     {
-        // check authorisasi saat destroy produk
-        $this->authorize('destroyProduk', $produk);        
+        // check authorisasi saat destroy produk   
         return $this->produk->delete($request->id);
     }
 
@@ -155,6 +155,43 @@ class ProdukController extends Controller
         $data = ['produk' => $produk, 'jml' => $jml];
         $pdf = \PDF::loadView($this->base_view.'cetak_barcode.index', $data);
         return $pdf->stream('barcode.pdf');
+    }
+
+
+    public function import()
+    {
+        $satuan_barang = $this->satuan_barang->getAllDropdown('satuan barang');
+        $ref_produk = $this->ref_produk->getAllDropdown('jenis produk');
+        $mst_cabang = $this->mst_cabang->getAllDropdown('cabang');
+        $vars = compact('ref_produk', 'mst_cabang', 'satuan_barang');        
+        return view($this->base_view.'popup.import', $vars);
+    }
+
+    public function do_import(Request $request)
+    {
+        $nama_file_temp = 'tmp_produk_'.date('YmdHi').'.xls';
+        $hidden_button = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+
+        if(!file_exists($_FILES['userfile']['tmp_name']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
+        \Session::flash('pesan', '<div class="alert alert-danger"> '.$hidden_button.' error! no file! </div>');
+            return redirect()->back();
+        }else{
+            $file = $_FILES['userfile']['tmp_name'];
+            $pindah_file = rename($file, storage_path('logs/'.$nama_file_temp));
+            chmod(storage_path('logs/'.$nama_file_temp), 0777);
+
+            $job = new importProdukJob(
+                storage_path('logs/'.$nama_file_temp), $request->ref_produk_id,
+                $request->ref_satuan_produk_id, $request->mst_cabang_id,
+                \Auth::user()->id
+             );
+
+
+            $this->dispatch($job);
+
+            \Session::flash('pesan', '<div class="alert alert-success"> '.$hidden_button.' berhasil import data </div>');
+            return redirect()->back();
+        }        
     }
 
 

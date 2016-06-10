@@ -80,6 +80,12 @@ class ProdukRepo implements ProdukRepoInterface {
 
         $create_produk = $this->model->create($data);
 
+        if(isset($data['mst_user_id'])){
+          $mst_user_id = $data['mst_user_id'];
+        }else{
+          $mst_user_id = \Auth::user()->id;
+        }
+
         // menyambungkan ke stok barang
         if(isset($data['stok_barang'])){
             if($data['stok_barang'] > 0){
@@ -88,7 +94,7 @@ class ProdukRepo implements ProdukRepoInterface {
                               'stok_masuk'      => $data['stok_barang'],
                               'stok_sisa'       => $data['stok_barang'],
                               'keterangan'      => 'stok awal',
-                              'mst_user_id'     => \Auth::user()->id
+                              'mst_user_id'     => $mst_user_id
                             ];
                 $s_obj->create($data_stok);
             }
