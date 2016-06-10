@@ -88,3 +88,5 @@ total =
 
  + tambahan 2.
   - diskon saat transaksi
+  - statistik semua cabang (rekap total)
+  - [bug] statistik dashboard
