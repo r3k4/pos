@@ -26,14 +26,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-
-        // jika backup db aktif
-        if(setup_variable('backup_db') == 1){
-            $schedule->command('backup_db:dropbox')
-                      ->dailyAt(setup_variable('jam_backup'));    
-        }
+        if(!\DB::connection()){
+            if(setup_variable('backup_db') == 1){
+                $schedule->command('backup_db:dropbox')
+                          ->dailyAt(setup_variable('jam_backup'));    
+                }         
+           }
     }
 
     
