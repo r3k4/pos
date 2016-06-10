@@ -62,7 +62,7 @@
 
 <div class="col-md-4">
   <div class="info-box bg-purple">
-    <span class="info-box-icon"><i class="fa fa-money"></i></span>
+    <span class="info-box-icon"><i class="fa fa-exchange"></i></span>
 
     <div class="info-box-content">
       <span class="info-box-text">Transaksi</span>
@@ -83,7 +83,7 @@
 
 <div class="col-md-4">
   <div class="info-box bg-light-blue">
-    <span class="info-box-icon"><i class="fa fa-money"></i></span>
+    <span class="info-box-icon"><i class="fa fa-th"></i></span>
 
     <div class="info-box-content">
       <span class="info-box-text">Jumlah Stok</span>
@@ -105,7 +105,7 @@
 
 <div class="col-md-4">
   <div class="info-box bg-yellow">
-    <span class="info-box-icon"><i class="fa fa-money"></i></span>
+    <span class="info-box-icon"><i class="fa fa-th-list"></i></span>
 
     <div class="info-box-content">
       <span class="info-box-text">Item Terjual</span>

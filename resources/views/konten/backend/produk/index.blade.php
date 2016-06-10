@@ -12,7 +12,7 @@
 	</h2>
 	<hr>
 		@include($base_view.'komponen.tombol_create')
-		@include($base_view.'komponen.tombol_export')
+		@include($base_view.'komponen.tombol_import')
 
 		@include($base_view.'komponen.nav_atas')
 
