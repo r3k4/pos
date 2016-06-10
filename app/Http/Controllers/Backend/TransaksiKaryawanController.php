@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Jobs\Transaksi\exportTransaksiJob;
 use App\Repositories\Contracts\Mst\CabangRepoInterface;
 use App\Repositories\Contracts\Mst\TransaksiRepoInterface;
+use App\Services\Transaksi\delTransaksi;
 use Illuminate\Http\Request;
 
 class TransaksiKaryawanController extends Controller
@@ -55,6 +56,12 @@ class TransaksiKaryawanController extends Controller
     	$cabang = $c_obj->getAllDropdown('cabang');
     	$vars = compact('cabang');
     	return view($this->base_view.'popup.filter_export', $vars);
+    }
+
+
+    public function delete(delTransaksi $dt)
+    {
+        return $dt->handle();
     }
 
     /**

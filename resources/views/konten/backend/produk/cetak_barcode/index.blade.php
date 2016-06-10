@@ -1,7 +1,7 @@
 <<!DOCTYPE html>
 <html>
 <head>
-	<title>Barcode - {!! $produk->nama !!}</title>
+	<title>Barcode - {!! $produk->nama !!} @if(empty($produk->barcode)) - SKU @endif </title>
 <style type="text/css">
 	@page { margin: 5px; }
 	body { 
@@ -22,7 +22,8 @@
 	@for($i=1;$i<=$jml;$i++)	
 			@if(!empty($produk->barcode))
  					{!! '<img class="barcode_produk" src="data:image/png;base64,' . DNS1D::getBarcodePNG($produk->barcode, "C128") . '" alt="barcode"   />' !!}
- 
+ 			@else
+ 					{!! '<img class="barcode_produk" src="data:image/png;base64,' . DNS1D::getBarcodePNG($produk->sku, "C128") . '" alt="barcode"   />' !!}
 			@endif
 	@endfor
  

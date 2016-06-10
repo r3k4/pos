@@ -15,3 +15,9 @@ Route::get('transaki_karyawan/do_export', [
 	'uses'	=> 'TransaksiKaryawanController@do_export'
 ]);
 
+
+Route::post('transaki_karyawan/delete', [
+	'as'	=> 'backend_transaksi_karyawan.delete',
+	'uses'	=> 'TransaksiKaryawanController@delete'
+]);
+
