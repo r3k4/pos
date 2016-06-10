@@ -1,0 +1,22 @@
+
+// link
+$brand-primary:         darken(#337ab7, 6.5%) !default; // #337ab7
+
+$link-color:      $brand-primary;
+$link-color-hover: lighten($link-color, 50%);
+
+a {
+ color:  #337ab7;
+ text-decoration: none;
+ -o-transition:.5s;
+ -ms-transition:.5s;
+ -moz-transition:.5s;
+ -webkit-transition:.5s;
+ /* ...and now for the proper property */
+ transition:.5s;
+}
+
+a:hover {
+   	color: #1E4E77;
+    text-decoration: none;
+  }

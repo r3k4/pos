@@ -1,0 +1,12 @@
+$font-size-base:          14px !default;
+$line-height-base:        1.428571429 !default; // 20/14
+$line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
+$border-radius-base:        4px !default;
+$grid-gutter-width:         30px !default;
+
+$brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$gray-base:              #000 !default;
+$gray-dark:              lighten($gray-base, 20%) !default;   // #333
+$component-active-color:    #fff !default;
+$component-active-bg:       $brand-primary !default;
+$gray-light:             lighten($gray-base, 46.7%) !default; // #777

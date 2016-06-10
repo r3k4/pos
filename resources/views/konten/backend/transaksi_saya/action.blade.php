@@ -1,0 +1,1 @@
+@include($base_view.'action.show_struk')
