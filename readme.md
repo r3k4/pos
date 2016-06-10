@@ -1,4 +1,6 @@
 # Aplikasi POS
 
-aplikasi manajemen jual beli barang untuk toko
+Aplikasi manajemen jual beli barang untuk toko menggunakan laravel 5.2.
+
+
 
