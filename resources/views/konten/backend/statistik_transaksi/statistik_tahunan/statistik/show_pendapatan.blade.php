@@ -1,6 +1,6 @@
 
 <h2 class="text-left text-success">
-	<i class='fa fa-caret-down'></i> Pendapatan Bulan {!! fungsi()->bulan2(Request::get('bln')) !!}
+	<i class='fa fa-caret-down'></i> Pendapatan Tahun {!! Request::get('thn') !!}
 </h2>
 
 

@@ -26,12 +26,8 @@
                     enabled: false
                 },
                 title: {
-                    text: 'Statistik Penjualan Bulan Juni 2016'
+                    text: 'Statistik Penjualan Tahun {{ Request::get("thn") }}'
                 },
-    //             subtitle: {
-                   
-    //                 text: 'Total Keuntungan ' + "Rp0" + ' (' + 0 + ' Item Terjual)'
-                // },
                 xAxis: [{
                     title: {
                         text: 'Tanggal',
@@ -40,8 +36,8 @@
                         }
                     },
                     categories: [
-                        @foreach($transaksi as $tgl => $jml)
-                            "{!! $tgl !!}",
+                        @foreach($transaksi as $bln => $jml)
+                            "{!! fungsi()->bulan2($bln) !!}",
                         @endforeach
                     ],
                     crosshair: true
@@ -114,7 +110,7 @@
                     type: 'column',
                      yAxis: 0,
                     data: [
-                        @foreach($transaksi_tunai as $tgl => $nominal)  
+                        @foreach($transaksi_tunai as $bln => $nominal)  
                             {!! $nominal !!},
                         @endforeach
                     ],
@@ -127,7 +123,7 @@
                     type: 'column',
                     yAxis: 1,
                     data: [
-                        @foreach($transaksi as $tgl => $jml)
+                        @foreach($transaksi as $bln => $jml)
                             @if($jml == '')
                                 0,
                             @else

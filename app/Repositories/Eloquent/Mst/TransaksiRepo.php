@@ -56,30 +56,48 @@ class TransaksiRepo implements TransaksiRepoInterface {
 
 	public function getJmlTransaksiPerThn($mst_cabang_id = null, $thn)
 	{
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}				
 		$data = [];
 		for($i=1;$i<=12;$i++){
-			$data[$i] = '';
-		}
+			// query
+			if($mst_cabang_id == null){
+				$q = $this->model->whereYear('created_at', '=', $thn)
+								 ->whereMonth('created_at', '=', $i)
+								 ->count();
+			}else{
+				$q = $this->model->where('mst_cabang_id', '=', $mst_cabang_id)
+								 ->whereYear('created_at', '=', $thn)
+								 ->whereMonth('created_at', '=', $i)
+								 ->count();			
+			}
+			// end of query
 
-		if($mst_cabang_id == null){
-			$q = $this->model->whereYear('created_at', '=', $thn)
-							 ->get();
-		}else{
-			$q = $this->model->where('mst_cabang_id', '=', $mst_cabang_id)
-							 ->whereYear('created_at', '=', $thn)
-							 ->get();			
+			$data[$i] = $q;
 		}
-
-		foreach($q as $list){
-			$bln =  date('m', strtotime($list->created_at));
-			$data[ltrim($bln, '0')] = $data[ltrim($bln, '0')]+1;
-		}
-		
 		$data = collect($data);
 
 		return $data;
 	}
 
+
+	public function getNominalTransaksiTahunan($mst_cabang_id = null, $thn)
+	{
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}		
+
+		if($mst_cabang_id == null){
+			$q = $this->model->whereYear('created_at', '=', $thn)
+							 ->sum('subtotal_pembayaran');
+		}else{
+			$q = $this->model->where('mst_cabang_id', '=', $mst_cabang_id)
+							 ->whereYear('created_at', '=', $thn)
+							 ->sum('subtotal_pembayaran');			
+		}		
+		return $q;
+	}
 
 	public function getNominalTransaksiBulanan($mst_cabang_id = null, $bln, $thn)
 	{
@@ -99,6 +117,35 @@ class TransaksiRepo implements TransaksiRepoInterface {
 							 ->sum('subtotal_pembayaran');			
 		}		
 		return $q;
+	}
+
+
+
+	public function getListNominalTransaksiBulanan($mst_cabang_id = null, $thn)
+	{
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}
+		
+		$data = [];
+		for($i=1;$i<=12;$i++){
+
+				if($mst_cabang_id == null){
+					$jml_nominal = $this->model
+										->whereMonth('created_at', '=', $i)
+										->whereYear('created_at', '=', $thn)
+										->sum('subtotal_pembayaran');
+				}else{
+					$jml_nominal = $this->model->where('mst_cabang_id', '=', $mst_cabang_id)
+										->whereMonth('created_at', '=', $i)
+										->whereYear('created_at', '=', $thn)
+									 	->sum('subtotal_pembayaran');			
+				}
+				$data[$i] = $jml_nominal;
+		}
+		$data = collect($data);
+
+		return $data;		
 	}
 
 

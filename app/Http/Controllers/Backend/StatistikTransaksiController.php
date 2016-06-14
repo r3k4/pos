@@ -46,6 +46,7 @@ class StatistikTransaksiController extends Controller
         // get data from request
     	$r_c = $request->get('mst_cabang_id');
     	$r_t = $request->get('thn');
+        $r_b = $request->get('bln');
 
 
     	if($r_c != null && $r_b != null && $r_t != null){
@@ -70,6 +71,11 @@ class StatistikTransaksiController extends Controller
 
 
 
+    /**
+     * list transaksi tahunan (list all bulan dalam 1 thn)
+     * @param  Request $request 
+     * @return view        
+     */
     public function statistik_tahunan(Request $request)
     {
         $cabang = $this->cabang->getAllDropdown('cabang');
@@ -78,19 +84,18 @@ class StatistikTransaksiController extends Controller
 
         // get data from request
         $r_c = $request->get('mst_cabang_id');
-        $r_b = $request->get('bln');
         $r_t = $request->get('thn');
 
 
-        if($r_c != null && $r_b != null && $r_t != null){
-            $pengeluaran = $this->pengeluaran->getJmlPengeluaranBulanan($r_c, $r_b, $r_t);
-            $transaksi_tunai = $this->transaksi->getNominalTransaksiHarian($r_c, $r_b, $r_t);
+        if($r_c != null && $r_t != null){
+            $pengeluaran = $this->pengeluaran->getJmlPengeluaranTahunan($r_c, $r_t);
+            $transaksi_tunai = $this->transaksi->getListNominalTransaksiBulanan($r_c, $r_t);
             $transaksi_object = $this->transaksi;
 
-            $transaksi = $this->transaksi->getJmlTransaksiPerBln($r_c, $r_b, $r_t);
-            $nominal_transaksi = $this->transaksi->getNominalTransaksiBulanan($r_c, $r_b, $r_t);
-            $nominal_potongan = $this->transaksi->getNominalPotonganBulanan($r_c, $r_b, $r_t);
-            $nominal_harga_beli = $this->penjualan->getNominalHargaJualBulanan($r_c, $r_b, $r_t);
+            $transaksi = $this->transaksi->getJmlTransaksiPerThn($r_c, $r_t);
+            $nominal_transaksi = $this->transaksi->getNominalTransaksiTahunan($r_c, $r_t);
+            // $nominal_potongan = $this->transaksi->getNominalPotonganBulanan($r_c, $r_b, $r_t);
+            $nominal_harga_beli = $this->penjualan->getNominalHargaJualTahunan($r_c, $r_t);
             $vars = compact(
                     'transaksi', 'cabang', 'nominal_transaksi', 
                     'nominal_harga_beli', 'transaksi_tunai',

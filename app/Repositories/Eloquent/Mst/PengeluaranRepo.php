@@ -129,6 +129,27 @@ class PengeluaranRepo implements PengeluaranRepoInterface {
 	}
 
 
+  public function getJmlPengeluaranTahunan($mst_cabang_id = null, $thn)
+  {
+    if($mst_cabang_id == 'all'){
+      $mst_cabang_id = null;
+    }
+    
+    if($mst_cabang_id == null){
+      $q = $this->model->whereYear('tgl_pengeluaran', '=', $thn)
+                       ->sum('subtotal_biaya');
+    }else{
+      $q = $this->model->where('mst_cabang_id', '=', $mst_cabang_id)
+                       ->whereYear('tgl_pengeluaran', '=', $thn)
+                       ->sum('subtotal_biaya');
+    }
+    if(count($q)<=0){
+      return 0;
+    }
+    return $q;
+  }
+
+
 
 	public function getJmlPengeluaranBulanan($mst_cabang_id = null, $bln, $thn)
 	{

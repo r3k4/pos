@@ -1,6 +1,6 @@
 
 <h2 class="text-left text-danger">
-	<i class='fa fa-caret-up'></i> Pengeluaran Bulan {!! fungsi()->bulan2(Request::get('bln')) !!}
+	<i class='fa fa-caret-up'></i> Pengeluaran Tahun {!! Request::get('thn') !!}
 </h2>
 
 

@@ -40,16 +40,15 @@ if(Request::has('thn')){
  <script type="text/javascript">
  $('#do_filter').click(function(){
 		mst_cabang_id = $.trim($('#mst_cabang_id').val());
-		bln = $.trim($('#bln').val());
 		thn = $.trim($('#thn').val());
 
-		if(mst_cabang_id == '' || bln == '' || thn == ''){
+		if(mst_cabang_id == '' || thn == ''){
 			return false;
 		}
 		$('#loading_filter').fadeIn();
 
-		window.location.href = '{!! route("backend_statistik_transaksi.index") !!}/?mst_cabang_id='
-			+mst_cabang_id+'&&bln='+bln+'&&thn='+thn;
+		window.location.href = '{!! route("backend_statistik_transaksi.statistik_tahunan") !!}/?mst_cabang_id='
+			+mst_cabang_id+'&&thn='+thn;
 
 
  });
