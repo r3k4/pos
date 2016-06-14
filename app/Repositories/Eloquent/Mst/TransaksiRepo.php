@@ -101,6 +101,29 @@ class TransaksiRepo implements TransaksiRepoInterface {
 		return $q;
 	}
 
+
+	public function getNominalPotonganBulanan($mst_cabang_id = null, $bln, $thn)
+	{
+
+		if($mst_cabang_id == 'all'){
+			$mst_cabang_id = null;
+		}		
+
+		if($mst_cabang_id == null){
+			$q = $this->model->whereMonth('created_at', '=', $bln)
+							 ->whereYear('created_at', '=', $thn)
+							 ->sum('diskon');
+		}else{
+			$q = $this->model->whereMonth('created_at', '=', $bln)
+							 ->where('mst_cabang_id', '=', $mst_cabang_id)
+							 ->whereYear('created_at', '=', $thn)
+							 ->sum('diskon');			
+		}		
+		return $q;
+	}
+
+
+
 	public function getTransaksiBulanan($mst_cabang_id = null, $bln, $thn)
 	{
 		if($mst_cabang_id == null){

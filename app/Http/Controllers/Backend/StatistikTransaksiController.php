@@ -41,25 +41,66 @@ class StatistikTransaksiController extends Controller
     {	
     	$cabang = $this->cabang->getAllDropdown('cabang');
         $cabang = array_add($cabang, 'all', 'semua cabang');
+        $statistik_bulanan_home = true;
+
+        // get data from request
     	$r_c = $request->get('mst_cabang_id');
-    	$r_b = $request->get('bln');
     	$r_t = $request->get('thn');
+
+
     	if($r_c != null && $r_b != null && $r_t != null){
-            $pengeluaran = $this->pengeluaran->getJmlPengeluaranBulanan($r_c, $r_b, $r_t);
-            $transaksi_tunai = $this->transaksi->getNominalTransaksiHarian($r_c, $r_b, $r_t);
+            $transaksi_tunai = $this->transaksi->getJmlTransaksiPerThn($r_c, $r_t);
+
+            $pengeluaran = $this->pengeluaran->getJmlPengeluaranBulanan($r_c, $r_b, $r_t);            
    			$transaksi = $this->transaksi->getJmlTransaksiPerBln($r_c, $r_b, $r_t);
-   			$nominal_transaksi = $this->transaksi->getNominalTransaksiBulanan($r_c, $r_b, $r_t);
+            $nominal_transaksi = $this->transaksi->getNominalTransaksiBulanan($r_c, $r_b, $r_t);
+            $nominal_potongan = $this->transaksi->getNominalPotonganBulanan($r_c, $r_b, $r_t);
    			$nominal_harga_beli = $this->penjualan->getNominalHargaJualBulanan($r_c, $r_b, $r_t);
     		$vars = compact(
                     'transaksi', 'cabang', 'nominal_transaksi', 
                     'nominal_harga_beli', 'transaksi_tunai',
-                    'pengeluaran'
+                    'pengeluaran', 'nominal_potongan', 'statistik_bulanan_home'
                 );
     	}else{
-	    	$vars = compact('cabang');    		
+	    	$vars = compact('cabang', 'statistik_bulanan_home');    		
     	}
 
     	return view($this->base_view.'index', $vars);
+    }
+
+
+
+    public function statistik_tahunan(Request $request)
+    {
+        $cabang = $this->cabang->getAllDropdown('cabang');
+        $cabang = array_add($cabang, 'all', 'semua cabang');
+        $statistik_tahunan_home = true;
+
+        // get data from request
+        $r_c = $request->get('mst_cabang_id');
+        $r_b = $request->get('bln');
+        $r_t = $request->get('thn');
+
+
+        if($r_c != null && $r_b != null && $r_t != null){
+            $pengeluaran = $this->pengeluaran->getJmlPengeluaranBulanan($r_c, $r_b, $r_t);
+            $transaksi_tunai = $this->transaksi->getNominalTransaksiHarian($r_c, $r_b, $r_t);
+            $transaksi_object = $this->transaksi;
+
+            $transaksi = $this->transaksi->getJmlTransaksiPerBln($r_c, $r_b, $r_t);
+            $nominal_transaksi = $this->transaksi->getNominalTransaksiBulanan($r_c, $r_b, $r_t);
+            $nominal_potongan = $this->transaksi->getNominalPotonganBulanan($r_c, $r_b, $r_t);
+            $nominal_harga_beli = $this->penjualan->getNominalHargaJualBulanan($r_c, $r_b, $r_t);
+            $vars = compact(
+                    'transaksi', 'cabang', 'nominal_transaksi', 
+                    'nominal_harga_beli', 'transaksi_tunai',
+                    'pengeluaran', 'nominal_potongan', 'statistik_tahunan_home',
+                    'transaksi_object'
+                );
+        }else{
+            $vars = compact('cabang', 'statistik_tahunan_home');            
+        }
+        return view($this->base_view.'statistik_tahunan.index', $vars);
     }
 
 

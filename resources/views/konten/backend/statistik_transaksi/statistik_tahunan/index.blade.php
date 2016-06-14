@@ -9,18 +9,18 @@
 
 
 	<h2>
-		<i class="fa fa-bar-chart"></i> Statistik Transaksi Bulanan
+		<i class="fa fa-bar-chart"></i> Statistik Transaksi Tahunan
 	</h2>
 
 	<hr>
-	@include($base_view.'komponen.pilih_cabang_dan_bulan')
+	@include($base_view.'statistik_tahunan.komponen.pilih_cabang_dan_bulan')
 	@include($base_view.'komponen.nav_atas')	
 	
 
 	@if(isset($transaksi))
-		@include($base_view.'view_statistik_cabang_bulanan')
+		@include($base_view.'statistik_tahunan.view_statistik_cabang_bulanan')
  	@else
- 		@include($base_view.'landing_page')
+ 		@include($base_view.'statistik_tahunan.landing_page')
  	@endif
     
 

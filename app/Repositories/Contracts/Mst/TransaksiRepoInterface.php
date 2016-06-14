@@ -41,4 +41,14 @@ interface TransaksiRepoInterface
 	 */
 	public function getNominalTransaksiHarian($mst_cabang_id = null, $bln, $thn);
 
+
+	/**
+	 * ambil nominal potongan dari transaksi bulanan
+	 * @param  integer $mst_cabang_id 
+	 * @param  integer $bln           
+	 * @param  integer $thn           
+	 * @return integer 
+	 */
+	public function getNominalPotonganBulanan($mst_cabang_id = null, $bln, $thn);	
+
 }

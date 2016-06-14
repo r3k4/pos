@@ -20,7 +20,9 @@
         <div class="col-md-6">
             @include($base_view.'statistik.show_pengeluaran')
         </div>
-
+        <div class="col-md-6">
+            @include($base_view.'statistik.show_potongan')
+        </div>
 
 </div> 
 
