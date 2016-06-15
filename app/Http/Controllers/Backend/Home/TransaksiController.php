@@ -99,15 +99,6 @@ class TransaksiController extends Controller
     public function add_to_cart(addToCart $addToCart)
     {
         return $addToCart->handle($this->base_view);
-        // $job = new AddToCartJob($request->id,
-        //                         $request->nama,
-        //                         $request->jml,
-        //                         $request->harga,
-        //                         $request->sku, 
-        //                         $this->base_view
-        //     );
-
-        // return $this->dispatch($job);
     }
 
     /**
