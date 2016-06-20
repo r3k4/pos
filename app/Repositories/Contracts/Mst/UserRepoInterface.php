@@ -7,6 +7,6 @@ interface UserRepoInterface
 
  
 
-
+	public function delete($id);
 
 }

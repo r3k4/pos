@@ -5,6 +5,8 @@ namespace App\Repositories\Contracts\Mst;
 interface ProdukRepoInterface 
 {
 
+	public function delete($id);
+	
 	/**
 	 * custom create data Produk
 	 * @param  array  $data [description]

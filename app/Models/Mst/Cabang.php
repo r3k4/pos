@@ -2,8 +2,11 @@
 
 namespace App\Models\Mst;
 
-use App\Models\Mst\DetailProduk;
+
+use App\Models\Mst\Pengeluaran;
+use App\Models\Mst\Penjualan;
 use App\Models\Mst\Produk;
+use App\Models\Mst\Transaksi;
 use App\Models\Mst\User;
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,11 +25,20 @@ class Cabang extends Model
     	return $this->hasMany(Produk::class, 'mst_cabang_id');
     }
 
-    public function mst_detail_produk()
+ 
+    public function mst_pengeluaran()
     {
-    	return $this->hasMany(DetailProduk::class, 'mst_cabang_id');
+        return $this->hasMany(Pengeluaran::class, 'mst_cabang_id');
     }
 
+    public function mst_penjualan()
+    {
+        return $this->hasMany(Penjualan::class, 'mst_cabang_id');
+    }
 
+    public function mst_transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'mst_cabang_id');
+    }
 
 }

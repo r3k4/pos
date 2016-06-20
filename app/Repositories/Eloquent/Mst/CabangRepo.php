@@ -21,6 +21,26 @@ class CabangRepo implements CabangRepoInterface {
 
 
 
+	public function delete($id)
+	{
+		$q = $this->find($id);
+		if(count($q)>0){
+
+			// delete relasi
+			$q->mst_user()->delete();
+			$q->mst_produk()->delete();
+			$q->mst_pengeluaran()->delete();
+			$q->mst_penjualan()->delete();
+			$q->mst_transaksi()->delete();			
+ 
+
+			$q->delete();
+			return 'data telah terhapus';			
+		}
+		return 'data dengan ID '.$id.' tidak ditemukan';
+	}
+
+
 
 
 

@@ -6,5 +6,7 @@ interface CabangRepoInterface
 {
  
 
+ 	public function delete($id);
+
 
 }

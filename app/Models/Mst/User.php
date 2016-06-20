@@ -3,6 +3,11 @@
 namespace App\Models\Mst;
 
 
+use App\Models\Mst\HistoryStok;
+use App\Models\Mst\Pengeluaran;
+use App\Models\Mst\Penjualan;
+use App\Models\Mst\Produk;
+use App\Models\Mst\Transaksi;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -50,5 +55,30 @@ class User extends Authenticatable
     	return $this->attributes['password'] = bcrypt($value);
     }
 
-    
+
+    public function mst_history_stok()
+    {
+        return $this->hasMany(HistoryStok::class, 'mst_user_id');
+    }
+
+    public function mst_pengeluaran()
+    {
+        return $this->hasMany(Pengeluaran::class, 'mst_user_id');
+    }
+   
+    public function mst_penjualan()
+    {
+        return $this->hasMany(Penjualan::class, 'mst_user_id');
+    }   
+
+    public function mst_produk()
+    {
+        return $this->hasMany(Produk::class, 'mst_user_id');
+    }   
+
+    public function mst_transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'mst_user_id');
+    }       
+
 }

@@ -5,7 +5,8 @@
 $('#del{{ $list->id }}').click(function(){
 	swal({   
 		title: "Are you sure?",   
-		type: "warning",   
+		type: "warning",  
+		'text' : 'data yg berhubungan dgn user ini akan terhapus, termasuk data produk dan transaksi yg pernah dilakukan oleh user ini', 
 		showCancelButton: true,   
 		confirmButtonColor: "#DD6B55",   
 		closeOnConfirm: false }, function(){   

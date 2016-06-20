@@ -6,6 +6,7 @@ $('#del{{ $list->id }}').click(function(){
 
 	swal({
 		title : 'are you sure ?',
+		'text' : 'data yg berhubungan dgn cabang ini akan terhapus, termasuk data transaksi',
 		type  : 'warning',
 		closeOnCancel: true,
 		showCancelButton: true,

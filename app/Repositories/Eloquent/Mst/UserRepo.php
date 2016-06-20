@@ -20,5 +20,23 @@ class UserRepo implements  UserRepoInterface {
 	}
 
  
+	public function delete($id)
+	{
+		$q = $this->find($id);
+		if(count($q)>0){
+
+			// delete relasi
+			$q->mst_history_stok()->delete();
+			$q->mst_pengeluaran()->delete();
+			$q->mst_penjualan()->delete();
+			$q->mst_produk()->delete();
+			$q->mst_transaksi()->delete();			
+
+			$q->delete();
+			return 'data telah terhapus';			
+		}
+		return 'data dengan ID '.$id.' tidak ditemukan';
+	}
+
  
 }

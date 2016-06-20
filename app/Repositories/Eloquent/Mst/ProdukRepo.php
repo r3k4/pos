@@ -115,4 +115,22 @@ class ProdukRepo implements ProdukRepoInterface {
       return $jml;
     }
 
+
+
+  public function delete($id)
+  {
+    $q = $this->find($id);
+    if(count($q)>0){
+
+      $q->mst_history_stok()->delete();
+      $q->mst_penjualan()->delete();
+    
+      $q->delete();
+      return 'data telah terhapus';     
+    }
+    return 'data dengan ID '.$id.' tidak ditemukan';
+  }
+
+
+
 }

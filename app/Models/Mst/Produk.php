@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models\Mst;
+use App\Models\Mst\HistoryStok;
+use App\Models\Mst\Penjualan;
 use App\Models\Mst\User;
 use App\Models\Ref\Produk as refProduk;
 use Illuminate\Database\Eloquent\Model;
@@ -107,6 +109,17 @@ class Produk extends Model
 
         }
         return null;
+    }
+
+
+    public function mst_history_stok()
+    {
+        return $this->hasMany(HistoryStok::class, 'mst_produk_id');
+    }
+
+    public function mst_penjualan()
+    {
+        return $this->hasMany(Penjualan::class, 'mst_produk_id');
     }
 
     

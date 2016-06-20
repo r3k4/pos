@@ -60,4 +60,7 @@ interface TransaksiRepoInterface
 	 */
 	public function getNominalTransaksiTahunan($mst_cabang_id = null, $thn);
 
+
+	public function delete($id);
+
 }

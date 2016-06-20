@@ -213,4 +213,18 @@ class TransaksiRepo implements TransaksiRepoInterface {
 		return $data;
 	}
 
+	public function delete($id)
+	{
+		$q = $this->find($id);
+		if(count($q)>0){
+			// delete relasi tabel
+			$q->mst_penjualan()->delete();
+			$q->delete();
+			return 'data telah terhapus';			
+		}
+		return 'data dengan ID '.$id.' tidak ditemukan';
+	}
+
+
+
 }
