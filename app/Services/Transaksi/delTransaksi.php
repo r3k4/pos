@@ -48,11 +48,13 @@ class delTransaksi
 		$trx = $this->transaksi->find($this->request->id);
 		foreach($trx->mst_penjualan as $list){
 			$produk = $list->mst_produk;
-			$this->history_stok->updateStok($list->mst_produk_id, 
-											$jml_stok = $produk->stok_barang+$list->qty, 
-											$trx->mst_user_id, 
-											$keterangan = 'pembatalan transaksi/hapus record'
-									);		
+			if(count($produk)>0){
+				$this->history_stok->updateStok($list->mst_produk_id, 
+												$jml_stok = $produk->stok_barang+$list->qty, 
+												$trx->mst_user_id, 
+												$keterangan = 'pembatalan transaksi/hapus record'
+										);						
+			}
 		}
 		return $this;
 	}

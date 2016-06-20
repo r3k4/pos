@@ -34,16 +34,19 @@ git clone git@github.com:r3k4/pos.git
 cd pos
 composer install
 cp .env.example .env
+php artisan key:generate
 ```
 
 #### step 2
-edit file .env dan sesuaikan isinya dgn konfigurasi yg sesuai.
+edit file .env dan sesuaikan isinya dgn konfigurasi yg ada.
 
 #### step 3
 jalankan perintah berikut pada terminal 
 (masih dalam direktori pos)
 ```php
-php artisan migrate && php artisan db:seed
+composer dump-autoload
+php artisan migrate 
+php artisan db:seed
 ```
 
 #### step 4 (final)

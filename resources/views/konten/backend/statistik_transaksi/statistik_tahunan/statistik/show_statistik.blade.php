@@ -30,7 +30,7 @@
                 },
                 xAxis: [{
                     title: {
-                        text: 'Tanggal',
+                        text: 'Bulan',
                         style: {
                             color: Highcharts.getOptions().colors[1]
                         }
