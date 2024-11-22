@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 namespace App\Repositories\Eloquent;
 
-trait defaultRepoTrait {
+trait defaultRepoTrait
+{
 
 
 	/**
@@ -13,16 +14,16 @@ trait defaultRepoTrait {
 	 */
 	public function all($perPage = null, array $filter = [])
 	{
-		if($perPage == null){
+		if ($perPage == null) {
 			$q = $this->model
-					  ->where($filter)
-					  ->orderBy('id', 'desc')
-					  ->get();
-		}else{
+				->where($filter)
+				->orderBy('id', 'desc')
+				->get();
+		} else {
 			$q = $this->model
-					  ->where($filter)
-					  ->orderBy('id', 'desc')
-					  ->paginate($perPage);
+				->where($filter)
+				->orderBy('id', 'desc')
+				->paginate($perPage);
 		}
 		return $q;
 	}
@@ -59,10 +60,10 @@ trait defaultRepoTrait {
 	 */
 	public function update($id, array $data)
 	{
-        $update = $this->model->where('id', '=', $id)->update($data);
-        $u = $this->model->find($id);
+		$update = $this->model->where('id', '=', $id)->update($data);
+		$u = $this->model->find($id);
 
-        return $u;
+		return $u;
 	}
 
 	/**
@@ -74,11 +75,11 @@ trait defaultRepoTrait {
 	public function delete($id)
 	{
 		$q = $this->find($id);
-		if(count($q)>0){
+		if ($q) {
 			$q->delete();
-			return 'data telah terhapus';			
+			return 'data telah terhapus';
 		}
-		return 'data dengan ID '.$id.' tidak ditemukan';
+		return 'data dengan ID ' . $id . ' tidak ditemukan';
 	}
 
 
@@ -97,7 +98,4 @@ trait defaultRepoTrait {
 	{
 		return $this->model->where($filter)->first();
 	}
-
-
-
 }

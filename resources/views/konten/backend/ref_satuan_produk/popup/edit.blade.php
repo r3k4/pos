@@ -9,8 +9,8 @@
 		<div id="pesan"></div>
 
 		<div class="form-group">
-			{!! Form::label('nama', 'Jenis Produk : ') !!}
-			{!! Form::text('nama', $ref_satuan_produk->nama, ['id' => 'nama', 'class' => 'form-control', 'placeholder' => 'jenis produk...']) !!}
+			<label for="nama">Jenis Produk :</label>
+			<input type="text" id="nama" name="nama" class="form-control" placeholder="jenis produk..." value="{{ $ref_satuan_produk->nama }}">
 		</div>
 		<hr>
 		<div class="form-group">

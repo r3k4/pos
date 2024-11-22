@@ -7,8 +7,9 @@
 
     <title>{{ setup_variable('nama_aplikasi') }}</title>
 
-    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
-      <script src="{{ elixir('js/app.js') }}"></script>
+    <link href="{{ mix('css/all.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="{{ mix('js/app.js') }}"></script>
       
     </head>
 <body>

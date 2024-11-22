@@ -17,15 +17,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\Mst\Pengeluaran' => 'App\Policies\Pengeluaran\PengeluaranPolicy',
     ];
 
-    /**
-     * Register any application authentication / authorization services.
-     *
-     * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
-     * @return void
-     */
-    public function boot(GateContract $gate)
+
+    public function boot()
     {
-        $this->registerPolicies($gate);
 
         //
     }

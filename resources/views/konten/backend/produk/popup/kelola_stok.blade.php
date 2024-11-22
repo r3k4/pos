@@ -3,8 +3,6 @@
 </h3>
 <hr>
 
-
-
 <div class="row">
 
 	<div class="col-md-12">
@@ -50,93 +48,80 @@
 		</table>		
 	</div>	
 	<div class="col-md-6">
-		<div class="form-group">
-			{!! Form::label('stok_barang', 'Edit Stok : ') !!}
-			{!!  Form::text('stok_barang', $produk->stok_barang, ['id' => 'stok_barang', 'class' => 'form-control', 'placeholder' => 'stok barang...'])  !!}
-		</div>
+		<form id="stokForm">
+			<div class="form-group">
+				<label for="stok_barang">Edit Stok :</label>
+				<input type="text" id="stok_barang" name="stok_barang" class="form-control" placeholder="stok barang..." value="{{ $produk->stok_barang }}">
+			</div>
 
-		<div class="form-group">
-			{!! Form::label('keterangan', 'Keterangan : ') !!}
-			{!! Form::select('keterangan', $keterangan, '', ['']) !!}
-		</div>
+			<div class="form-group">
+				<label for="keterangan">Keterangan :</label>
+				<select id="keterangan" name="keterangan" class="form-control">
+					@foreach($keterangan as $key => $value)
+						<option value="{{ $key }}">{{ $value }}</option>
+					@endforeach
+				</select>
+			</div>
 
-
-		<div class="form-group">
-			<button id='simpan' class='btn btn-primary pull-right'><i class='fa fa-floppy-o'></i> SIMPAN</button>
-		</div>
+			<div class="form-group">
+				<button type="button" id="simpan" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> SIMPAN</button>
+			</div>
+		</form>
 	</div>
 </div>
-
- 
-
 
 <script type="text/javascript">
 $('#simpan').click(function(){
 	$('#pesan').removeClass('alert alert-danger animated shake').html('');
 
-	stok_barang = $('#stok_barang').val()
- 
+	let stok_barang = $('#stok_barang').val();
+	let form_data = {
+		mst_produk_id : {!! $produk->id !!},
+		stok_barang : stok_barang,
+		keterangan : $('#keterangan').val(),
+		_token : '{!! csrf_token() !!}'
+	};
 
-
-
-form_data ={
-	mst_produk_id : {!! $produk->id !!},
-	stok_barang : stok_barang,
-	keterangan	 : $('#keterangan').val(),
- 	_token : '{!! csrf_token() !!}'
-}
-$('#simpan').attr('disabled', 'disabled');
+	$('#simpan').attr('disabled', 'disabled');
 	$.ajax({
 		url : '{{ route("backend_produk.update_stok_barang") }}',
 		data : form_data,
 		type : 'post',
 		error:function(xhr, status, error){
 			$('#simpan').removeAttr('disabled');
-	 	$('#pesan').addClass('alert alert-danger animated shake').html('<b>Error : </b><br>');
-        datajson = JSON.parse(xhr.responseText);
-        $.each(datajson, function( index, value ) {
-       		$('#pesan').append(index + ": " + value+"<br>")
-          });
-
-		      //    alert('error! terjadi kesalahan pada sisi server!')
+			$('#pesan').addClass('alert alert-danger animated shake').html('<b>Error : </b><br>');
+			let datajson = JSON.parse(xhr.responseText);
+			$.each(datajson, function(index, value) {
+				$('#pesan').append(index + ": " + value + "<br>");
+			});
 		},
 		success:function(ok){
-			 swal({
-			 	title : 'success',
-			 	text : 'data telah tersimpan!',
-			 	type : 'success'
-			 }, function(){
-			 	window.location.reload();
-			 })
+			swal({
+				title : 'success',
+				text : 'data telah tersimpan!',
+				type : 'success'
+			}, function(){
+				window.location.reload();
+			});
 		}
-	})
-})
-
-
+	});
+});
 
 $('#pesan').click(function(){
 	$('#pesan').fadeOut(function(){
 		$('#pesan').html('').show().removeClass('alert alert-danger');
 	});
-})
+});
 
+$('#stok_barang').keypress(function(e) {
+	let a = [];
+	let k = e.which;
 
-     $('#stok_barang').keypress(function(e) {
-            var a = [];
-            var k = e.which;
+	for (let i = 48; i < 58; i++)
+		a.push(i);
+	a.push(8);
 
-            for (i = 48; i < 58; i++)
-            a.push(i);
-            a.push(8);
-
-            //digunakan untuk karakter koma
-            // a.push(44);
-            
-            if (!(a.indexOf(k)>=0))
-                e.preventDefault();
-            });
-
-
+	if (!(a.indexOf(k) >= 0))
+		e.preventDefault();
+});
 </script>
-
-

@@ -5,14 +5,13 @@
 
 
 <div class="form-group">
-	{!! Form::label('bayar', "Nominal Pembayaran : ") !!}
-	{!! Form::text('bayar', "", ['id' => 'bayar', 'class' => 'form-control', 'placeholder' => 'nominal yg dibayarkan...']) !!}
+      <label for="bayar">Nominal Pembayaran :</label>
+      <input type="text" id="bayar" class="form-control" placeholder="nominal yg dibayarkan...">
 </div>
 
-
 <div class="form-group">
-	{!! Form::label('diskon', "Potongan/Diskon : ") !!} 
-	{!! Form::text('diskon', "", ['id' => 'diskon', 'class' => 'form-control', 'placeholder' => 'potongan harga atau diskon...']) !!}
+      <label for="diskon">Potongan/Diskon :</label>
+      <input type="text" id="diskon" class="form-control" placeholder="potongan harga atau diskon...">
 </div>
 
  

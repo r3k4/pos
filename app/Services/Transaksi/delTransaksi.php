@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Transaksi;
 
@@ -15,11 +15,12 @@ class delTransaksi
 	protected $penjualan;
 	protected $history_stok;
 
-	public function __construct(Request $request,
-								TransaksiRepoInterface $transaksi,
-								PenjualanRepoInterface $penjualan,
-								HistoryStokRepoInterface $history_stok
-					){
+	public function __construct(
+		Request $request,
+		TransaksiRepoInterface $transaksi,
+		PenjualanRepoInterface $penjualan,
+		HistoryStokRepoInterface $history_stok
+	) {
 		$this->history_stok = $history_stok;
 		$this->penjualan = $penjualan;
 		$this->transaksi = $transaksi;
@@ -33,8 +34,8 @@ class delTransaksi
 	public function handle()
 	{
 		$this->restoreStokProduk()
-			 ->delPenjualan()
-			 ->doDeleteTransaksi();
+			->delPenjualan()
+			->doDeleteTransaksi();
 		return 'ok';
 	}
 
@@ -46,14 +47,15 @@ class delTransaksi
 	private function restoreStokProduk()
 	{
 		$trx = $this->transaksi->find($this->request->id);
-		foreach($trx->mst_penjualan as $list){
+		foreach ($trx->mst_penjualan as $list) {
 			$produk = $list->mst_produk;
-			if(count($produk)>0){
-				$this->history_stok->updateStok($list->mst_produk_id, 
-												$jml_stok = $produk->stok_barang+$list->qty, 
-												$trx->mst_user_id, 
-												$keterangan = 'pembatalan transaksi/hapus record'
-										);						
+			if ($produk) {
+				$this->history_stok->updateStok(
+					$list->mst_produk_id,
+					$jml_stok = $produk->stok_barang + $list->qty,
+					$trx->mst_user_id,
+					$keterangan = 'pembatalan transaksi/hapus record'
+				);
 			}
 		}
 		return $this;
@@ -66,7 +68,7 @@ class delTransaksi
 	private function delPenjualan()
 	{
 		$trx = $this->transaksi->find($this->request->id);
-		foreach($trx->mst_penjualan as $list){
+		foreach ($trx->mst_penjualan as $list) {
 			$this->penjualan->delete($list->id);
 		}
 		return $this;
@@ -77,5 +79,4 @@ class delTransaksi
 		$this->transaksi->delete($this->request->id);
 		return $this;
 	}
-
 }

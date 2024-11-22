@@ -1,0 +1,18 @@
+
+
+@import "./komponen/default.scss";
+@import "./komponen/navbar.scss";
+@import "./komponen/pace.scss";
+@import "./komponen/box-color.scss";
+@import "./komponen/dropdown.scss";
+@import "./komponen/link.scss";
+
+
+ //https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss
+// Bootstrap
+$bootstrap-sass-asset-helper: false !default;
+$icon-font-path: if($bootstrap-sass-asset-helper, "bootstrap/", "../../fonts/bootstrap/") !default;
+ @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+ @import "../../node_modules/font-awesome/scss/font-awesome.scss";
+
+

@@ -7,8 +7,8 @@
 
     <title>{{ env('NAMA_APP', 'TKASIR') }}</title>
 
-    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
-      <script src="{{ elixir('js/app.js') }}"></script>
+    <link href="{{ mix('css/all.css') }}" rel="stylesheet">
+      <script src="{{ mix('js/app.js') }}"></script>
     </head>
 <body>
     @include('layouts.komponen.default.nav_atas')

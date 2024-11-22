@@ -8,74 +8,63 @@
 
 		<div id="pesan"></div>
 
-		<div class="form-group">
-			{!! Form::label('nama', 'Jenis Produk : ') !!}
-			{!! Form::text('nama', $ref_produk->nama, ['id' => 'nama', 'class' => 'form-control', 'placeholder' => 'jenis produk...']) !!}
-		</div>
-		<div class="form-group">
-			{!! Form::label('kode_warna', 'Pilih Warna : ') !!}
-			{!! Form::color('kode_warna', $ref_produk->kode_warna, ['id' => 'kode_warna', 'class' => 'form-control']) !!}
-		</div>
+		<form id="editForm">
+			<div class="form-group">
+				<label for="nama">Jenis Produk :</label>
+				<input type="text" id="nama" name="nama" class="form-control" placeholder="jenis produk..." value="{{ $ref_produk->nama }}">
+			</div>
+			<div class="form-group">
+				<label for="kode_warna">Pilih Warna :</label>
+				<input type="color" id="kode_warna" name="kode_warna" class="form-control" value="{{ $ref_produk->kode_warna }}">
+			</div>
 
-		<hr>
-		<div class="form-group">
-			<button id='simpan' class='btn btn-info'><i class='fa fa-floppy-o'></i> SIMPAN</button>
-		</div>
-
+			<hr>
+			<div class="form-group">
+				<button type="button" id="simpan" class="btn btn-info"><i class='fa fa-floppy-o'></i> SIMPAN</button>
+			</div>
+		</form>
 		
 	</div>	
 </div>
-
-
-
-
 
 <script type="text/javascript">
 $('#simpan').click(function(){
 	$('#pesan').removeClass('alert alert-danger animated shake').html('');
 
+	let form_data = {
+		nama: $('#nama').val(),
+		kode_warna: $('#kode_warna').val(),
+		_token: '{{ csrf_token() }}'
+	};
 
-form_data ={
-	nama : $('#nama').val(),
-	kode_warna : $('#kode_warna').val(),
- 	_token : '{!! csrf_token() !!}'
-}
-$('#simpan').attr('disabled', 'disabled');
+	$('#simpan').attr('disabled', 'disabled');
 	$.ajax({
-		url : '{{ route("backend_ref_produk.update", $ref_produk->id) }}',
-		data : form_data,
-		type : 'put',
-		error:function(xhr, status, error){
+		url: '{{ route("backend_ref_produk.update", $ref_produk->id) }}',
+		data: form_data,
+		type: 'PUT',
+		error: function(xhr, status, error){
 			$('#simpan').removeAttr('disabled');
-		 	$('#pesan').addClass('alert alert-danger animated shake').html('<b>Error : </b><br>');
-	        datajson = JSON.parse(xhr.responseText);
-	        $.each(datajson, function( index, value ) {
-	       		$('#pesan').append(index + ": " + value+"<br>")
-	          });
-
-		      //    alert('error! terjadi kesalahan pada sisi server!')
+			$('#pesan').addClass('alert alert-danger animated shake').html('<b>Error : </b><br>');
+			let datajson = JSON.parse(xhr.responseText);
+			$.each(datajson, function(index, value) {
+				$('#pesan').append(index + ": " + value + "<br>");
+			});
 		},
-		success:function(ok){
-			 //window.location.reload();
-			 swal({
-			 	title : 'success', 
-			 	text : 'data telah ditambahkan', 
-			 	type : 'success'
-			 }, function(){
-			 	window.location.reload();
-			 });
+		success: function(ok){
+			swal({
+				title: 'success', 
+				text: 'data telah ditambahkan', 
+				type: 'success'
+			}, function(){
+				window.location.reload();
+			});
 		}
-	})
-})
-
-
+	});
+});
 
 $('#pesan').click(function(){
 	$('#pesan').fadeOut(function(){
 		$('#pesan').html('').show().removeClass('alert alert-danger');
 	});
-})
-
+});
 </script>
-
-

@@ -2,7 +2,7 @@
 	$(function () { $("[data-toggle='tooltip']").tooltip(); });
 </script>
 
-@if(count($produk)>0)
+@if($produk)
 
 	<table class="table table-bordered table-hover">
 		<thead>

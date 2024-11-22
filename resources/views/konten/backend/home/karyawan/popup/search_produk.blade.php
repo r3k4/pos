@@ -10,8 +10,8 @@
 	<div id="pesan" class="col-md-12"></div>
 	<div class="col-md-12">
 		<div class="form-group">
-			{!! Form::label('nama_produk', 'Pencarian Produk : ') !!}
-			{!! Form::text('nama_produk', '', ['id' => 'nama_produk', 'placeholder' => 'search by nama produk...', 'class' => 'form-control' ]) !!}
+			<label for="nama_produk">Pencarian Produk :</label>
+			<input type="text" id="nama_produk" name="nama_produk" placeholder="search by nama produk..." class="form-control">
 		</div>
 	</div>
 

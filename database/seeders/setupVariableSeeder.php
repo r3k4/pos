@@ -13,28 +13,25 @@ class setupVariableSeeder extends Seeder
     public function run()
     {
 
-    	// nama aplikasi
+        // nama aplikasi
         $sv = SetupVariable::where('variable', '=', 'nama_aplikasi')->first();
-        if(count($sv)<=0){
-        	$data = ['variable' => 'nama_aplikasi', 'value' => 'Sistem Informasi Penjualan'];
-        	SetupVariable::create($data);
+        if ($sv == null) {
+            $data = ['variable' => 'nama_aplikasi', 'value' => 'Sistem Informasi Penjualan'];
+            SetupVariable::create($data);
         }
- 
+
         // config backup
         $sv = SetupVariable::where('variable', '=', 'backup_db')->first();
-        if(count($sv)<=0){
+        if ($sv == null) {
             $data = ['variable' => 'backup_db', 'value' => '1']; // 1/0
             SetupVariable::create($data);
         }
- 
+
         // config backup
         $sv = SetupVariable::where('variable', '=', 'jam_backup')->first();
-        if(count($sv)<=0){
-            $data = ['variable' => 'jam_backup', 'value' => '11:00'];  
+        if ($sv == null) {
+            $data = ['variable' => 'jam_backup', 'value' => '11:00'];
             SetupVariable::create($data);
         }
- 
-
-
     }
 }

@@ -11,31 +11,31 @@
 	<div class="col-md-6">
 	
 		<div class="form-group">
-			{!! Form::label('nama', 'Nama Cabang : ') !!}
-			{!! Form::text('nama', $cabang->nama, ['id' => 'nama', 'class' => 'form-control', 'placeholder' => 'nama cabang...']) !!}
+			<label for="nama">Nama Cabang :</label>
+			<input type="text" id="nama" class="form-control" placeholder="nama cabang..." value="{{ $cabang->nama }}">
 		</div>	
 
 		<div class="form-group">
-			{!! Form::label('kode_cabang', 'Kode Cabang : ') !!}
-				<i class='fa fa-question-circle' data-toggle='tooltip' title='3 atau 4 huruf kapital'></i>
-			{!! Form::text('kode_cabang', $cabang->kode_cabang, ['id' => 'kode_cabang', 'class' => 'form-control', 'placeholder' => 'kode cabang...']) !!}
+			<label for="kode_cabang">Kode Cabang :</label>
+			<i class='fa fa-question-circle' data-toggle='tooltip' title='3 atau 4 huruf kapital'></i>
+			<input type="text" id="kode_cabang" class="form-control" placeholder="kode cabang..." value="{{ $cabang->kode_cabang }}">
 		</div>	
 
 		<div class="form-group">
-			{!! Form::label('no_tlp', 'nomor telepon kantor cabang : ') !!}			
-			{!! Form::text('no_tlp', $cabang->no_tlp, ['id' => 'no_tlp', 'class' => 'form-control', 'placeholder' => 'nomor telepon...']) !!}
+			<label for="no_tlp">Nomor Telepon Kantor Cabang :</label>
+			<input type="text" id="no_tlp" class="form-control" placeholder="nomor telepon..." value="{{ $cabang->no_tlp }}">
 		</div>
 
 		<div class="form-group">
-			{!! Form::label('alamat', 'alamat kantor cabang : ') !!}			
-			{!! Form::text('alamat', $cabang->alamat, ['id' => 'alamat', 'class' => 'form-control', 'placeholder' => 'alamat...']) !!}
+			<label for="alamat">Alamat Kantor Cabang :</label>
+			<input type="text" id="alamat" class="form-control" placeholder="alamat..." value="{{ $cabang->alamat }}">
 		</div>
 
 	</div>
 	<div class="col-md-6">
-		{!! Form::label('keterangan', 'Keterangan :') !!}
+		<label for="keterangan">Keterangan :</label>
 		<i class='fa fa-question-circle' data-toggle='tooltip' title='keterangan tambahan mengenai cabang (boleh dikosongkan)'></i>
-		{!! Form::textarea('keterangan', $cabang->keterangan, ['id' => 'keterangan', 'class' => 'form-control', 'style' => 'height:120px;']) !!}
+		<textarea id="keterangan" class="form-control" style="height:120px;">{{ $cabang->keterangan }}</textarea>
 	</div>
 	<div class="col-md-12">
 		<hr>

@@ -16,17 +16,17 @@ use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
-	/**
-	 * lokasi folder view dalam controller ini
-	 * @var string
-	 */
-	private $base_view = 'konten.backend.home.';
+    /**
+     * lokasi folder view dalam controller ini
+     * @var string
+     */
+    private $base_view = 'konten.backend.home.';
 
-	/**
-	 * load repo produk
-	 * @var App\Repositories\Contracts\Mst\ProdukRepoInterface
-	 */
-	protected $produk;
+    /**
+     * load repo produk
+     * @var App\Repositories\Contracts\Mst\ProdukRepoInterface
+     */
+    protected $produk;
 
     /**
      * load repo penjualan
@@ -47,30 +47,31 @@ class TransaksiController extends Controller
     protected $cabang;
 
 
-	public function __construct(ProdukRepoInterface $produk,
-                                PenjualanRepoInterface $penjualan,
-                                TransaksiRepoInterface $transaksi,
-                                CabangRepoInterface $cabang
-                            ){
+    public function __construct(
+        ProdukRepoInterface $produk,
+        PenjualanRepoInterface $penjualan,
+        TransaksiRepoInterface $transaksi,
+        CabangRepoInterface $cabang
+    ) {
         $this->cabang = $cabang;
         $this->transaksi = $transaksi;
         $this->penjualan = $penjualan;
-		$this->produk = $produk;
-		view()->share('base_view', $this->base_view);
-	}
+        $this->produk = $produk;
+        view()->share('base_view', $this->base_view);
+    }
 
 
     public function search_produk()
     {
-        return view($this->base_view.'karyawan.popup.search_produk');
+        return view($this->base_view . 'karyawan.popup.search_produk');
     }
 
 
     public function submit_search_produk(Request $request)
     {
-        $produk = $this->produk->all(null, [['nama', 'like', '%'.$request->nama_produk.'%']]);
+        $produk = $this->produk->all(null, [['nama', 'like', '%' . $request->nama_produk . '%']]);
         $vars = compact('produk');
-        return view($this->base_view.'karyawan.popup.search_produk_result', $vars);
+        return view($this->base_view . 'karyawan.popup.search_produk_result', $vars);
     }
 
 
@@ -82,10 +83,10 @@ class TransaksiController extends Controller
     public function check_produk_transaksi(Request $request)
     {
         $produk = $this->produk->findBy(['sku' => $request->kode_barang]);
-        if(count($produk)<=0){
+        if ($produk  == null) {
             $produk = $this->produk->findBy(['barcode'  => $request->kode_barang]);
         }
-        if(count($produk)<=0){
+        if ($produk  == null) {
             return response(['error' => ['data tdk ditemukan']], 422);
         }
         $vars = compact('produk');
@@ -108,8 +109,8 @@ class TransaksiController extends Controller
      */
     public function remove_item(Request $request)
     {
-    	\Cart::remove($request->rowid);
-    	return $this->show_list_pembelian();
+        \Cart::remove($request->rowid);
+        return $this->show_list_pembelian();
     }
 
     /**
@@ -132,11 +133,13 @@ class TransaksiController extends Controller
     public function insert_penjualan(Request $request)
     {
         $job = new insertTransaksiPenjualanJob(
-                $request->mst_cabang_id, $request->bayar, 
-                $request->kembalian, $request->diskon
-            );
-        $insert_transaksi = $this->dispatch($job);     
-        return $insert_transaksi;   
+            $request->mst_cabang_id,
+            $request->bayar,
+            $request->kembalian,
+            $request->diskon
+        );
+        $insert_transaksi = $this->dispatch($job);
+        return $insert_transaksi;
     }
 
 
@@ -147,7 +150,7 @@ class TransaksiController extends Controller
      */
     public function show_list_pembelian()
     {
-       return view($this->base_view.'karyawan.list_pembelian');  
+        return view($this->base_view . 'karyawan.list_pembelian');
     }
 
 
@@ -160,10 +163,8 @@ class TransaksiController extends Controller
     public function show_single_transaksi($id)
     {
         $transaksi = $this->transaksi->find($id);
-        $cabang = $this->cabang->find($transaksi->mst_cabang_id);        
+        $cabang = $this->cabang->find($transaksi->mst_cabang_id);
         $vars = compact('transaksi', 'cabang');
-        return view($this->base_view.'karyawan.popup.show_single_transaksi', $vars);
+        return view($this->base_view . 'karyawan.popup.show_single_transaksi', $vars);
     }
-
-
 }

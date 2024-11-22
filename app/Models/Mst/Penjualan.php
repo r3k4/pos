@@ -10,16 +10,16 @@ use Illuminate\Database\Eloquent\Model;
 class Penjualan extends Model
 {
 
-	
+
     protected $table = 'mst_penjualan';
     protected $fillable = [
-		'mst_produk_id',
-		'harga_produk',
+        'mst_produk_id',
+        'harga_produk',
         'harga_beli_produk', //harga beli(kulakan)
-		'uang_diterima', //uang diterima dr harga satuan produk
-		'subtotal_uang_diterima', //total uang diterima * qty
-		'mst_user_id',
-		'mst_cabang_id',
+        'uang_diterima', //uang diterima dr harga satuan produk
+        'subtotal_uang_diterima', //total uang diterima * qty
+        'mst_user_id',
+        'mst_cabang_id',
         'mst_transaksi_id',
         'qty',
     ];
@@ -28,12 +28,12 @@ class Penjualan extends Model
         'fk__mst_produk'
     ];
 
-    public function setHargaBeliProdukAttribute($value)
+    public function setHargaBeliProdukAttribute()
     {
         // get one record
         $q_produk = $this->mst_produk;
-        if(count($q_produk)>0){
-            $this->attributes['harga_beli_produk'] = $q_produk->harga_beli;                        
+        if (!is_null($q_produk)) {
+            $this->attributes['harga_beli_produk'] = $q_produk->harga_beli;
         }
     }
 
@@ -41,7 +41,7 @@ class Penjualan extends Model
     {
         $p_obj = app('App\Repositories\Contracts\Mst\ProdukRepoInterface');
         $p = $p_obj->find($this->attributes['mst_produk_id']);
-        if(count($p)>0){
+        if (!is_null($p)) {
             return $p->nama;
         }
     }
@@ -53,20 +53,16 @@ class Penjualan extends Model
 
     public function mst_user()
     {
-    	return $this->belongsTo(User::class, 'mst_user_id');
+        return $this->belongsTo(User::class, 'mst_user_id');
     }
 
     public function mst_produk()
     {
-    	return $this->belongsTo(Produk::class, 'mst_produk_id');
+        return $this->belongsTo(Produk::class, 'mst_produk_id');
     }
 
     public function mst_cabang()
     {
-    	return $this->belongsTo(Cabang::class, 'mst_cabang_id');
+        return $this->belongsTo(Cabang::class, 'mst_cabang_id');
     }
-
-
-
-
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 if (! function_exists('setup_variable')) {
@@ -13,10 +13,10 @@ if (! function_exists('setup_variable')) {
     {
         $app = app('App\Repositories\Contracts\SetupVariableRepoInterface');
         $obj = $app->getByVariable($variable);
-        if(count($obj)>0){
-            return $obj->value;         
+        if ($obj !== null) {
+            return $obj->value;
         }
-        if($empty_info = true){
+        if ($empty_info = true) {
             return '-error! variable tidak ditemukan-';
         }
         return '';

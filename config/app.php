@@ -2,6 +2,9 @@
 
 return [
 
+    'name' => env('APP_NAME', 'Laravel'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -147,6 +150,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
+        Laravel\Dusk\DuskServiceProvider::class,
+        Spatie\Html\HtmlServiceProvider::class,
+
 
         /*
          * Application Service Providers...
@@ -155,16 +163,15 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
-        Barryvdh\Snappy\ServiceProvider::class,
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
+        // LukePOLO\LaraCart\LaraCartServiceProvider::class,
+        // Barryvdh\Snappy\ServiceProvider::class,
 
         // repository
         App\Providers\AppRepositoryServiceProvider::class,
-        Milon\Barcode\BarcodeServiceProvider::class,
-        \Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
-        GrahamCampbell\Dropbox\DropboxServiceProvider::class,
+        // Milon\Barcode\BarcodeServiceProvider::class,
+        // Barryvdh\DomPDF\ServiceProvider::class,
+        // GrahamCampbell\Dropbox\DropboxServiceProvider::class,
         // Jenssegers\Rollbar\RollbarServiceProvider::class,
 
 
@@ -215,19 +222,19 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Notification'  => Illuminate\Support\Facades\Notification::class,
 
-        'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
-        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
-        'Reader'    => \PHPExcelReader\SpreadsheetReader::class, 
+
+        // 'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
+        // 'Reader'    => \PHPExcelReader\SpreadsheetReader::class,
         'PDF'       => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'DNS1D'     => Milon\Barcode\Facades\DNS1DFacade::class,
-        'DNS2D'     => Milon\Barcode\Facades\DNS2DFacade::class,   
-        'Cart'      => \Gloudemans\Shoppingcart\Facades\Cart::class,
-        'PDF'       => Barryvdh\DomPDF\Facade::class,
-        'Dropbox'   => GrahamCampbell\Dropbox\Facades\Dropbox::class,
+        'DNS2D'     => Milon\Barcode\Facades\DNS2DFacade::class,
+        // 'PDF'       => Barryvdh\DomPDF\Facade::class,
+        // 'Cart' => LukePOLO\LaraCart\Facades\LaraCart::class,
+        // 'Dropbox'   => GrahamCampbell\Dropbox\Facades\Dropbox::class,
 
-  
+
 
     ],
 

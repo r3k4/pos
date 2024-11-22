@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 
-use App\Http\Controllers\Controller;
-use App\Models\Mst\User;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Validator;
+use App\Models\Mst\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class AuthController extends Controller
 {
@@ -22,7 +22,7 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use  ThrottlesLogins, AuthenticatesUsers;
 
     /**
      * Where to redirect users after login / registration.
@@ -41,8 +41,14 @@ class AuthController extends Controller
     public function __construct()
     {
         view()->share('base_view', $this->base_view);
-        $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
+
+
+    public function showLoginForm()
+    {
+        return view($this->loginView);
+    }
+
 
     /**
      * Get a validator for an incoming registration request.

@@ -13,20 +13,16 @@ class UserLevelSeeder extends Seeder
     public function run()
     {
 
-    	// insert level administrator
+        // insert level administrator
         $check = UserLevel::where('id', '=', 1)->first();
-        if(count($check)<=0){
-        	UserLevel::create(['id' => 1, 'nama'	=> 'administrator']);
+        if (is_null($check)) {
+            UserLevel::create(['id' => 1, 'nama'    => 'administrator']);
         }
 
-    	// insert level karyawan
+        // insert level karyawan
         $check = UserLevel::where('id', '=', 2)->first();
-        if(count($check)<=0){
-        	UserLevel::create(['id' => 2, 'nama'	=> 'karyawan']);
+        if (is_null($check)) {
+            UserLevel::create(['id' => 2, 'nama'    => 'karyawan']);
         }
-
-        
-
-
     }
 }

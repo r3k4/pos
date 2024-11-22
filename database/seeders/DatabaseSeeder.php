@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +16,5 @@ class DatabaseSeeder extends Seeder
         $this->call(UserLevelSeeder::class);
         $this->call(SatuanProdukSeeder::class);
         $this->call(setupVariableSeeder::class);
-
-        
     }
 }

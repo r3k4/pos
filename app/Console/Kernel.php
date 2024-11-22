@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         // Commands\Inspire::class,
         Commands\createAdminUserCommand::class,
-        Commands\backupDbToDropbox::class,        
+        Commands\backupDbToDropbox::class,
     ];
 
     /**
@@ -26,13 +26,23 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        if(!\DB::connection()){
-            if(setup_variable('backup_db') == 1){
+        if (!\DB::connection()) {
+            if (setup_variable('backup_db') == 1) {
                 $schedule->command('backup_db:dropbox')
-                          ->dailyAt(setup_variable('jam_backup'));    
-                }         
-           }
+                    ->dailyAt(setup_variable('jam_backup'));
+            }
+        }
     }
 
-    
+    /**
+     * Register the commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        $this->load(__DIR__ . '/Commands');
+
+        // require base_path('routes/console.php');
+    }
 }

@@ -1,0 +1,14 @@
+/*!
+ * Bootstrap v3.4.1 (https://getbootstrap.com/)
+ * Copyright 2011-2019 Twitter, Inc.
+ * Licensed under the MIT license
+ */
+
+/*! WOW - v1.1.2 - 2016-04-08
+* Copyright (c) 2016 Matthieu Aussaguel;*/
+
+/*! jQuery v3.7.1 | (c) OpenJS Foundation and other contributors | jquery.org/license */
+
+//! moment.js
+
+//! moment.js locale configuration

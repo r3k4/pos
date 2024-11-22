@@ -21,13 +21,21 @@ if(Request::has('thn')){
 
  <table class="tabel_filter pull-right">
  	<tr>
- 		<td>
- 			{!! Form::select('mst_cabang_id', $cabang, $value_cabang, ['id' => 'mst_cabang_id', 'class' => 'form-control']) !!}
- 		</td>
- 		<td>
- 			{{ Form::selectYear('thn', 2015, date('Y'),  $value_thn, ['class' => 'form-control', 'id' => 'thn', 'style' => 'width:100px']) }}
- 		</td>
- 		<td>
+		<td>
+			<select id="mst_cabang_id" class="form-control">
+				@foreach($cabang as $id => $nama)
+					<option value="{{ $id }}" {{ $id == $value_cabang ? 'selected' : '' }}>{{ $nama }}</option>
+				@endforeach
+			</select>
+		</td>
+		<td>
+			<select id="thn" class="form-control" style="width:100px">
+				@for($year = 2015; $year <= date('Y'); $year++)
+					<option value="{{ $year }}" {{ $year == $value_thn ? 'selected' : '' }}>{{ $year }}</option>
+				@endfor
+			</select>
+		</td>
+		<td>
  			<button class="btn btn-info" id="do_filter">
  				<i class='fa fa-random'></i>
  			</button>

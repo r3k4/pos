@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Repositories\Eloquent\Mst;
 
@@ -7,7 +7,8 @@ use App\Repositories\Contracts\Mst\CabangRepoInterface;
 use App\Repositories\Eloquent\defaultRepoTrait;
 use App\Repositories\Eloquent\dropdownableRepoTrait;
 
-class CabangRepo implements CabangRepoInterface {
+class CabangRepo implements CabangRepoInterface
+{
 
 	// CRUD default
 	use defaultRepoTrait, dropdownableRepoTrait;
@@ -15,7 +16,8 @@ class CabangRepo implements CabangRepoInterface {
 
 	protected $model;
 
-	public function __construct(Model $model){
+	public function __construct(Model $model)
+	{
 		$this->model = $model;
 	}
 
@@ -24,24 +26,19 @@ class CabangRepo implements CabangRepoInterface {
 	public function delete($id)
 	{
 		$q = $this->find($id);
-		if(count($q)>0){
+		if ($q) {
 
 			// delete relasi
 			$q->mst_user()->delete();
 			$q->mst_produk()->delete();
 			$q->mst_pengeluaran()->delete();
 			$q->mst_penjualan()->delete();
-			$q->mst_transaksi()->delete();			
- 
+			$q->mst_transaksi()->delete();
+
 
 			$q->delete();
-			return 'data telah terhapus';			
+			return 'data telah terhapus';
 		}
-		return 'data dengan ID '.$id.' tidak ditemukan';
+		return 'data dengan ID ' . $id . ' tidak ditemukan';
 	}
-
-
-
-
-
 }

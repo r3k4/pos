@@ -1,9 +1,9 @@
 <div class="form-group">
-	{!! Form::label('nama', 'Nama : ') !!}
-	{!! Form::text('nama', \Auth::user()->nama, ['id' => 'nama', 'class' => 'form-control', 'placeholder' => 'nama saya...']) !!}
+	<label for="nama">Nama :</label>
+	<input type="text" id="nama" name="nama" class="form-control" placeholder="nama saya..." value="{{ \Auth::user()->nama }}">
 </div>
 
 <div class="form-group">
-	{!! Form::label('email', 'Email : ') !!}
-	{!! Form::text('email', \Auth::user()->email, ['id' => 'email', 'class' => 'form-control', 'placeholder' => 'email saya...']) !!}
+	<label for="email">Email :</label>
+	<input type="text" id="email" name="email" class="form-control" placeholder="email saya..." value="{{ \Auth::user()->email }}">
 </div>

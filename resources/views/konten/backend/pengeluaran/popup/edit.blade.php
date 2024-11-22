@@ -8,189 +8,148 @@
 	<div class="col-md-12">
 	<div id="pesan"></div>
 		<div class="form-group">
-			{!! Form::label('nama', "Nama Pengeluaran : ") !!}
-			{!! Form::text('nama', $pengeluaran->nama, ['id' => 'nama', 'class' => 'form-control', 'placeholder' => 'nama pengeluaran...']) !!}
+			<label for="nama">Nama Pengeluaran :</label>
+			<input type="text" id="nama" name="nama" class="form-control" placeholder="nama pengeluaran..." value="{{ $pengeluaran->nama }}">
 		</div>		
 	</div>
-
 
 	<div class="row">
 		<div class="col-md-12">		 
 			<div class="col-md-6">
 				<div class="form-group">
-					{!! Form::label('biaya', "Harga/Biaya : ") !!}
-					{!! Form::text('biaya', $pengeluaran->biaya, ['id' => 'biaya', 'class' => 'form-control', 'placeholder' => 'biaya...']) !!}
+					<label for="biaya">Harga/Biaya :</label>
+					<input type="text" id="biaya" name="biaya" class="form-control" placeholder="biaya..." value="{{ $pengeluaran->biaya }}">
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					{!! Form::label('jumlah', "Jumlah : ") !!}
-					{!! Form::text('jumlah',$pengeluaran->jumlah, ['id' => 'jumlah', 'class' => 'form-control', 'placeholder' => 'jumlah...']) !!}
+					<label for="jumlah">Jumlah :</label>
+					<input type="text" id="jumlah" name="jumlah" class="form-control" placeholder="jumlah..." value="{{ $pengeluaran->jumlah }}">
 				</div>		
 			</div>	
 			<div class="col-md-4">
 				<div class="form-group">
-					{!! Form::label('subtotal_biaya', "subtotal : ") !!}
-					{!! Form::text('subtotal_biaya', $pengeluaran->subtotal_biaya, [ 'readonly' => 1, 'id' => 'subtotal_biaya', 'class' => 'form-control' ]) !!}
+					<label for="subtotal_biaya">Subtotal :</label>
+					<input type="text" id="subtotal_biaya" name="subtotal_biaya" class="form-control" readonly value="{{ $pengeluaran->subtotal_biaya }}">
 				</div>		
 			</div>
 			@if(\Auth::user()->ref_user_level_id == 1)
 				<div class="col-md-4">
 					<div class="form-group">
-						{!! Form::label('mst_cabang_id', "Cabang : ") !!}
-						{!! Form::select('mst_cabang_id', $cabang, $pengeluaran->mst_cabang_id, ['id' => 'mst_cabang_id', 'class' => 'form-control']) !!}
+						<label for="mst_cabang_id">Cabang :</label>
+						<select id="mst_cabang_id" name="mst_cabang_id" class="form-control">
+							@foreach($cabang as $id => $name)
+								<option value="{{ $id }}" {{ $pengeluaran->mst_cabang_id == $id ? 'selected' : '' }}>{{ $name }}</option>
+							@endforeach
+						</select>
 					</div>		
 				</div>
 			@else
-				{!! Form::hidden('mst_cabang_id',  \Auth::user()->mst_cabang_id, ['id' => 'mst_cabang_id']) !!}
+				<input type="hidden" id="mst_cabang_id" name="mst_cabang_id" value="{{ \Auth::user()->mst_cabang_id }}">
 			@endif
 		</div>
 		<div class="col-md-12">
- 
 			<div class="col-md-6">
 				<div class="form-group">
-				{!! Form::label('tgl_pengeluaran', 'Tanggal pengeluaran:') !!}
-				    <div class='input-group date' id='datetimepicker2'>
-				        <input id="tgl_pengeluaran" value="{!! $pengeluaran->tgl_pengeluaran !!}" readonly="0" type='text' class="form-control" />
-				        <span class="input-group-addon">
-				            <span class="fa fa-calendar"></span>
-				        </span>
-				    </div>
+					<label for="tgl_pengeluaran">Tanggal pengeluaran:</label>
+					<div class='input-group date' id='datetimepicker2'>
+						<input id="tgl_pengeluaran" name="tgl_pengeluaran" type='text' class="form-control" value="{{ $pengeluaran->tgl_pengeluaran }}" />
+						<span class="input-group-addon">
+							<span class="fa fa-calendar"></span>
+						</span>
+					</div>
 				</div>				
 			</div>			
 		</div>
 	</div>
 
 	<div class="col-md-12">
-		{!! Form::label('keterangan', "Note : ") !!}
-		{!! Form::textarea('keterangan', $pengeluaran->keterangan, ['id' => 'keterangan', 'class' => 'form-control', 'placeholder' => 'keterangan...', 'style' => 'height:100px;']) !!}
+		<label for="keterangan">Note :</label>
+		<textarea id="keterangan" name="keterangan" class="form-control" placeholder="keterangan..." style="height:100px;">{{ $pengeluaran->keterangan }}</textarea>
 	<hr>
 	
-
 	<div class="form-group">
-	<button id='simpan' class='btn btn-info pull-right '><i class='fa fa-floppy-o'></i> SIMPAN</button>	
+		<button id='simpan' class='btn btn-info pull-right'><i class='fa fa-floppy-o'></i> SIMPAN</button>	
 	</div>
-
-
 	</div>
-
-
 </div>
 
-
-
-
 <script type="text/javascript">
-
 	$(function () {
-	    $('#datetimepicker2').datetimepicker({
-	    	locale: 'id',
-	    	ignoreReadonly : true,
-	    	// viewMode: 'years',
-	    	format: 'YYYY-MM-DD',
-	        icons: {
-	            time: "fa fa-clock-o",
-	            next: "fa fa-arrow-right",
-	            previous: "fa fa-arrow-left",
-	            date: "fa fa-calendar",
-	            up: "fa fa-arrow-up",
-	            down: "fa fa-arrow-down"
-	        }		        	
-	    });
+		$('#datetimepicker2').datetimepicker({
+			locale: 'id',
+			ignoreReadonly : true,
+			format: 'YYYY-MM-DD',
+			icons: {
+				time: "fa fa-clock-o",
+				next: "fa fa-arrow-right",
+				previous: "fa fa-arrow-left",
+				date: "fa fa-calendar",
+				up: "fa fa-arrow-up",
+				down: "fa fa-arrow-down"
+			}		        	
+		});
 	});
 
+	$('#jumlah, #biaya').keypress(function(e) {
+		var a = [];
+		var k = e.which;
 
- $('#jumlah').keypress(function(e) {
-        var a = [];
-        var k = e.which;
-
-        for (i = 48; i < 58; i++)
-        a.push(i);
-        a.push(8);
-        if (!(a.indexOf(k)>=0))
-            e.preventDefault();
-        });
-
- $('#biaya').keypress(function(e) {
-        var a = [];
-        var k = e.which;
-
-        for (i = 48; i < 58; i++)
-        a.push(i);
-        a.push(8);
-        if (!(a.indexOf(k)>=0))
-            e.preventDefault();
-        });
-
-
-
-
-$('#biaya').keyup(function(){
-	jml = $('#jumlah').val();
-	biaya = $('#biaya').val();
-	mst_cabang_id = $('#mst_cabang_id').val();
-	$('#subtotal_biaya').val(biaya * jml);
-});
-
-$('#jumlah').keyup(function(){
-	jml = $('#jumlah').val();
-	biaya = $('#biaya').val();
-	$('#subtotal_biaya').val(biaya * jml);
-});
-
-
-$('#simpan').click(function(){
-	$('#pesan').removeClass('alert alert-danger animated shake').html('');
-
-
-
-
-form_data ={
-	mst_user_id : {!! Auth::user()->id !!},
-	tgl_pengeluaran : $('#tgl_pengeluaran').val(),
-	mst_cabang_id : $('#mst_cabang_id').val(),
-	nama : $('#nama').val(),
-	biaya : $('#biaya').val(),
-	jumlah : $('#jumlah').val(),
-	subtotal_biaya : $('#subtotal_biaya').val(),
-	keterangan : $('#keterangan').val(),
- 	_token : '{!! csrf_token() !!}'
-}
-$('#simpan').attr('disabled', 'disabled');
-	$.ajax({
-		url : '{{ route("backend_pengeluaran.update", $pengeluaran->id) }}',
-		data : form_data,
-		type : 'put',
-		error:function(xhr, status, error){
-			$('#simpan').removeAttr('disabled');
-	 	$('#pesan').addClass('alert alert-danger animated shake').html('<b>Error : </b><br>');
-        datajson = JSON.parse(xhr.responseText);
-        $.each(datajson, function( index, value ) {
-       		$('#pesan').append(index + ": " + value+"<br>")
-          });
-
-		      //    alert('error! terjadi kesalahan pada sisi server!')
-		},
-		success:function(ok){
-			 swal({
-			 	title : 'success',
-			 	text : 'data telah ditambahkan',
-			 	type : 'success'
-			 }, function(){
-			 	window.location.reload();
-			 });
-		}
-	})
-})
-
-
-
-$('#pesan').click(function(){
-	$('#pesan').fadeOut(function(){
-		$('#pesan').html('').show().removeClass('alert alert-danger');
+		for (i = 48; i < 58; i++)
+			a.push(i);
+		a.push(8);
+		if (!(a.indexOf(k) >= 0))
+			e.preventDefault();
 	});
-})
 
+	$('#biaya, #jumlah').keyup(function(){
+		var jml = $('#jumlah').val();
+		var biaya = $('#biaya').val();
+		$('#subtotal_biaya').val(biaya * jml);
+	});
+
+	$('#simpan').click(function(){
+		$('#pesan').removeClass('alert alert-danger animated shake').html('');
+
+		var form_data = {
+			mst_user_id : {!! Auth::user()->id !!},
+			tgl_pengeluaran : $('#tgl_pengeluaran').val(),
+			mst_cabang_id : $('#mst_cabang_id').val(),
+			nama : $('#nama').val(),
+			biaya : $('#biaya').val(),
+			jumlah : $('#jumlah').val(),
+			subtotal_biaya : $('#subtotal_biaya').val(),
+			keterangan : $('#keterangan').val(),
+			_token : '{!! csrf_token() !!}'
+		};
+		$('#simpan').attr('disabled', 'disabled');
+		$.ajax({
+			url : '{{ route("backend_pengeluaran.update", $pengeluaran->id) }}',
+			data : form_data,
+			type : 'put',
+			error:function(xhr, status, error){
+				$('#simpan').removeAttr('disabled');
+				$('#pesan').addClass('alert alert-danger animated shake').html('<b>Error : </b><br>');
+				var datajson = JSON.parse(xhr.responseText);
+				$.each(datajson, function(index, value) {
+					$('#pesan').append(index + ": " + value + "<br>");
+				});
+			},
+			success:function(ok){
+				 swal({
+					title : 'success',
+					text : 'data telah ditambahkan',
+					type : 'success'
+				 }, function(){
+					window.location.reload();
+				 });
+			}
+		});
+	});
+
+	$('#pesan').click(function(){
+		$('#pesan').fadeOut(function(){
+			$('#pesan').html('').show().removeClass('alert alert-danger');
+		});
+	});
 </script>
-
-

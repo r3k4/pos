@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-7 col-lg-offset-5">
-		{!! Form::open(['method' => 'get', 'route' => 'backend_produk.index']) !!}
+		<form method="get" action="{{ route('backend_produk.index') }}">
 
 		<div 
 			@if(Request::get('search'))
@@ -10,7 +10,7 @@
 			@endif
 		>
 			<div class="form-group ">
-				{!! Form::text('search', Request::get('search'), ['placeholder' => 'search by nama produk...', 'class' => 'form-control']) !!}			
+				<input type="text" name="search" value="{{ Request::get('search') }}" placeholder="search by nama produk..." class="form-control">
 			</div>		
 		</div>
 
@@ -32,8 +32,7 @@
 			@endif
 		</div>
 
-		{!! Form::close() !!}
-
+		</form>
 		
 	</div>
 </div>

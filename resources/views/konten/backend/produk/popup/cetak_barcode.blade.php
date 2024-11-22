@@ -6,8 +6,8 @@
 <div class="row">
 	<div class="col-md-5">
 		<div class="form-group">
-			{!! Form::label('jml', 'Jumlah barcode : ') !!}
-			{!! Form::text('jml', 1, ['id' => 'jml', 'class' => 'form-control', 'placeholder' => 'jml barcode...']) !!}
+			<label for="jml">Jumlah barcode :</label>
+			<input type="text" id="jml" name="jml" class="form-control" placeholder="jml barcode..." value="1">
 		</div>
 	</div>
 </div>

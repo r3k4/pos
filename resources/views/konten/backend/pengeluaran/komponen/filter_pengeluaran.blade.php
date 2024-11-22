@@ -2,7 +2,12 @@
 
 
 <div class="col-md-2">
-	{!! Form::select('filter_by', ['' => '-filter by-', 'bln' => 'bulan', 'tgl' => 'tanggal'], '', [ 'class' => 'form-control', 'id' => 'filter_by']) !!}
+	<select name="filter_by" class="form-control" id="filter_by">
+		<option value="">-filter by-</option>
+		<option value="bln">bulan</option>
+		<option value="tgl">tanggal</option>
+	</select>
+</div>
 </div>
 
 

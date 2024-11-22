@@ -1,5 +1,5 @@
 <div style="display:none;" id="filter_tgl" class="col-md-7 col-md-offset-3">
-	{!! Form::open(['method' => 'get', 'route' => 'backend_pengeluaran.index']) !!}
+	<form method="get" action="{{ route('backend_pengeluaran.index') }}">
  
 
 	<div 
@@ -43,7 +43,7 @@
 		@endif
 	</div>
 
-	{!! Form::close() !!}
+	</form>
 
 	
 </div>

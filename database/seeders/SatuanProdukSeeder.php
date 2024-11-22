@@ -5,15 +5,15 @@ use App\Models\Ref\SatuanProduk;
 
 class SatuanProdukSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
 		$check = SatuanProduk::find(1);
-		if(count($check)<=0){
+		if ($check  == null) {
 			$data = [
 				'id'	=> 1,
 				'nama'	=> 'pcs'
@@ -24,7 +24,7 @@ class SatuanProdukSeeder extends Seeder
 
 
 		$check = SatuanProduk::find(2);
-		if(count($check)<=0){
+		if ($check == null) {
 			$data = [
 				'id'	=> 2,
 				'nama'	=> 'kg'
@@ -34,7 +34,7 @@ class SatuanProdukSeeder extends Seeder
 
 
 		$check = SatuanProduk::find(3);
-		if(count($check)<=0){
+		if ($check == null) {
 			$data = [
 				'id'	=> 3,
 				'nama'	=> 'gram'
@@ -43,16 +43,12 @@ class SatuanProdukSeeder extends Seeder
 		}
 
 		$check = SatuanProduk::find(4);
-		if(count($check)<=0){
+		if ($check == null) {
 			$data = [
 				'id'	=> 4,
 				'nama'	=> 'liter'
 			];
 			SatuanProduk::create($data);
 		}
-
-
-
-
-    }
+	}
 }
